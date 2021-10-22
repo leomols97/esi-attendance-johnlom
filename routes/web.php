@@ -17,4 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/showGroups', [\App\Http\Controllers\GroupsCSVController::class, 'show']);
+use App\Http\Controllers\GroupsCSVController;
+Route::get('/showGroups', [GroupsCSVController::class, 'insertGroups']);

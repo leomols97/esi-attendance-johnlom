@@ -2,10 +2,9 @@
 
 namespace App;
 
-class GroupsCSV
-{
-    public static function csvToArray()
-    {
+class GroupsCSV {
+
+    public static function csvToArray() {
         $studentsArray = [];
         if (($handle = fopen("Students.csv", "r")) !== FALSE) {
             while (($data = fgetcsv($handle)) !== FALSE) {
@@ -15,4 +14,5 @@ class GroupsCSV
         }
         return $studentsArray;
     }
+    
 }
