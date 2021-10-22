@@ -20,7 +20,7 @@ class FileCtrl extends Controller
         $file_name = "test.csv";
         $presences = FileModel::findPresences();
 
-        print_r($presences);
+        //print_r($presences);
 
         return view("file_view");
     }
@@ -107,22 +107,18 @@ class FileCtrl extends Controller
 
         $students1=array();
         foreach($presences as $student){
-            $studentDetails = array();
-            foreach($studentDetails as $studentDetail => $studentDetail_value){
-                $studentDetail_valueString= "\"" . $studentDetail_value . "\"";
-                array_push($studentDetails, $studentDetail_valueString);
+            $student_details = array();
+            foreach($student as $student_detail => $student_detail_value){
+                $studentDetail_value_string = '"' . $student_detail_value . '"';
+                array_push($student_details, $studentDetail_value_string);
             }
-            array_push($students1, $studentDetails);
+            array_push($students1, $student_details);
         }
 
         foreach($students1 as $student1){
             fputcsv($file, $student1);
         }
-        
-
+        //dd(FileModel::findPresences());
         fclose($file);
-
-
-
     }
 }

@@ -13,7 +13,6 @@ class FileModel extends Model
 
     static public function findPresences()
     {
-        //test2 heroku connection refused
         $presences = DB::select('
             SELECT p.Student, s.Date, s.Hour, s.Local, s.Cours, p.Present
             FROM Présences p
