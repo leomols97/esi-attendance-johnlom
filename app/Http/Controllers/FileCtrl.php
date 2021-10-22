@@ -105,20 +105,17 @@ class FileCtrl extends Controller
             }
         }*/
 
-        $students1=array();
+       
+        fputcsv($file, $columns);
         foreach($presences as $student){
             $student_details = array();
             foreach($student as $student_detail => $student_detail_value){
-                $studentDetail_value_string = '"' . $student_detail_value . '"';
-                array_push($student_details, $studentDetail_value_string);
+                array_push($student_details, (string) $student_detail_value);
             }
-            array_push($students1, $student_details);
+            fputcsv($file, $student_details);
         }
 
-        foreach($students1 as $student1){
-            fputcsv($file, $student1);
-        }
-        //dd(FileModel::findPresences());
+        
         fclose($file);
     }
 }
