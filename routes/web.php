@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileCtrl;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', [FileCtrl::class, 'home']);
+// Exporter un fichier Excel
+Route::post('/export', [FileCtrl::class, 'export']);
+// Exporter un fichier Excel
+//Route::post("simple-excel/export", "SimpleExcelController@export")->name('excel.export');
+
+
