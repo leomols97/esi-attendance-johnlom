@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/uploadGroups', [\App\Http\Controllers\GroupsController::class, 'show']);
+Route::get('/showGroups', [\App\Http\Controllers\GroupsCSVController::class, 'show']);
