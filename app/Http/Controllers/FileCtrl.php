@@ -75,7 +75,7 @@ class FileCtrl extends Controller
         };
         return response()->stream($callback, 200, $headers);
         */
-        var_dump($presences[0]);
+        /*var_dump($presences[0]);
         $students = array();
         foreach ($presences as $student)
         {
@@ -92,8 +92,9 @@ class FileCtrl extends Controller
         $lines = array(
             // $this->return_arrays($presences)
             $presences
-        );
+        );*/
         $file = fopen('test.csv', 'w');
+        /*
         foreach ($lines as $line)
         {
             //var_dump($line);
@@ -102,8 +103,26 @@ class FileCtrl extends Controller
                 //var_dump($lin);
                 fputcsv($file, (array) $lin);
             }
+        }*/
+
+        $students1=array();
+        foreach($presences as $student){
+            $studentDetails = array();
+            foreach($studentDetails as $studentDetail => $studentDetail_value){
+                $studentDetail_valueString= "\"" . $studentDetail_value . "\"";
+                array_push($studentDetails, $studentDetail_valueString);
+            }
+            array_push($students1, $studentDetails);
         }
+
+        foreach($students1 as $student1){
+            fputcsv($file, $student1);
+        }
+        
+
         fclose($file);
+
+
 
     }
 }

@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/home', [FileCtrl::class, 'home']);
 // Exporter un fichier Excel
-Route::post('/export', [FileCtrl::class, 'arrayto']);
+Route::post('/export', [FileCtrl::class, 'export_csv']);
 // Exporter un fichier Excel
 //Route::post("simple-excel/export", "SimpleExcelController@export")->name('excel.export');
 
