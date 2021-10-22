@@ -25,49 +25,85 @@ class FileCtrl extends Controller
         return view("file_view");
     }
 
-    public function export (Request $request)
+    function export_csv(Request $request)
     {
-    	// 1. Validation des informations du formulaire
-    	$this->validate($request, [
-    		'name' => 'bail|required|string',
-    		'extension' => 'bail|required|string|in:xlsx,csv'
-    	]);
+        $fileName = $file_name = $request->name.".".$request->extension;;
+        $presences = FileModel::findPresences();
 
-    	// 2. Le nom du fichier avec l'extension : .xlsx ou .csv
-    	$file_name = $request->name.".".$request->extension;
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
 
-    	// 3. On récupère données de la table "clients"
-    	$presences = FileModel::findPresences();
+        $columns = array('Student', 'Date', 'Hour', 'Local', 'Cours', 'Presence');
+        /*
+        $callback = function() use($presences, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
 
-    	// 4. $writer : Objet Spatie\SimpleExcel\SimpleExcelWriter
-    	//$writer = SimpleExcelWriter::create($file_name);
 
- 		// 5. On insère toutes les lignes au fichier Excel $file_name
-    	//$writer->addRows($presences->toArray());
-        $fp = fopen('file.csv', 'w');
-
-        $list = $presences;
-        foreach ($list as $fields) {
-            fputcsv($fp,get_object_vars($fields));
+            foreach ($presences as $presence)
+            {
+                $row['Student']  = $presence->Student;
+                $row['Date']    = $presence->Date;
+                // $hour;
+                // $i = 0;
+                // foreach ($presence->Hour as $char)
+                // {
+                //     if ($i == 2)
+                //     {
+                //         $i = 0;
+                //     } else {
+                //         $hour += $char;
+                //     }
+                // }
+                // strrev($hour);
+                $row['Hour']    = $presence->Hour;
+                $row['Local']  = $presence->Local;
+                $row['Cours']  = $presence->Cours;
+                if ($presence->Present == 1) {
+                    $row['Presence'] = "Present";
+                } else {
+                    $row['Presence'] = "Absent";
+                }
+                fputcsv($file, array($row['Student'], $row['Date'], $row['Hour'], $row['Local'], $row['Cours'], $row['Presence']));
+            }
+            fclose($file);
+        };
+        return response()->stream($callback, 200, $headers);
+        */
+        var_dump($presences[0]);
+        $students = array();
+        foreach ($presences as $student)
+        {
+            //var_dump ($student);
+            $string = "";
+            $student = array();
+            foreach ($student as $stud => $stud_value)
+            {
+                //$string = "";
+                $string = "\"" . $stud . "\"";
+                //$stud = $string;
+            }
         }
-
-        fclose($fp);
-        array_to_csv_download($presences);
-
-        // 6. Lancer le téléchargement du fichier
-        //$writer->toBrowser();
-    }
-
-    function array_to_csv_download($array, $filename = "export.csv", $delimiter=";") {
-        header('Content-Type: application/csv');
-        header('Content-Disposition: attachment; filename="'.$filename.'";');
-
-        // open the "output" stream
-        // see http://www.php.net/manual/en/wrappers.php.php#refsect2-wrappers.php-unknown-unknown-unknown-descriptioq
-        $f = fopen('php://output', 'w');
-
-        foreach ($array as $line) {
-            fputcsv($f, $line, $delimiter);
+        $lines = array(
+            // $this->return_arrays($presences)
+            $presences
+        );
+        $file = fopen('test.csv', 'w');
+        foreach ($lines as $line)
+        {
+            //var_dump($line);
+            foreach ($line as $lin)
+            {
+                //var_dump($lin);
+                fputcsv($file, (array) $lin);
+            }
         }
+        fclose($file);
+
     }
 }
