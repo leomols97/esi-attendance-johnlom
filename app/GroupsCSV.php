@@ -25,6 +25,9 @@ class GroupsCSV {
             } catch(Exception $ex) {
                 throw new Exception("Le fichier fourni n'est pas un fichier CSV correct");
             }
+            if(empty($studentsArray)) {
+                throw new Exception("Le fichier fourni n'est pas un fichier CSV correct");
+            }
         }
         return $studentsArray;
     }
