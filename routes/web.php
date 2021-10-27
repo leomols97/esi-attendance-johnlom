@@ -18,4 +18,6 @@ Route::get('/', function () {
 });
 
 use App\Http\Controllers\GroupsCSVController;
-Route::get('/showGroups', [GroupsCSVController::class, 'insertGroups']);
+Route::get('/importGroupsForStudents', [GroupsCSVController::class, 'interface']);
+
+Route::post('/importGroupsForStudents', [GroupsCSVController::class, 'importCsv']);
