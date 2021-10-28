@@ -16,9 +16,9 @@ class CreateStudentGroupsTable extends Migration
         Schema::create('student_groups', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('student_id');
-            $table->unsignedInteger('group_id');
+            $table->string('group_name');
             $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('group_name')->references('name')->on('groups');
         });
     }
 
