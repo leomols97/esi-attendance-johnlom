@@ -18,7 +18,11 @@ class GroupsCSV {
                 while (($data = fgetcsv($handle)) !== FALSE) {
                     $array = [];
                     $array["student_id"] = $data[0];
+<<<<<<< HEAD
                     $array["group_id"] = $data[1];
+=======
+                    $array["group_name"] = $data[1];
+>>>>>>> 78863c82a5fe29e00cf8469eeb8748b9e81cd03e
                     array_push($studentsArray, $array);
                 }
                 fclose($handle);
