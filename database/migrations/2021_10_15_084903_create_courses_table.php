@@ -16,7 +16,8 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('ue');
+            $table->string('teacher_id');
+            $table->foreign('teacher_id')->references('acronym')->on('teachers');
         });
     }
 

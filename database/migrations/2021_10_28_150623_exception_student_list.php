@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePresencesTable extends Migration
+class ExceptionStudentList extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreatePresencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('presences', function (Blueprint $table) {
+        Schema::create('exception_student_list', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('seance_id');
+            $table->unsignedInteger('course_id');
             $table->unsignedInteger('student_id');
-            $table->boolean('is_present');
-            $table->foreign('seance_id')->references('id')->on('seances');
+            $table->boolean('add');
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('student_id')->references('id')->on('students');
+
         });
     }
 
@@ -30,6 +31,6 @@ class CreatePresencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('presences');
+        //
     }
 }

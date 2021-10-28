@@ -14,10 +14,10 @@ class CreateTeachersTable extends Migration
     public function up()
     {
         Schema::create('teachers', function (Blueprint $table) {
-            $table->id();
+            $table->string('acronym');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('acronym');
+            $table->primary('acronym');
         });
     }
 
