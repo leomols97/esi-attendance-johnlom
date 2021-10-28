@@ -4,9 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/**
- * Migrations done with SQLite
- */
 class CreatePresencesTable extends Migration
 {
     /**
@@ -21,8 +18,8 @@ class CreatePresencesTable extends Migration
             $table->unsignedInteger('seance_id');
             $table->unsignedInteger('student_id');
             $table->boolean('is_present');
-            $table->foreign('seance_id')->references('seances')->on('id');
-            $table->foreign('student_id')->references('students')->on('id');
+            $table->foreign('seance_id')->references('id')->on('seances');
+            $table->foreign('student_id')->references('id')->on('students');
         });
     }
 

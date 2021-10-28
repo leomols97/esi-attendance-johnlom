@@ -4,10 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/**
- * Migrations done with SQLite
- */
-class CreateSeanceGroupsTable extends Migration
+class CreateCoursesGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,12 +13,12 @@ class CreateSeanceGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('seance_groups', function (Blueprint $table) {
+        Schema::create('courses_groups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('seance_id');
+            $table->unsignedInteger('course_id');
             $table->unsignedInteger('group_id');
-            $table->foreign('seance_id')->references('seances')->on('id');
-            $table->foreign('group_id')->references('groups')->on('id');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('group_id')->references('id')->on('groups');
         });
     }
 
