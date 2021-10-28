@@ -9,4 +9,4 @@ Sont implémentées les fonctionnalités :
 
 # Déploiement
 
-En cours
+Via Heroku : http://esi-attendance-johnlom.herokuapp.com/
