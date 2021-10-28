@@ -1,12 +1,27 @@
 @extends('canvas')
 @section('title', 'Présence des étudiants au cours')
+@section('title_header', 'PRJG5')
+@section('content')
+@section('css')
 @section('content')
 
-<p>Structure: <div>Matricule</div><div>Nom</div><div>Prénom</div><div>Groupes</div></p>
-<ol id="attendance"> 
+<h1>Les étudiants</h1>
+
+<table>
+    <tr>
+        <th>Matricule</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Présent(e)</th>
+    </tr>
     @foreach ($students as $student)
-    <li>{{$student->getId() . " " .  $student->getLastName() . " " . $student->getFirstName() . " " . $student->getGroups()[0]}}</li>
+    <tr>
+        <td>{{$student->id}}</td>
+        <td>{{$student->last_name}}</td>
+        <td>{{$student->first_name}}</td>
+        <td><input type="checkbox"/></td>
+    </tr>
     @endforeach
-</ol>
+</table>
 
 @endsection

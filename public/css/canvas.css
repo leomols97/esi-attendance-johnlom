@@ -1,0 +1,30 @@
+body {
+    margin: 0em;
+    display: grid;
+    grid-template-areas: "header" "main" "footer";
+}
+
+header {
+    grid-area: header;
+    text-align: center;
+    background-color: #245995;
+    color: white;
+}
+
+main {
+    padding: 2em;
+}
+
+table {
+    width: 100%;
+}
+
+footer {
+    grid-area: footer;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #245995;
+    color: white;
+    text-align: center;
+}
