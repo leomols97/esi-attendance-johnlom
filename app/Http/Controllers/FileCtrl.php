@@ -20,8 +20,6 @@ class FileCtrl extends Controller
         $file_name = "test.csv";
         $presences = FileModel::findPresences();
 
-        //print_r($presences);
-
         return view("file_view");
     }
 
@@ -38,74 +36,9 @@ class FileCtrl extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('Student', 'Date', 'Hour', 'Local', 'Cours', 'Presence');
-        /*
-        $callback = function() use($presences, $columns) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
-
-
-            foreach ($presences as $presence)
-            {
-                $row['Student']  = $presence->Student;
-                $row['Date']    = $presence->Date;
-                // $hour;
-                // $i = 0;
-                // foreach ($presence->Hour as $char)
-                // {
-                //     if ($i == 2)
-                //     {
-                //         $i = 0;
-                //     } else {
-                //         $hour += $char;
-                //     }
-                // }
-                // strrev($hour);
-                $row['Hour']    = $presence->Hour;
-                $row['Local']  = $presence->Local;
-                $row['Cours']  = $presence->Cours;
-                if ($presence->Present == 1) {
-                    $row['Presence'] = "Present";
-                } else {
-                    $row['Presence'] = "Absent";
-                }
-                fputcsv($file, array($row['Student'], $row['Date'], $row['Hour'], $row['Local'], $row['Cours'], $row['Presence']));
-            }
-            fclose($file);
-        };
-        return response()->stream($callback, 200, $headers);
-        */
-        /*var_dump($presences[0]);
-        $students = array();
-        foreach ($presences as $student)
-        {
-            //var_dump ($student);
-            $string = "";
-            $student = array();
-            foreach ($student as $stud => $stud_value)
-            {
-                //$string = "";
-                $string = "\"" . $stud . "\"";
-                //$stud = $string;
-            }
-        }
-        $lines = array(
-            // $this->return_arrays($presences)
-            $presences
-        );*/
+        $columns = array('Student', 'Beginning_hour', 'Ending_hour', 'Local', 'Cours', 'Presence');
         $file = fopen('test.csv', 'w');
-        /*
-        foreach ($lines as $line)
-        {
-            //var_dump($line);
-            foreach ($line as $lin)
-            {
-                //var_dump($lin);
-                fputcsv($file, (array) $lin);
-            }
-        }*/
 
-       
         fputcsv($file, $columns);
         foreach($presences as $student){
             $student_details = array();
@@ -115,7 +48,6 @@ class FileCtrl extends Controller
             fputcsv($file, $student_details);
         }
 
-        
         fclose($file);
     }
 }
