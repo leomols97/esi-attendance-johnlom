@@ -16,7 +16,7 @@
     </tr>
     @foreach ($students as $student)
     <tr>
-        <td>{{$student->id}}</td>
+        <td dusk='id_student'>{{$student->id}}</td>
         <td>{{$student->last_name}}</td>
         <td>{{$student->first_name}}</td>
         <td><input type="checkbox"/></td>
