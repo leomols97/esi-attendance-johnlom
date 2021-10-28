@@ -13,11 +13,11 @@ class studentConsultation extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function consultStudentAttendency()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->visit('/students/1')
+                    ->assertSeeIn('@id_student', '');
         });
     }
 }
