@@ -14,11 +14,11 @@
         echo Form::close();
     ?>
     @if($error)
-        <p>Une erreur s'est produite lors de l'importation du fichier. Veuillez vérifier si le fichier donné 
+        <p class="error">Une erreur s'est produite lors de l'importation du fichier. Veuillez vérifier si le fichier donné 
         est bien au format CSV.</p>
     @endif
     @if($success)
-        <p>Importation réalisée avec succès.</p>
+        <p class="success">Importation réalisée avec succès.</p>
     @endif
 </body>
 </html>

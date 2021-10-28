@@ -19,6 +19,7 @@ class CreateSeancesTable extends Migration
             $table->dateTime('end_time');
             $table->unsignedInteger('course_ue');
             $table->unsignedInteger('teacher_acronym');
+            $table->unsignedInteger('room');
             $table->foreign('course_ue')->references('ue')->on('courses');
             $table->foreign('teacher_acronym')->references('acronym')->on('teachers');
         });
