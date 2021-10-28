@@ -29,7 +29,3 @@ Ils pourront vous renseigner sur des possibles erreurs internes. Pour ce faire :
 
 - `heroku logs -a esi-attendance-johnlom` vous donneront les derniers logs de l'application.
 - `heroku logs -a esi-attendance-johnlom --tail` vous donneront les logs en temps réel. Les logs précédents s'affichent et le cmd/bash reste ouvert pour afficher en temps réel les nouveaux logs (CTRL+C pour arrêter).
-
-# Schéma de la base de données
-
-![Diagramme de la BDD](ERDDiagram1.svg)
