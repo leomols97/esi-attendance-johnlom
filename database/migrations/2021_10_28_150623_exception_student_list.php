@@ -31,6 +31,6 @@ class ExceptionStudentList extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('exception_student_list');
     }
 }
