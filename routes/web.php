@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+use App\Http\Controllers\GroupsCSVController;
+Route::get('/importGroupsForStudents', [GroupsCSVController::class, 'interface']);
+
+Route::post('/importGroupsForStudents', [GroupsCSVController::class, 'importCsv']);
