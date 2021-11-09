@@ -18,8 +18,8 @@ class CreateCoursesGroupsTable extends Migration
             $table->id();
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('group_id');
-            $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('course_id')->references('ue')->on('courses');
+            $table->foreign('group_id')->references('name')->on('groups');
         });
     }
 

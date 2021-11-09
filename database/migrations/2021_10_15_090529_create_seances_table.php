@@ -19,7 +19,7 @@ class CreateSeancesTable extends Migration
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->string('local');
-            $table->foreign('course_id')->references('name')->on('courses');
+            $table->foreign('course_id')->references('ue')->on('courses');
         });
     }
 
