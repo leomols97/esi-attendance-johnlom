@@ -14,10 +14,10 @@ class CreateCoursesTable extends Migration
     public function up()
     {
         Schema::create('courses', function (Blueprint $table) {
+            $table->id('id');
             $table->string('ue');
             $table->string('name');
             $table->string('teacher_id');
-            $table->primary('ue');
             $table->foreign('teacher_id')->references('acronym')->on('teachers');
         });
     }

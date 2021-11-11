@@ -15,11 +15,11 @@ class CreateSeancesTable extends Migration
     {
         Schema::create('seances', function (Blueprint $table) {
             $table->id();
-            $table->string('course_id');
+            $table->unsignedInteger('course_id');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->string('local');
-            $table->foreign('course_id')->references('ue')->on('courses');
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 

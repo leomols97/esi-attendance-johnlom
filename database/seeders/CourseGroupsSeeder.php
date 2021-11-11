@@ -16,7 +16,7 @@ class CourseGroupsSeeder extends Seeder
      */
     public function run()
     {
-        $courses = DB::table('courses')->pluck('ue');
+        $courses = DB::table('courses')->pluck('id');
         $groups = DB::table('groups')->pluck('name');
         $faker = Faker::create();
         for ($i=0; $i < 2; $i++) { 
