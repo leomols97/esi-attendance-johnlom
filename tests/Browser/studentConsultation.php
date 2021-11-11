@@ -8,6 +8,8 @@ use Tests\DuskTestCase;
 
 class studentConsultation extends DuskTestCase
 {
+    use DatabaseMigrations;
+
     /**
      * A Dusk test example.
      *
@@ -17,7 +19,8 @@ class studentConsultation extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/students/1')
-                    ->assertSeeIn('@id_student', '');
+                    ->assertValue('@id_student', 0)
+                    ->assertValue('@id_student', 1);
         });
     }
 }
