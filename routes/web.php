@@ -22,5 +22,6 @@ Route::get('/', function () {
 
 
 Route::get('/addStudent', [ExceptionController::class, 'add']);
+Route::get('/addStudentToCourse', [ExceptionController::class, 'addStudentToCourse']);
 
 
