@@ -4,46 +4,86 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 require_once '../vendor/autoload.php';
 
 use ICal\ICal;
 
-class Session 
+class Session
 {
-    private $course;
-    private $teacher;
-    private $dateBegin;
-    private $dateEnd;
-    private $classroom;
 
 
-    public function __construct($course, $teacher, $dateBegin,$dateEnd,$classroom)
+    public static function importICS(String $ics)
     {
-        $this->course = $course;
-        $this->teacher = $teacher;
-        $this->dateBegin = $dateBegin;
-        $this->dateEnd = $dateEnd;
-        $this->classroom = $classroom;
-    }
+        $ical = new iCal($ics);
 
-    public static function importICS(String $ics) {
-        $ical = new iCal("JLC_LECHIEN_Jonathan.ics"); 
-        $teacher = substr($ics,0 , 3);
-        foreach ($ical->cal["VEVENT"] as $event){
-            $course = $event["DESCRIPTION_array"][1];
-            $split = explode("Matière : ",$course);
-            $split2 = explode("\n",$split[0]);
-            var_dump($split);
-            // $dateBegin = $event['DTSTART'];
-            // $dateEnd = $event['DTEND'];
-            // $classroom = $event['DESCRIPTION']['nSalle'];
-            
+        $teacherInfo = $ical->cal["VCALENDAR"]["X-WR-CALNAME"];
+        $teacherArray = explode(" - ", $teacherInfo);
+        $acro = substr($teacherArray[1], 0, 3);
+        $nameArray = explode(" ", substr($teacherArray[1], 4, strlen($teacherArray[1])));
+        $lastName = "";
+        $firstName = "";
+        foreach ($nameArray as $n) {
+            if (ctype_upper($n)) {
+                $lastName = $lastName . $n . " ";
+            } else {
+                $firstName = $firstName . $n . " ";
+            }
         }
-       //echo var_dump($ical->cal);; 
+        $lastName = substr($lastName, 0, -1);
+        $firstName = substr($firstName, 0, -1);
+
+        if (sizeof(DB::table('teachers')
+            ->where('acronym', $acro)->get()->toArray()) == 0) {
+            DB::insert('insert into teachers (acronym,first_name,last_name) values (?,?,?)', [$acro, $firstName, $lastName]);
+        }
+        $idDB = 1;
+        foreach ($ical->cal["VEVENT"] as $event) {
+            $course = $event["DESCRIPTION_array"][1];
+            $split = explode("\\n", $course);
+            $array = array();
+
+            foreach ($split as $p) {
+                array_push($array, explode(" : ", $p));
+            }
+
+            $name = $array[0][1];
+            $classroom = $array[3][1];
+            $groups = explode("\,", $array[2][1]);
+            $start = date("d-m-Y H:i:s", strtotime($event['DTSTART']));
+            $end = date("d-m-Y H:i:s", strtotime($event['DTEND']));
+
+            $course_exist = DB::table('courses')
+                ->where('ue', $name)->where('teacher_id', $acro)->get()->toArray();
+
+            $id_course = 0;
+
+            //add if possible
+            if (sizeof($course_exist) == 0) {
+                $id_course = DB::table('courses')->insertGetId(
+                    array('ue' => $name, 'name' => 'To be filled by teacher', 'teacher_id' => $acro)
+                );
+            } else {
+                $id_course = $course_exist[0]->id;
+            }
+
+            $id = DB::table('seances')->insertGetId(
+                array('course_id' => $id_course, 'start_time' => $start, 'end_time' => $end, 'local' => $classroom)
+            );
+
+
+
+            foreach ($groups as $group) {
+                if (sizeof(DB::table('groups')
+                    ->where('name', $group)->get()->toArray()) == 0) {
+
+                    DB::insert('insert into groups  values (?)', [$group]);
+                }
+                DB::table('courses_groups')->insertGetId(
+                    array('course_id' => $id_course, 'group_id' => $group)
+                );
+            }
+        }
     }
-
-
-
-
 }
