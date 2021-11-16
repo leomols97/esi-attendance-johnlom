@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', [AttendanceController::class, 'courses' ]);
+Route::get('/import', [AttendanceController::class, 'courses' ]);

@@ -68,9 +68,7 @@ class Session
                 $id_course = $course_exist[0]->id;
             }
 
-            $id = DB::table('seances')->insertGetId(
-                array('course_id' => $id_course, 'start_time' => $start, 'end_time' => $end, 'local' => $classroom)
-            );
+            
 
 
 
@@ -80,8 +78,12 @@ class Session
 
                     DB::insert('insert into groups  values (?)', [$group]);
                 }
-                DB::table('courses_groups')->insertGetId(
+                $id_group = DB::table('courses_groups')->insertGetId(
                     array('course_id' => $id_course, 'group_id' => $group)
+                );
+
+                $id = DB::table('seances')->insertGetId(
+                    array('course_group' => $id_group, 'start_time' => $start, 'end_time' => $end, 'local' => $classroom)
                 );
             }
         }
