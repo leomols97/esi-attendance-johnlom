@@ -25,7 +25,7 @@ class FileCtrl extends Controller
 
     function export_csv(Request $request)
     {
-        $fileName = $file_name = $request->name.".".$request->extension;;
+        $fileName = $file_name = $request->name.".".$request->extension;
         $presences = FileModel::findPresences();
 
         $headers = array(
@@ -37,7 +37,7 @@ class FileCtrl extends Controller
         );
 
         $columns = array('Student', 'Beginning_hour', 'Ending_hour', 'Local', 'Cours', 'Presence');
-        $file = fopen('test.csv', 'w');
+        $file = fopen($file_name, 'w');
 
         fputcsv($file, $columns);
         foreach($presences as $student){

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FileCtrl;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [FileCtrl::class, 'home']);
-// Exporter un fichier Excel
-Route::post('/export', [FileCtrl::class, 'export_csv']);
+//Fichier CSV pour l'affectation des groupes pour chaque étudiant
+use App\Http\Controllers\GroupsCSVController;
+Route::get('/importGroupsForStudents', [GroupsCSVController::class, 'interface']);
 
+Route::post('/importGroupsForStudents', [GroupsCSVController::class, 'importCsv']);
 
+//Téléchargement des statistiques de présence
+use App\Http\Controllers\FileCtrl;
+Route::get('/downloadStats', [FileCtrl::class, 'home']);
+
+Route::post('/downloadStats', [FileCtrl::class, 'export_csv']);
