@@ -38,7 +38,7 @@ class FileCtrl extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('Student', 'Date', 'Hour', 'Local', 'Cours', 'Presence');
+        $columns = array('Student', 'Date', 'Local', 'Cours', 'Presence');
         /*
         $callback = function() use($presences, $columns) {
             $file = fopen('php://output', 'w');

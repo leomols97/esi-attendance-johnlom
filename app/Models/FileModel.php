@@ -14,10 +14,11 @@ class FileModel extends Model
     static public function findPresences()
     {
         $presences = DB::select('
-            SELECT p.Student, s.Date, s.Hour, s.Local, s.Cours, p.Present
-            FROM Présences p
-            JOIN Seance s ON p.seance = s.id
-            ORDER BY s.Date ASC
+            SELECT p.student_id, s.start_time, s.local, c.ue, p.is_present
+            FROM presences p
+            JOIN seances s ON p.seance_id = s.id
+            JOIN courses c ON s.course_id = c.id
+            ORDER BY s.start_time ASC
         ');
         return $presences;
     }
