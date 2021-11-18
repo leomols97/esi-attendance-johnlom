@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentsCtrl;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,11 +23,12 @@ Route::get('/', function () {
 //Fichier CSV pour l'affectation des groupes pour chaque étudiant
 use App\Http\Controllers\GroupsCSVController;
 Route::get('/importGroupsForStudents', [GroupsCSVController::class, 'interface']);
-
 Route::post('/importGroupsForStudents', [GroupsCSVController::class, 'importCsv']);
 
 //Téléchargement des statistiques de présence
 use App\Http\Controllers\StatsExportController;
 Route::get('/exportStats', [StatsExportController::class, 'interface']);
-
 Route::post('/exportStats', [StatsExportController::class, 'export']);
+
+//Consultation des étudiants
+Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);

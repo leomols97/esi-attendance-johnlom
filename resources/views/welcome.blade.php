@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
     </head>
     <body>
         <header>ESI Attendance (équipe Johnlom)</header>
@@ -19,6 +20,9 @@
                     </tr>
                     <tr>
                     <td><a href="/exportStats">Téléchargement des statistiques de présences (CSV ou XLSX)</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/students/1">Consultation des étudiants</a></td>
                     </tr>
                 </tbody>
             </table>
