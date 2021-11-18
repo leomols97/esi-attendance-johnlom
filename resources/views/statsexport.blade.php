@@ -1,7 +1,7 @@
 <h3>Exporter</h3>
 <p>Exporter la table "Présences" en Excel</p>
 
-<form method="POST" action="/export">
+<form method="POST" action="/downloadStats">
 
     {{ csrf_field() }}
 
