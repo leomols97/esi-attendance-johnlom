@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\TestCase;
+use App\Models\Session;
 
 class SessionTest extends TestCase
 {
@@ -15,13 +17,13 @@ class SessionTest extends TestCase
      */
     public function test_importICS()
     {
-        $ics = ("..\..\public\JLC_LECHIEN_Jonathan.ics");
+        $ics = ("..\..\public\SkxDX0xFQ0hJRU5fSm9uYXRoYW4uaWNz.ics");
         Session::importICS($ics);
 
-        $this->assertDatabaseCount('courses', 100);
-        $this->assertDatabaseCount('teachers', 100);
-        $this->assertDatabaseCount('groups', 100);
-        $this->assertDatabaseCount('courses_groups', 100);
-        $this->assertDatabaseCount('seances', 100);
+        $this->assertDatabaseCount('courses', 7);
+        $this->assertDatabaseCount('teachers', 1);
+        $this->assertDatabaseCount('groups', 13);
+        $this->assertDatabaseCount('courses_groups', 187);
+        $this->assertDatabaseCount('seances', 187);
     }
 }
