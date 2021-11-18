@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use App\Models\Queries;
+use App\Queries;
 
 class studentConsultation extends TestCase
 {

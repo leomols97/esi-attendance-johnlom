@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Queries;
+use App\Queries;
 
 class StudentsCtrl extends Controller
 {
