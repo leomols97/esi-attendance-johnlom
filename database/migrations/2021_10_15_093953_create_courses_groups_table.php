@@ -13,6 +13,7 @@ class CreateCoursesGroupsTable extends Migration
      */
     public function up()
     {
+
         Schema::create('courses_groups', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('course_id');

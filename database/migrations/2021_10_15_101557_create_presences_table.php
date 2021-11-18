@@ -20,7 +20,6 @@ class CreatePresencesTable extends Migration
             $table->boolean('is_present');
             $table->foreign('seance_id')->references('id')->on('seances');
             $table->foreign('student_id')->references('id')->on('students');
-            $table->unique(['seance_id', 'student_id']);
         });
     }
 

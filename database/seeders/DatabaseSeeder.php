@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             StudentsSeeder::class,
             CourseSeeder::class,
             GroupsSeeder::class,
-            SeancesSeeder::class,
             CourseGroupsSeeder::class,
+            SeancesSeeder::class,
             StudentGroupsSeeder::class,
             PresencesSeeder::class,
         ]);
