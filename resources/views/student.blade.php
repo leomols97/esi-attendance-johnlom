@@ -2,30 +2,26 @@
 
 @section('title', 'StudentList')
 
-<?php //$students = json_decode($students,true); ?>
-
 @section ('content')
-    <h1>Student List</h1>
     <div>
         <form id="add" @submit="checkForm" action="{{route('add')}}" method="POST">
             @csrf
-            <h5>Add a Student:</h5>
+            <h5>Ajouter un étudiant à un cours</h5>
             <p>
-                <label for="id">Id Course :</label>
-                <select id="student_id" name="student_id" required focus>
-                    <option value="" disabled selected>Please select course</option>
+                <label for="id">Id de l'étudiant :</label>
+                <select id="student_id" name="student_id">
+                    <option value="" disabled selected>Sélectionnez l'ID d'un étudiant</option>
                     @foreach($students as $student)
                         <option value="{{ $student->id }}">{{ $student->id }}</option>
                     @endforeach
                 </select>
-                <!--<input id="course_id" name="course_id" type="number" v-model="id">-->
             </p>
             <p>
-            <label for="id">Id Course :</label>
-                <select id="student_id" name="student_id" required focus>
-                    <option value="" disabled selected>Please select course</option>
+            <label for="id">Nom du cours :</label>
+                <select id="course_id" name="course_id">
+                    <option value="" disabled selected>Sélectionnez un cours</option>
                     @foreach($courses as $course)
-                        <option value="{{ $course->id }}">{{ $course->id }}</option>
+                        <option value="{{ $course->id }}">{{ $course->name }}</option>
                     @endforeach
                 </select>
             </p>

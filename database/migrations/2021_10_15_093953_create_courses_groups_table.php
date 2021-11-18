@@ -13,12 +13,13 @@ class CreateCoursesGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('seance_groups', function (Blueprint $table) {
+
+        Schema::create('courses_groups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('seance_id');
+            $table->unsignedInteger('course_id');
             $table->unsignedInteger('group_id');
-            $table->foreign('seance_id')->references('id')->on('seances');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('group_id')->references('name')->on('groups');
         });
     }
 

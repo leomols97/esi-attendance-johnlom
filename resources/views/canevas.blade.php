@@ -11,7 +11,7 @@
         <img id="logo" src="/he2b-esi.jpg" alt="HE2B-ESI"/>
         <h1>PRJG5 - Attendance</h1>
         <ul>
-            <li><a href="/addStudentToCourse">Student List</a></li>
+            <!-- <li><a href="/addStudentToCourse">Student List</a></li> -->
             <!-- <li><a href="/course">Course List</a></li> -->
         </ul>
     </header>
