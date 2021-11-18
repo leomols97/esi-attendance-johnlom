@@ -13,6 +13,8 @@ class CSVTest extends TestCase
 {
     /**
      * Insert a valid CSV file in order to refresh the group assignments for each student.
+     * 
+     * @todo Edit the seeders in order to fill the database with static data in order to avoid primary key constraint error.
      */
     public function test_insert_valid_file()
     {
