@@ -6,6 +6,7 @@ Application de gestion de prise de présences pour l'ESI.
 
 Sont implémentées les fonctionnalités :
 - Importation de fichier CSV relatif à l'affectation des groupes pour chaque étudiant
+- Téléchargement des statistiques de présences au format XLSX ou CSV au choix
 
 # Déploiement
 

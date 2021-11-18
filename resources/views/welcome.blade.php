@@ -17,6 +17,9 @@
                     <tr>
                     <td><a href="/importGroupsForStudents">Importation des affectations de groupe pour les étudiants (CSV)</a></td>
                     </tr>
+                    <tr>
+                    <td><a href="/downloadStats">Téléchargement des statistiques de présences (CSV ou XLSX)</a></td>
+                    </tr>
                 </tbody>
             </table>
         </main>
