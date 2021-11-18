@@ -41,7 +41,12 @@ class AddStudentToCourseModel extends Model
 
     static public function selectStudent($id)
     {
-        $student = DB::select('select * from students where id = ?', [$id]);
-        return $student;
+        //return DB::select('select id from students where id = ?', [$id]);
+        return DB::table('students')->select('id')->where('id', '=', $id)->get();
+    }
+
+    static public function selectCourse($id)
+    {
+        return DB::select('select id from courses where id = ?', [$id]);
     }
 }

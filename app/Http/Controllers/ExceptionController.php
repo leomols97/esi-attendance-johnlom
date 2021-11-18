@@ -13,6 +13,12 @@ class ExceptionController extends Controller
         Queries::addStudent(ExceptionStudentList::newStudent());
     }
 
+    public function show()
+    {
+        $courses = Queries::allCourses();
+        return view('student', ['courses' => $courses]);
+    }
+
 
     // Léopold Mols from here
     static function selectStudent($id)
@@ -20,24 +26,36 @@ class ExceptionController extends Controller
         return AddStudentToCourseModel::selectStudent($id);
     }
 
+    static function selectCourse($id)
+    {
+        return AddStudentToCourseModel::selectCourse($id);
+    }
+
     static function existingStudent($id)
     {
+        var_dump($id);
+        var_dump(ExceptionController::selectStudent($id));
         return $id == ExceptionController::selectStudent($id);
+    }
+
+    static function existingCourse($id)
+    {
+        var_dump($id);
+        var_dump(ExceptionController::selectCourse($id));
+        return $id == ExceptionController::selectCourse($id);
     }
 
     public function addStudentToCourse()
     {
-        AddStudentToCourseModel::addStudentToCourse(1, 1, true);
-        $array=[];
-        if(isset($_REQUEST["id"])
-            && isset($_REQUEST["course_id"])
+        $array = [];
+        if (isset($_REQUEST["course_id"])
             && isset($_REQUEST["student_id"])
-            && !ExceptionController::existingStudent($_REQUEST["id"]))
+            && ExceptionController::existingStudent($_REQUEST["student_id"])
+            /*&& ExceptionController::existingCourse($_REQUEST["course_id"])*/)
         {
-            $id = $_REQUEST["id"];
-            $last_name = $_REQUEST["last_name"];
-            $first_name = $_REQUEST["first_name"];
-            $inserted = AddStudentToCourseModel::addStudent($id, $last_name, $first_name);
+            $courseId = $_REQUEST["course_id"];
+            $studentId = $_REQUEST["student_id"];
+            $inserted = AddStudentToCourseModel::addStudentToCourse($courseId, $studentId, true);
             $array = ["inserted" => $inserted];
         }
         else
@@ -45,8 +63,8 @@ class ExceptionController extends Controller
             $inserted = false;
             $array = ["inserted" => $inserted];
         }
-        $students = AddStudentToCourseModel::findAll();
+        $students = $array;
         $students_json = json_encode($students);
-        return view("student", ["students" => $students_json]);
+        return view("student");
     }
 }

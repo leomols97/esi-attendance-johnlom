@@ -13,4 +13,8 @@ class Queries
     public static function removeStudent($student){
         DB::table('exception_student_list')->delete($student);
     }
+
+    public static function allCourses(){
+        DB::table('courses')->get();
+    }
 }

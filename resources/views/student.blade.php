@@ -2,39 +2,27 @@
 
 @section('title', 'StudentList')
 
-<?php $students = json_decode($students,true); ?>
+<?php //$students = json_decode($students,true); ?>
 
 @section ('content')
     <h1>Student List</h1>
-    @if(count($students)===0)
-        <p>No student</p>
-    @else
-        <table>
-            <tr><th>id</th><th>Last name</th><th>First name</th></tr>
-            @foreach($students as $student)
-                <tr>
-                    <td dusk="id_student"><?=$student["id"]?></td>
-                    <td><?=$student["last_name"]?></td>
-                    <td><?=$student["first_name"]?></td>
-                </tr>
-            @endforeach
-        </table>
-    @endif
     <div>
-        <form id="add" @submit="checkForm" action="/student/add" method="POST">
+        <form id="add" @submit="checkForm" action="{{route('add')}}" method="POST">
             @csrf
             <h5>Add a Student:</h5>
             <p>
-                <label for="id">Id :</label>
-                <input id="id" name="id" type="number" v-model="id">
+                <label for="id">Id Course :</label>
+                <select id="course_id" name="course_id" required focus>
+                    <option value="" disabled selected>Please select course</option>
+                    @foreach($courses as $course)
+                        <option value="{{$course->id}}">{{ $course->name }}</option>
+                    @endforeach
+                </select>
+                <!--<input id="course_id" name="course_id" type="number" v-model="id">-->
             </p>
             <p>
-                <label for="LastName">Last Name :</label>
-                <input id="LastName" name="last_name" type="text" v-model="LastName">
-            </p>
-            <p>
-                <label for="FirstName">First Name :</label>
-                <input id="FirstName" name="first_name" type="text" v-model="FirstName">
+                <label for="id">Id Student :</label>
+                <input id="student_id" name="student_id" type="number" v-model="id">
             </p>
             <p><input type="submit" value="Add"></p>
             <div id="error"></div>
