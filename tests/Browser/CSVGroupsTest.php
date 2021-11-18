@@ -9,22 +9,10 @@ use Tests\DuskTestCase;
 class CSVGroupsTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
-     *
-     * @return void
+     * Checks if the group assignments page sends back a success message when a valid CSV file is given as input.
+     * (Mights break because of primary key constraint. To be used with real instead of mock data.)
      */
-    public function testExample()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
-        });
-    }
-
-    /**
-     * Checks if the group assignements page sends back an error when a wrong CSV file is given as input.
-     */
-    public function test_csv_error()
+    public function test_csv_success()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/importGroupsForStudents')
@@ -35,9 +23,9 @@ class CSVGroupsTest extends DuskTestCase
     }
 
     /**
-     * Checks if the group assignments page sends back a success message when a valid CSV file is given as input.
+     * Checks if the group assignements page sends back an error when a wrong CSV file is given as input.
      */
-    public function test_csv_success()
+    public function test_csv_error()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/importGroupsForStudents')

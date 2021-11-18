@@ -25,6 +25,6 @@ Route::post('/importGroupsForStudents', [GroupsCSVController::class, 'importCsv'
 
 //Téléchargement des statistiques de présence
 use App\Http\Controllers\StatsExportController;
-Route::get('/downloadStats', [StatsExportController::class, 'interface']);
+Route::get('/exportStats', [StatsExportController::class, 'interface']);
 
-Route::post('/downloadStats', [StatsExportController::class, 'export']);
+Route::post('/exportStats', [StatsExportController::class, 'export']);

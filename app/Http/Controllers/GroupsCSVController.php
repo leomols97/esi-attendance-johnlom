@@ -21,7 +21,11 @@ class GroupsCSVController extends Controller
         } catch (Exception $exception) {
             return view('studentsgroups', ["error" => true, "success" => false]);
         }
-        Queries::insertGroupsForStudents($csv_data);
+        try {
+            Queries::insertGroupsForStudents($csv_data);
+        } catch (Exception $exception) {
+            return view('studentsgroups', ["error" => true, "success" => false]);
+        }
         return view('studentsgroups', ["error" => false, "success" => true]);
     }
 

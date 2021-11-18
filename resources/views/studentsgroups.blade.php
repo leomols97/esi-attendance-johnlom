@@ -15,7 +15,7 @@
     ?>
     @if($error)
         <p class="error">Une erreur s'est produite lors de l'importation du fichier. Veuillez vérifier si le fichier donné 
-        est bien au format CSV.</p>
+        est bien au format CSV et que tous les étudiants & groupes auxquels il fait référence existent.</p>
     @endif
     @if($success)
         <p class="success">Importation réalisée avec succès.</p>
