@@ -16,7 +16,11 @@ class SeancesSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         $courses = DB::table('courses')->pluck('id');
+=======
+        $courses = DB::table('courses')->pluck('ue');
+>>>>>>> 6be989e2970236e87379e8558ff705391a38518f
         $faker = Faker::create();
         for ($i=0; $i < 2; $i++) { 
             DB::table('seances')->insert([

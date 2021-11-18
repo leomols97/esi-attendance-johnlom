@@ -19,7 +19,11 @@ class StudentGroupsSeeder extends Seeder
         $students = DB::table('students')->pluck('id');
         $groups = DB::table('groups')->pluck('name');
         $faker = Faker::create();
+<<<<<<< HEAD
         for ($i=0; $i < 100; $i++) { 
+=======
+        for ($i=0; $i < 2; $i++) { 
+>>>>>>> 6be989e2970236e87379e8558ff705391a38518f
             DB::table('student_groups')->insert([
                 'id' => $i,
                 'student_id' => $faker->randomElement($students),
@@ -27,4 +31,8 @@ class StudentGroupsSeeder extends Seeder
             ]);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6be989e2970236e87379e8558ff705391a38518f
