@@ -9,11 +9,16 @@
         "ext-pdo_sqlite": "*",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "johngrogg/ics-parser": "^3.0",
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+<<<<<<< HEAD
         "laravelcollective/html": "^6.2",
         "shuchkin/simplexlsxgen": "^1.0"
+=======
+        "spatie/simple-excel": "^1.14"
+>>>>>>> import_schedule_tests
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -25,11 +30,16 @@
         "phpunit/phpunit": "^9.5.8"
     },
     "autoload": {
+        "classmap": [
+            "database"
+        ],
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Libraries\\": "Libraries"
         }
+
     },
     "autoload-dev": {
         "psr-4": {

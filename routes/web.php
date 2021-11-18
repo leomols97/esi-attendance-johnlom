@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsCtrl;
+use App\Http\Controllers\ImportController;
 
 
 /*
@@ -32,3 +33,7 @@ Route::post('/exportStats', [StatsExportController::class, 'export']);
 
 //Consultation des étudiants
 Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::get('/import', [ImportController::class, 'importIndex' ]);
+
+Route::post('/import', [ImportController::class, 'import' ]);
+
