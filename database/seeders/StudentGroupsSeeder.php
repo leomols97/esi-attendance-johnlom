@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
 
-class StudentGroupSeeder extends Seeder
+class StudentGroupsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,15 @@ class StudentGroupSeeder extends Seeder
      * @return void
      */
     public function run()
-    { 
+    {
         $students = DB::table('students')->pluck('id');
-        $groups = DB::table('groups')->pluck('id');
+        $groups = DB::table('groups')->pluck('name');
         $faker = Faker::create();
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 100; $i++) { 
             DB::table('student_groups')->insert([
-                'id' => random_int(0,10000),
+                'id' => $i,
                 'student_id' => $faker->randomElement($students),
-                'group_id' => $faker->randomElement($groups),
+                'group_name' => $faker->randomElement($groups),
             ]);
         }
     }

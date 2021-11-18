@@ -15,9 +15,9 @@ class StudentsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 100; $i++) { 
             DB::table('students')->insert([
-                'id' => random_int(0,10000),
+                'id' => $i,
                 'first_name' => Str::random(10),
                 'last_name' => Str::random(10),
             ]);

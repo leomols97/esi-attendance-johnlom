@@ -15,13 +15,16 @@ class TeachersSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 2; $i++) { 
-            DB::table('teachers')->insert([
-                'id' => random_int(0,100000),
-                'first_name' => Str::random(10),
-                'last_name' => Str::random(10),
-                'acronym' => Str::random(10),
-            ]);
-        }
+        DB::table('teachers')->insert([
+            'acronym' => Str::random(10),
+            'first_name' => Str::random(10),
+            'last_name' => Str::random(10),
+        ]);
+        DB::table('teachers')->insert([
+            'acronym' => Str::random(10),
+            'first_name' => Str::random(10),
+            'last_name' => Str::random(10),    
+        ]);
+
     }
 }

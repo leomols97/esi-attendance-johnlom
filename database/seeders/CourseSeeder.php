@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class CourseSeeder extends Seeder
 {
@@ -15,12 +16,19 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 2; $i++) { 
-            DB::table('courses')->insert([
-                'id' => random_int(0,10000),
-                'name' => Str::random(10),
-                'ue' => Str::random(10),
-            ]);
-        }
+        $teachers = DB::table('teachers')->pluck('acronym');
+        $faker = Faker::create();
+        DB::table('courses')->insert([
+            'id' => 1,
+            'ue' => 'PRJG5',
+            'name' => 'Gestion de projet',
+            'teacher_id' => $faker->randomElement($teachers),
+        ]);
+        DB::table('courses')->insert([
+            'id' => 3,
+            'ue' => 'WEBG5',
+            'name' => 'Développement web V',
+            'teacher_id' =>$faker->randomElement($teachers),
+        ]);
     }
 }

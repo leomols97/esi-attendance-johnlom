@@ -15,9 +15,8 @@ class GroupsSeeder extends Seeder
      */
     public function run()
     { 
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 5; $i++) { 
             DB::table('groups')->insert([
-                'id' => random_int(0,10000),
                 'name' => Str::random(10),
             ]);
         }

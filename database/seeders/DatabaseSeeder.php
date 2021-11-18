@@ -3,9 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,9 +18,10 @@ class DatabaseSeeder extends Seeder
             StudentsSeeder::class,
             CourseSeeder::class,
             GroupsSeeder::class,
-            SeanceSeeder::class,
-            SeanceGroupSeeder::class,
-            StudentGroupSeeder::class,
+            SeancesSeeder::class,
+            CourseGroupsSeeder::class,
+            StudentGroupsSeeder::class,
         ]);
+
     }
 }
