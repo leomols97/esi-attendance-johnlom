@@ -13,12 +13,9 @@
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-<<<<<<< HEAD
         "laravelcollective/html": "^6.2",
-        "shuchkin/simplexlsxgen": "^1.0"
-=======
+        "shuchkin/simplexlsxgen": "^1.0",
         "spatie/simple-excel": "^1.14"
->>>>>>> import_schedule_tests
     },
     "require-dev": {
         "facade/ignition": "^2.5",

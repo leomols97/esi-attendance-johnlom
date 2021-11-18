@@ -24,10 +24,11 @@ class Queries {
     static public function findPresences()
     {
         $presences = DB::select('
-            SELECT p.student_id, s.start_time, s.end_time, s.local, s.course_id, p.is_present
-            FROM presences p
-            JOIN seances s ON p.seance_id = s.id
-            ORDER BY s.start_time, p.student_id
+            SELECT p.student_id, s.start_time, s.end_time, s.local, cg.course_id, p.is_present
+                FROM presences p
+                    JOIN seances s ON p.seance_id = s.id
+                    JOIN courses_groups cg ON s.course_group = cg.course_id
+                ORDER BY s.start_time, p.student_id
         ');
         return $presences;
     }
