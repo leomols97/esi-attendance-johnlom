@@ -11,12 +11,21 @@ class AddStudentToCourseModel extends Model
 {
     use HasFactory;
 
-    static public function findAll()
+    static public function findAllStudents()
     {
-        //test2 heroku connection refused
         $students = DB::select('
             SELECT id, last_name, first_name
             FROM students
+            ORDER BY id ASC
+        ');
+        return $students;
+    }
+
+    static public function findAllCourses()
+    {
+        $students = DB::select('
+            SELECT id, name, teacher_id
+            FROM courses
             ORDER BY id ASC
         ');
         return $students;

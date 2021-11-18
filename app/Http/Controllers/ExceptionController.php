@@ -63,8 +63,9 @@ class ExceptionController extends Controller
             $inserted = false;
             $array = ["inserted" => $inserted];
         }
-        $students = $array;
-        $students_json = json_encode($students);
-        return view("student");
+        $students = AddStudentToCourseModel::findAllStudents();
+        $courses = AddStudentToCourseModel::findAllCourses();
+        //$students_json = json_encode($students);
+        return view('student', ['students' => $students, 'courses' => $courses]);
     }
 }
