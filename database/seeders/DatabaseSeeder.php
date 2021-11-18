@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Http\Models\FileModel;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,10 +19,10 @@ class DatabaseSeeder extends Seeder
             StudentsSeeder::class,
             CourseSeeder::class,
             GroupsSeeder::class,
-            SeancesSeeder::class,
             CourseGroupsSeeder::class,
+            SeancesSeeder::class,
             StudentGroupsSeeder::class,
+            PresencesSeeder::class,
         ]);
-
     }
 }

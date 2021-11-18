@@ -7,7 +7,7 @@
 
 <h1>Les étudiants</h1>
 
-<table>
+<table border="1">
     <tr>
         <th>Matricule</th>
         <th>Nom</th>

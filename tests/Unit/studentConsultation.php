@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use App\Models\Queries;
 
 class studentConsultation extends TestCase
 {
@@ -12,7 +13,11 @@ class studentConsultation extends TestCase
      * @return void
      */
     public function test_example()
-    {
-        $this->assertTrue(true);
+    {       
+        //to do seeders for test
+        $expectedcount = 2;
+        $student = Queries::studentsForSeance(0);
+        $count = $student -> count();
+        $this->assertEquals($expectedcount,$count);
     }
 }
