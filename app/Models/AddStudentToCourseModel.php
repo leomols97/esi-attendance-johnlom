@@ -31,17 +31,13 @@ class AddStudentToCourseModel extends Model
         return $students;
     }
 
-    static public function addStudentToCourse($course_id, $student_id, $add)
+    static public function addAndUpdateStudentToCourse($course_id, $student_id, $add)
     {
         try {
-            DB::insert(
-                'INSERT INTO exception_student_list
-                    (`course_id`, `student_id`, `add`)
-                    values
-                    (?, ?, ?)
-                ',
-                [$course_id, $student_id, $add]
-            );
+            DB::table('exception_student_list')->updateOrInsert([
+                'course_id' => $course_id,
+                'student_id' => $student_id,
+            ], ['add' => $add]);
         } catch (QueryException $exception) {
             echo "There's no such student !";
             echo $exception;
@@ -57,5 +53,10 @@ class AddStudentToCourseModel extends Model
     static public function selectCourse($id)
     {
         return DB::select('select id from courses where id = ?', [$id]);
+    }
+
+    public static function selectAllExceptions()
+    {
+        return DB::table('exception_student_list')->get();
     }
 }

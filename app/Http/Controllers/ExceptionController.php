@@ -24,7 +24,7 @@ class ExceptionController extends Controller
     {
         $courseId = $_REQUEST["course_id"];
         $studentId = $_REQUEST["student_id"];
-        AddStudentToCourseModel::addStudentToCourse($courseId, $studentId, true);
+        AddStudentToCourseModel::addAndUpdateStudentToCourse($courseId, $studentId, true);
         return $this->showingStudentToCourses();
     }
 }
