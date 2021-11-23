@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\ExceptionStudentList;
 use App\Queries;
 use App\Models\AddStudentToCourseModel;
+use Illuminate\Database\QueryException;
 
 class ExceptionController extends Controller
 {

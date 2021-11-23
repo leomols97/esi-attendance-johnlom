@@ -25,15 +25,8 @@
                     @endforeach
                 </select>
             </p>
-            <p><input type="submit" value="Add"></p>
+            <p><input type="submit" value="Ajouter"></p>
             <div id="error"></div>
-        </form>
-        <form id="delete" action="/student/delete" method="POST">
-            @csrf
-            <h5>Delete a Student:</h5>
-            <label for="id">Id:</label>
-            <input id="id" name="id" type="number">
-            <input type="submit" value=delete>
         </form>
     </div>
 @endsection

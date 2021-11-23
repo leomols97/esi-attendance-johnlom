@@ -51,7 +51,7 @@ class AddStudentToCourseTest extends TestCase
      */
     public function test_add_student_to_course_existing_student_and_course()
     {
-        AddStudentToCourseModel::addStudentToCourse(1, 1, true);
+        AddStudentToCourseModel::addAndUpdateStudentToCourse(1, 1, true);
         $this->assertDatabaseHas('exception_student_list', [
             'student_id' => 1
         ]);

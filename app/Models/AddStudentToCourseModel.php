@@ -73,21 +73,30 @@ class AddStudentToCourseModel extends Model
      */
     static public function addStudentToCourse($course_id, $student_id, $add)
     {
+        // Sélectionne le tuple dont l'étudiant et le cours sont donnés en paramètres
+        // pour voir s'il existe ou non
+        $student = DB::select(
+            'SELECT course_id, student_id
+            FROM exception_student_list
+            WHERE course_id = ? AND student_id = ?
+            ',
+            [$course_id, $student_id]
+        );
         try {
-            // Vérifie qu'un étudiant existe déjà dans la table "exception_student_list" ou non
-            DB::table('exception_student_list')
-                ->select('student_id')
-                ->where('student_id', '=', $student_id)
-                ->get();
             // Insère l'étudiant ton les paramètres sont reçus en paramètres
-            DB::insert(
-                'INSERT INTO exception_student_list
-                    (`course_id`, `student_id`, `add`)
-                    values
-                    (?, ?, ?)
-                ',
-                [$course_id, $student_id, $add]
-            );
+            if (empty($student))
+            {
+                DB::insert(
+                    'INSERT INTO exception_student_list
+                        (`course_id`, `student_id`, `add`)
+                        values
+                        (?, ?, ?)
+                    ',
+                    [$course_id, $student_id, $add]
+                );
+            } else {
+                echo "<script>alert(\"L'étudiant a déjà été ajouté à ce cours\")</script>";
+            }
         } catch (QueryException $exception) {
             echo "There's no such student or course !";
             throw $exception;
@@ -107,13 +116,28 @@ class AddStudentToCourseModel extends Model
      */
     static public function addAndUpdateStudentToCourse($course_id, $student_id, $add)
     {
+        // Sélectionne le tuple dont l'étudiant et le cours sont donnés en paramètres
+        // pour voir s'il existe ou non
+        $student = DB::select(
+            'SELECT course_id, student_id
+            FROM exception_student_list
+            WHERE course_id = ? AND student_id = ?
+            ',
+            [$course_id, $student_id]
+        );
         try {
-            DB::table('exception_student_list')->updateOrInsert([
-                'course_id' => $course_id,
-                'student_id' => $student_id,
-            ], ['add' => $add]);
+
+            // Insère l'étudiant ton les paramètres sont reçus en paramètres
+            if (empty($student))
+            {
+                DB::table('exception_student_list')->updateOrInsert([
+                    'course_id' => $course_id,
+                    'student_id' => $student_id,
+                ], ['add' => $add]);
+            } else {
+                echo "<script>alert(\"L'étudiant a déjà été ajouté à ce cours\")</script>";
+            }
         } catch (QueryException $exception) {
-            echo "There's no such student or course !";
             throw $exception;
         }
     }
