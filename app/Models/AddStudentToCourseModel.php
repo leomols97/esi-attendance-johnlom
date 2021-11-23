@@ -61,49 +61,6 @@ class AddStudentToCourseModel extends Model
     }
 
     /**
-     * Adds a student to a course
-     *
-     * @param  integer $course_id     The id of the course to add the student to
-     * @param  integer $student_id    The id of the student to add to a course
-     * @param  boolean $add           The status of the adding
-     *
-     * @throws QueryException if the query could not be executed
-     *
-     * @return void
-     */
-    static public function addStudentToCourse($course_id, $student_id, $add)
-    {
-        // Sélectionne le tuple dont l'étudiant et le cours sont donnés en paramètres
-        // pour voir s'il existe ou non
-        $student = DB::select(
-            'SELECT course_id, student_id
-            FROM exception_student_list
-            WHERE course_id = ? AND student_id = ?
-            ',
-            [$course_id, $student_id]
-        );
-        try {
-            // Insère l'étudiant ton les paramètres sont reçus en paramètres
-            if (empty($student))
-            {
-                DB::insert(
-                    'INSERT INTO exception_student_list
-                        (`course_id`, `student_id`, `add`)
-                        values
-                        (?, ?, ?)
-                    ',
-                    [$course_id, $student_id, $add]
-                );
-            } else {
-                echo "<script>alert(\"L'étudiant a déjà été ajouté à ce cours\")</script>";
-            }
-        } catch (QueryException $exception) {
-            echo "There's no such student or course !";
-            throw $exception;
-        }
-    }
-
-    /**
      * Adds or updates a student to a course belonging the course_id and the student_id
      *
      * @param  integer $course_id     The id of the course to add the student to
