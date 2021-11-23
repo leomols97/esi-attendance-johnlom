@@ -67,7 +67,7 @@ class AddStudentToCourseModel extends Model
      * @param  integer $student_id    The id of the student to add to a course
      * @param  boolean $add           The status of the adding
      *
-     * @throws Some_Exception_Class If something interesting cannot happen
+     * @throws QueryException if the query could not be executed
      *
      * @return void
      */
@@ -88,6 +88,30 @@ class AddStudentToCourseModel extends Model
                 ',
                 [$course_id, $student_id, $add]
             );
+        } catch (QueryException $exception) {
+            echo "There's no such student or course !";
+            throw $exception;
+        }
+    }
+
+    /**
+     * Adds or updates a student to a course belonging the course_id and the student_id
+     *
+     * @param  integer $course_id     The id of the course to add the student to
+     * @param  integer $student_id    The id of the student to add to a course
+     * @param  boolean $add           The status of the adding
+     *
+     * @throws QueryException if the query could not be executed
+     *
+     * @return void
+     */
+    static public function addAndUpdateStudentToCourse($course_id, $student_id, $add)
+    {
+        try {
+            DB::table('exception_student_list')->updateOrInsert([
+                'course_id' => $course_id,
+                'student_id' => $student_id,
+            ], ['add' => $add]);
         } catch (QueryException $exception) {
             echo "There's no such student or course !";
             throw $exception;
@@ -132,5 +156,15 @@ class AddStudentToCourseModel extends Model
     {
         DB::table('exception_student_list')
             ->delete($student);
+    }
+
+    /**
+     * Selects all the elements from the table 'exception_student_list'
+     *
+     * @return all the elements of the table
+     */
+    public static function selectAllExceptions()
+    {
+        return DB::table('exception_student_list')->get();
     }
 }

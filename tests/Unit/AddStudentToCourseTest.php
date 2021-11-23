@@ -55,7 +55,5 @@ class AddStudentToCourseTest extends TestCase
         $this->assertDatabaseHas('exception_student_list', [
             'student_id' => 1
         ]);
-        // $expectedcount = DB::select('SELECT COUNT(*) FROM exception_student_list');
-        // AddStudentToCourseModel::addStudentToCourse(1, 1, true);
     }
 }
