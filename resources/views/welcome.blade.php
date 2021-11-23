@@ -1,3 +1,9 @@
+@extends('canevas')
+
+@section('title', 'StudentList')
+
+@section ('content')
+
 <!DOCTYPE html>
 <html lang=fr">
     <head>
@@ -35,3 +41,5 @@
         </main>
     </body>
 </html>
+
+@endsection

@@ -1,3 +1,9 @@
+@extends('canevas')
+
+@section('title', 'StudentList')
+
+@section ('content')
+
 <h3>Exporter</h3>
 <p>Exporter la table "Présences" en Excel</p>
 
@@ -15,3 +21,5 @@
     <button type="submit" >Exporter</button>
 
 </form>
+
+@endsection
