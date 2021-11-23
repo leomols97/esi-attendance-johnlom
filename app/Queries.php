@@ -26,7 +26,7 @@ class Queries {
                                 WHERE se.id = ?", [$seance_id]);
         return $students;
     }
-    
+
     /**
      * Inserts into the database the group assignment for each student.
      * Beforehand, clears the stored assignments to avoid conflict and keeping outdated information.
@@ -37,12 +37,12 @@ class Queries {
     }
 
     /**
-     * Gets attendance details. 
+     * Gets attendance details.
      */
     static public function findPresences()
     {
         $presences = DB::select('
-            SELECT p.student_id, s.start_time, s.end_time, s.local, s.course_id, p.is_present
+            SELECT p.student_id, s.start_time, s.end_time, s.local, s.id, p.is_present
             FROM presences p
             JOIN seances s ON p.seance_id = s.id
             ORDER BY s.start_time, p.student_id

@@ -25,7 +25,7 @@ class ExceptionController extends Controller
     {
         $students = AddStudentToCourseModel::findAllStudents();
         $courses = AddStudentToCourseModel::findAllCourses();
-        return view('student', ['students' => $students, 'courses' => $courses]);
+        return view('addStudentToCourse', ['students' => $students, 'courses' => $courses]);
     }
 
     /**
