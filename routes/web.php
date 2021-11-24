@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentsCtrl;
 
 
 /*
@@ -31,4 +30,11 @@ Route::get('/exportStats', [StatsExportController::class, 'interface']);
 Route::post('/exportStats', [StatsExportController::class, 'export']);
 
 //Consultation des étudiants
+use App\Http\Controllers\StudentsCtrl;
 Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
+
+// Import des horaires
+use App\Http\Controllers\ImportController;
+Route::get('/import', [ImportController::class, 'importIndex']);
+Route::post('/import', [ImportController::class, 'import']);

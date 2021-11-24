@@ -22,7 +22,10 @@
                     <td><a href="/exportStats">Téléchargement des statistiques de présences (CSV ou XLSX)</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/students/1">Consultation des étudiants</a></td>
+                        <td><a href="/students/1">Consultation des étudiants (pour une séance précise) & prise de présences</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/import">Importation horaires des profs</a></td>
                     </tr>
                 </tbody>
             </table>

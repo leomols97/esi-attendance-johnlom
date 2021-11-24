@@ -8,6 +8,7 @@ Sont implémentées les fonctionnalités :
 - Importation de fichier CSV relatif à l'affectation des groupes pour chaque étudiant
 - Téléchargement des statistiques de présences au format XLSX ou CSV au choix
 - Consultation des étudiants présents à une séance
+- Importation des horaires des professeurs
 
 # Déploiement
 

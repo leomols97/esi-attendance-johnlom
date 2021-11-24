@@ -20,7 +20,6 @@ class ExceptionStudentList extends Migration
             $table->boolean('add');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('student_id')->references('id')->on('students');
-
         });
     }
 
