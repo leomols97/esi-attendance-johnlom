@@ -11,6 +11,7 @@ Sont implémentées les fonctionnalités :
 - Importation des horaires des professeurs
 - Prise de présence (au travers de la consultation des étudiants)
 - Ajouter un étudiant en tant qu'admin
+- Retirer un étudient en tant qu'admin
 
 # Déploiement
 
