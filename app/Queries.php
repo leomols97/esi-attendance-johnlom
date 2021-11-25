@@ -26,7 +26,7 @@ class Queries {
                                 WHERE se.id = ?", [$seance_id]);
         return $students;
     }
-
+    
     /**
      * Inserts into the database the group assignment for each student.
      * Beforehand, clears the stored assignments to avoid conflict and keeping outdated information.
@@ -48,6 +48,19 @@ class Queries {
             ORDER BY s.start_time, p.student_id
         ');
         return $presences;
+    }
+
+    /**
+     * Inserts into the database presences records.
+     */
+    static public function insertPresences($presences)
+    {
+       foreach($presences as $presence) {
+           DB::table('presences')->updateOrInsert(
+               ["seance_id" => $presence["seance_id"], "student_id" => $presence["student_id"]],
+               ["is_present" => $presence["is_present"]]
+           );
+       }
     }
 
 }

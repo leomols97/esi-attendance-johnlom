@@ -1,11 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentsCtrl;
-use App\Http\Controllers\ImportController;
-
-
-use App\Http\Controllers\ExceptionController;
 
 
 /*
@@ -35,16 +30,19 @@ Route::get('/exportStats', [StatsExportController::class, 'interface']);
 Route::post('/exportStats', [StatsExportController::class, 'export']);
 
 //Consultation des étudiants
+use App\Http\Controllers\StudentsCtrl;
 Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
-Route::get('/import', [ImportController::class, 'importIndex' ]);
+Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
-Route::post('/import', [ImportController::class, 'import' ]);
+// Import des horaires
+use App\Http\Controllers\ImportController;
+Route::get('/import', [ImportController::class, 'importIndex']);
+Route::post('/import', [ImportController::class, 'import']);
 
-
+use App\Http\Controllers\ExceptionController;
 // Adding a student to a specific course
 Route::get('/addStudent', [ExceptionController::class, 'add']);
 // The route to show the possible students to add to the possible courses
 Route::get('/addStudentToCourse', [ExceptionController::class, 'showingStudentToCourses']);
 // The route to the page that adds a student to the course into the table "exception_student_list"
 Route::post('/addStudentToCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
-

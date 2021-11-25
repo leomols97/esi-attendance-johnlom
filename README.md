@@ -9,6 +9,7 @@ Sont implémentées les fonctionnalités :
 - Téléchargement des statistiques de présences au format XLSX ou CSV au choix
 - Consultation des étudiants présents à une séance
 - Importation des horaires des professeurs
+- Prise de présence (au travers de la consultation des étudiants)
 
 # Déploiement
 

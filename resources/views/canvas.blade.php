@@ -17,7 +17,8 @@
   <main>
     @yield('content')
   </main>
+  <footer>JOHNLOM</footer>
+  <script src="{{ asset('js/presence_taking.js') }}"></script>
 </body>
-<footer>JOHNLOM</footer>
 
 </html>

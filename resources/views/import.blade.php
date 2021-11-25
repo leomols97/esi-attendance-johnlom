@@ -1,7 +1,5 @@
 @extends('canevas')
-
 @section('title', 'StudentList')
-
 @section ('content')
 
 <h1>Importer</h1>
