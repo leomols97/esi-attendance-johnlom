@@ -7,6 +7,7 @@ use Exception;
 
 use App\Queries;
 use App\Models\PresenceFormatter;
+use App\Models\Student;
 
 class StudentsCtrl extends Controller
 {
@@ -34,6 +35,21 @@ class StudentsCtrl extends Controller
             return view('presence_validation', ["success" => false]);
         }
         return view('presence_validation', ["success" => true]);
+    }
+
+    function getAll()
+    {
+        $result = Student::findAllStudents();
+
+        return view('students', compact('result'));
+    }
+
+    function delete($id)
+    {
+        Student::delete($id); 
+
+
+        return view('students', ["id" => $id]);
     }
     
 }
