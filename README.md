@@ -10,6 +10,7 @@ Sont implémentées les fonctionnalités :
 - Consultation des étudiants présents à une séance
 - Importation des horaires des professeurs
 - Prise de présence (au travers de la consultation des étudiants)
+- Ajouter un étudiant en tant qu'admin
 
 # Déploiement
 
