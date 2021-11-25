@@ -20,10 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/addStudent', [ExceptionController::class, 'add']);
 // The route to show the possible students to add to the possible courses
-Route::get('/addStudentToCourse', [ExceptionController::class, 'showingStudentToCourses']);
-// The route to the page that adds a student to the course into the table "exception_student_list"
-Route::post('/addStudentToCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
+Route::get('/addOrDeleteStudentFromCourse', [ExceptionController::class, 'showingStudentAndCourses']);
+// The route to the page that ADDS a student to a course into the table "exception_student_list"
+Route::post('/addOrDeleteStudentFromCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
+// The route to the page that DELETES a student from a course into the table "exception_student_list"
+Route::post('/addOrDeleteStudentFromCourse/delete', [ExceptionController::class, 'DeleteStudentFromCourse'])->name('delete');
 
 

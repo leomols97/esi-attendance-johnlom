@@ -7,12 +7,16 @@
  * @link       https://git.esi-bru.be/prjg5-2021-22/esi-attendance-johnlom
  */
 
+// namespace App\Exceptions;
 namespace App\Http\Controllers;
 
 use App\ExceptionStudentList;
 use App\Queries;
-use App\Models\AddStudentToCourseModel;
+use App\Models\StudentModel;
 use Illuminate\Database\QueryException;
+use App\Exceptions;
+
+// use Exception;
 
 class ExceptionController extends Controller
 {
@@ -21,10 +25,10 @@ class ExceptionController extends Controller
      *
      * @return void
      */
-    public function showingStudentToCourses()
+    public function showingStudentAndCourses()
     {
-        $students = AddStudentToCourseModel::findAllStudents();
-        $courses = AddStudentToCourseModel::findAllCourses();
+        $students = StudentModel::findAllStudents();
+        $courses = StudentModel::findAllCourses();
         return view('student', ['students' => $students, 'courses' => $courses]);
     }
 
@@ -35,9 +39,34 @@ class ExceptionController extends Controller
      */
     public function addStudentToCourse()
     {
-        $courseId = $_REQUEST["course_id"];
-        $studentId = $_REQUEST["student_id"];
-        AddStudentToCourseModel::addAndUpdateStudentToCourse($courseId, $studentId, true);
-        return $this->showingStudentToCourses();
+        if (isset($_REQUEST["course_id"])
+            && isset($_REQUEST["student_id"]))
+        {
+            $courseId = $_REQUEST["course_id"];
+            $studentId = $_REQUEST["student_id"];
+            StudentModel::addAndUpdateStudentToCourse($courseId, $studentId, true);
+        } else {
+            echo "<script>alert(\"Veuillez remplir chaque champ pour l'ajout !\")</script>";
+        }
+        return $this->showingStudentAndCourses();
+    }
+
+    /**
+     * Deletes a student to a course and puts it into the table "exception_student_list"
+     *
+     * @return void
+     */
+    public function DeleteStudentFromCourse()
+    {
+        if (isset($_REQUEST["course_id"])
+            && isset($_REQUEST["student_id"]))
+        {
+            $courseId = $_REQUEST["course_id"];
+            $studentId = $_REQUEST["student_id"];
+            StudentModel::DeleteStudentFromCourse($courseId, $studentId);
+        } else {
+            echo "<script>alert(\"Veuillez remplir chaque champ pour l'ajout !\")</script>";
+        }
+        return $this->showingStudentAndCourses();
     }
 }

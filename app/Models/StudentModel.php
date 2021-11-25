@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 
-class AddStudentToCourseModel extends Model
+class StudentModel extends Model
 {
     use HasFactory;
 
@@ -49,18 +49,6 @@ class AddStudentToCourseModel extends Model
     }
 
     /**
-     * Selects a student
-     *
-     * @param  integer $id  The id of the student to select
-     *
-     * @return void
-     */
-    static public function selectStudentInCourse($course_id, $student_id) : boolean
-    {
-        return DB::table('students')->select('id')->where('id', '=', $id)->get() != null;
-    }
-
-    /**
      * Adds or updates a student to a course belonging the course_id and the student_id
      *
      * @param  integer $course_id     The id of the course to add the student to
@@ -73,8 +61,8 @@ class AddStudentToCourseModel extends Model
      */
     static public function addAndUpdateStudentToCourse($course_id, $student_id, $add)
     {
-        // Sélectionne le tuple dont l'étudiant et le cours sont donnés en paramètres
-        // pour voir s'il existe ou non
+        // Looks in the table 'exception_student_list' if the student
+        // given in the parameters is already added with the course given in the parameters
         $student = DB::select(
             'SELECT course_id, student_id
             FROM exception_student_list
@@ -83,10 +71,10 @@ class AddStudentToCourseModel extends Model
             [$course_id, $student_id]
         );
         try {
-
-            // Insère l'étudiant ton les paramètres sont reçus en paramètres
             if (empty($student))
             {
+                // Inserts the student given as parameter in the table 'exception_student_list'
+                // with the course givent as parameters
                 DB::table('exception_student_list')->updateOrInsert([
                     'course_id' => $course_id,
                     'student_id' => $student_id,
@@ -127,19 +115,6 @@ class AddStudentToCourseModel extends Model
     }
 
     /**
-     * Removes a student from the table "exception_student_list"
-     *
-     * @param  integer $student     The id of the student to add to the table
-     *
-     * @return void
-     */
-    public static function removeStudent($student)
-    {
-        DB::table('exception_student_list')
-            ->delete($student);
-    }
-
-    /**
      * Selects all the elements from the table 'exception_student_list'
      *
      * @return all the elements of the table
@@ -147,5 +122,40 @@ class AddStudentToCourseModel extends Model
     public static function selectAllExceptions()
     {
         return DB::table('exception_student_list')->get();
+    }
+
+    /**
+     * Deletes a student from the table "exception_student_list"
+     *
+     * @param  integer $student     The id of the student to add to the table
+     *
+     * @return void
+     */
+    public static function DeleteStudentFromCourse($course_id, $student_id)
+    {
+        // Sélectionne le tuple dont l'étudiant et le cours sont donnés en paramètres
+        // pour voir s'il existe ou non
+        $student = DB::select(
+            'SELECT course_id, student_id
+            FROM exception_student_list
+            WHERE course_id = ? AND student_id = ?
+            ',
+            [$course_id, $student_id]
+        );
+        try {
+            if (!empty($student))
+            {
+                // Deletes a student from the table 'exception_student_list'
+                // with the parameters of the function
+                DB::table('exception_student_list')
+                ->where('course_id', '=', $course_id)
+                ->where('student_id', '=', $student_id)
+                ->delete();
+            } else {
+                echo "<script>alert(\"L'étudiant n'a pas encore été ajouté à ce cours\")</script>";
+            }
+        } catch (QueryException $exception) {
+            throw $exception;
+        }
     }
 }
