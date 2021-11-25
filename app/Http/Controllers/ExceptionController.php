@@ -33,7 +33,7 @@ class ExceptionController extends Controller
     }
 
     /**
-     * Adds a student to a course and puts it into the table "exception_student_list"
+     * Adds a student to a course and puts it into the table 'exception_student_list'
      *
      * @return void
      */
@@ -52,7 +52,7 @@ class ExceptionController extends Controller
     }
 
     /**
-     * Deletes a student to a course and puts it into the table "exception_student_list"
+     * Deletes a student to a course and puts it into the table 'exception_student_list'
      *
      * @return void
      */
@@ -65,7 +65,7 @@ class ExceptionController extends Controller
             $studentId = $_REQUEST["student_id"];
             StudentModel::DeleteStudentFromCourse($courseId, $studentId);
         } else {
-            echo "<script>alert(\"Veuillez remplir chaque champ pour l'ajout !\")</script>";
+            echo "<script>alert(\"Veuillez remplir chaque champ pour la suppression !\")</script>";
         }
         return $this->showingStudentAndCourses();
     }

@@ -125,8 +125,9 @@ class StudentModel extends Model
     }
 
     /**
-     * Deletes a student from the table "exception_student_list"
+     * Deletes a student from the table 'exception_student_list'
      *
+     * @param  integer $course_id   The id of the course to add to the table
      * @param  integer $student     The id of the student to add to the table
      *
      * @return void
