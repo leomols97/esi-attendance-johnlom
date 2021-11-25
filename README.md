@@ -34,3 +34,7 @@ Ils pourront vous renseigner sur des possibles erreurs internes. Pour ce faire :
 
 - `heroku logs -a esi-attendance-johnlom` vous donneront les derniers logs de l'application.
 - `heroku logs -a esi-attendance-johnlom --tail` vous donneront les logs en temps réel. Les logs précédents s'affichent et le cmd/bash reste ouvert pour afficher en temps réel les nouveaux logs (CTRL+C pour arrêter).
+
+## Notes supplémentaires
+
+Le CSS sur les différentes pages se charge uniquement sur l'application déployée. La raison est la suivante: pour des raisons de sécurité le CSS est uniquement chargé si celui-ci provient d'une connection sécurisée. Ceci est uniquement le cas quand sur l'application déployé et pas quand l'application tourne en local. 
