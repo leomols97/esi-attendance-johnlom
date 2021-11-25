@@ -17,7 +17,7 @@ class CreateStudentGroupsTable extends Migration
             $table->id();
             $table->unsignedInteger('student_id');
             $table->string('group_name');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('group_name')->references('name')->on('groups');
         });
     }

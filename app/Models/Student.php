@@ -29,7 +29,7 @@ class Student extends Model
      * Delete a student from the database
      * @return void
      */
-    public static function delete($id)
+    public static function deleteStudent($id)
     {
         DB::table('students')->where('id', '=',$id)->delete();
     }
