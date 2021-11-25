@@ -37,3 +37,5 @@ Route::get('/import', [ImportController::class, 'importIndex' ]);
 
 Route::post('/import', [ImportController::class, 'import' ]);
 
+Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
+Route::post('/addStudent', [StudentsCtrl::class, 'add']);
