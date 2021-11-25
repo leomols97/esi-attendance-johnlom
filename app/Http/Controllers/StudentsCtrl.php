@@ -39,17 +39,19 @@ class StudentsCtrl extends Controller
 
     function getAll()
     {
-        $result = Student::findAllStudents();
+        $students = Student::findAllStudents();
 
-        return view('students', compact('result'));
+        return view('students', compact('students'));
     }
 
-    function delete($id)
+    function delete()
     {
-        Student::delete($id); 
-
-
-        return view('students', ["id" => $id]);
+        try{
+            Student::deleteStudent($_POST["student_id"]); 
+            return redirect()->back()->withSuccess('Etudiant supprimé!');
+        }catch(Throwable $e){
+            return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
+        }
     }
     
 }

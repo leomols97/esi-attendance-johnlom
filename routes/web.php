@@ -46,3 +46,7 @@ Route::get('/addStudent', [ExceptionController::class, 'add']);
 Route::get('/addStudentToCourse', [ExceptionController::class, 'showingStudentToCourses']);
 // The route to the page that adds a student to the course into the table "exception_student_list"
 Route::post('/addStudentToCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
+
+// The route to delete a student
+Route::get('/students', [StudentsCtrl::class, 'getAll']);
+Route::post('/students', [StudentsCtrl::class, 'delete']);

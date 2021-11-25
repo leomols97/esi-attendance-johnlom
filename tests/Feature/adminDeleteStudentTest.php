@@ -15,20 +15,9 @@ class adminDeleteStudentTest extends TestCase
      */
     public function test_get_manage()
     {
-        $response = $this->get('/students/manage');
+        $response = $this->get('/students');
 
         $response->assertStatus(200);
     }
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_post_manage_delete()
-    {
-        $response = $this->post('/students/manage');
-
-        $response->assertSuccessful();
-    }
 }
