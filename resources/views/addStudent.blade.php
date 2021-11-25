@@ -5,8 +5,13 @@
 @section('css')
 @section('content')
 
-<h1>Ajout</h1>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/addStudent.css') }}">
+</head>
 
+<h1>Ajouter un étudiant</h1>
+
+<div>
 <form method="POST" action="/addStudent">
 
     {{ csrf_field() }}
@@ -19,4 +24,13 @@
 
 </form>
 
+@if (session('success'))
+    <h3 class='success'>{{session('success')}}</h3>
+@endif
+
+@if (session('errors'))
+    <h3 class='error'>{{session('errors')->first()}}</h3>
+@endif
+
+</div>
 @endsection
