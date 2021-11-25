@@ -16,11 +16,11 @@
 
     {{ csrf_field() }}
 
-    <input type="number" name="id" placeholder="Matricule" >
-    <input type="text" name="last_name" placeholder="Nom" >
-    <input type="text" name="first_name" placeholder="Prénom" >
+    <input type="number" name="id" placeholder="Matricule" dusk="student_id" >
+    <input type="text" name="last_name" placeholder="Nom" dusk="student_last_name">
+    <input type="text" name="first_name" placeholder="Prénom" dusk="student_first_name">
 
-    <button type="submit" >Ajouter</button>
+    <button type="submit" dusk="add">Ajouter</button>
 
 </form>
 

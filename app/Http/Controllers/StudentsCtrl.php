@@ -37,5 +37,4 @@ class StudentsCtrl extends Controller
         
     }
 
-    
 }

@@ -23,10 +23,21 @@ class addStudentTest extends DuskTestCase
                     ->type('@student_first_name', 'Olivier')
                     ->type('@student_last_name', 'Dyck')
                     ->press('@add')
-                    ->assertSee('Etudiant ajouté !');
-
+                    ->assertSee('Ajouté(e) !');
         });
     }
 
+    public function testAddStudentFailed()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/addStudent')
+                    ->assertSee('Ajouter un étudiant')
+                    ->type('@student_id', '')
+                    ->type('@student_first_name', '')
+                    ->type('@student_last_name', '')
+                    ->press('@add')
+                    ->assertSee("L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !");
+        });
+    }
     
 }
