@@ -51,4 +51,20 @@ class StudentsCtrl extends Controller
         }
     }
 
+    function getAll()
+    {
+        $students = Student::findAllStudents();
+
+        return view('students', compact('students'));
+    }
+
+    function delete()
+    {
+        try{
+            Student::deleteStudent($_POST["student_id"]); 
+            return redirect()->back()->withSuccess('Etudiant supprimé!');
+        }catch(Throwable $e){
+            return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
+        }
+    }
 }

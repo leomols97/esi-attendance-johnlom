@@ -2,13 +2,12 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 use App\Models\Student;
 
 class StudentTest extends TestCase
 {
-
     use RefreshDatabase;
     /**
      * A basic unit test example.
@@ -52,7 +51,7 @@ class StudentTest extends TestCase
         $this->assertDatabaseCount('students', 2);
     }
 
-       /**
+    /**
      * A basic unit test example.
      *
      * @return void
@@ -66,5 +65,19 @@ class StudentTest extends TestCase
         Student::add($student2);
         Student::add($student3);
         $this->assertDatabaseCount('students', 2);
+    }
+    
+    public function test_delete_student()
+    {
+
+        $this->assertDatabaseHas('students', [
+            'id' => '1',
+        ]);
+
+        Student::delete(1);
+
+        $this->assertDatabaseMissing('students', [
+            'id' => '1',
+        ]);
     }
 }
