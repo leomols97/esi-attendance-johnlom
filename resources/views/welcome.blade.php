@@ -9,7 +9,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
     </head>
     <body>
         <header>ESI Attendance (équipe Johnlom)</header>
@@ -32,6 +31,9 @@
                     </tr>
                     <tr>
                         <td><a href="/import">Importation horaires des profs</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/addStudent">Ajouter un étudiant en tant qu'admin</a></td>
                     </tr>
                     <tr>
                         <td><a href="/addStudentToCourse">Ajout d'un étudiant à un cours</a></td>
