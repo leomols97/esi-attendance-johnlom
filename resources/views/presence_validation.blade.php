@@ -6,9 +6,9 @@
 @section('content')
 
 @if($success)
-<p class="success">Les présences ont bien été enregistrées.</p>
+<p class="success" dusk="success">Les présences ont bien été enregistrées.</p>
 @else
-<p class="failed">Une erreur s'est produite lors de l'enregistrement des présences.</p>
+<p class="failed" dusk="failed">Une erreur s'est produite lors de l'enregistrement des présences.</p>
 @endif
 
 @endsection

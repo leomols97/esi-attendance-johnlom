@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Exception;
 
 use App\Queries;
-use App\Models\PresenceSaver;
+use App\Models\PresenceFormatter;
 
 class StudentsCtrl extends Controller
 {
@@ -28,7 +28,8 @@ class StudentsCtrl extends Controller
         $checkboxes = $request->checklist;
         $present_student_ids = $checkboxes != NULL ? array_keys($checkboxes) : array();
         try {
-            PresenceSaver::savePresences($present_student_ids, $seance_id);
+            $presences = PresenceFormatter::savePresences($present_student_ids, $seance_id);
+            Queries::insertPresences($presences);
         } catch(Exception $ex) {
             return view('presence_validation', ["success" => false]);
         }
