@@ -6,7 +6,7 @@
 @section('content')
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/addStudent.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/addStudent.css') }}">
 </head>
 
 <h1>Ajouter un étudiant</h1>
