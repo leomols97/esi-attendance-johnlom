@@ -29,3 +29,7 @@
 </form>
 
 @endsection
+
+@section('js')
+<script src="{{ asset('js/presence_taking.js') }}"></script>
+@endsection

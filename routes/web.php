@@ -53,3 +53,7 @@ Route::post('/addStudent', [StudentsCtrl::class, 'add']);
 // The route to delete a student
 Route::get('/students', [StudentsCtrl::class, 'getAll']);
 Route::post('/students', [StudentsCtrl::class, 'delete']);
+
+// Display calendar
+use App\Http\Controllers\CalendarCtrl;
+Route::get('/calendar', [CalendarCtrl::class, 'calendarData']);
