@@ -1,4 +1,4 @@
-@extends('studentsConsultation')
+@extends('canvas')
 
 @section('title', 'StudentList')
 
@@ -29,4 +29,5 @@
             <div id="error"></div>
         </form>
     </div>
+
 @endsection
