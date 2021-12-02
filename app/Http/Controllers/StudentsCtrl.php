@@ -55,7 +55,7 @@ class StudentsCtrl extends Controller
     {
         $students = Student::findAllStudents();
 
-        return view('students', compact('students'));
+        return view('studentsManagement', compact('students'));
     }
 
     function delete()

@@ -39,7 +39,7 @@
                         <td><a href="/addStudentToCourse">Ajout d'un étudiant à un cours</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/students">Supprimer un étudiant</a></td>
+                        <td><a href="/studentsManagement">Gestion des étudiants</a></td>
                     </tr>
                 </tbody>
             </table>
