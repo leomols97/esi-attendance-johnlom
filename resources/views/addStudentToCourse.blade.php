@@ -1,4 +1,4 @@
-@extends('canvas')
+@extends('StudentsConsultation')
 
 @section('title', 'StudentList')
 
@@ -11,16 +11,17 @@
                 <label for="id">Id de l'étudiant :</label>
                 <select id="student_id" name="student_id">
                     <option value="" disabled selected>Sélectionnez l'ID d'un étudiant</option>
-                    @foreach($students as $student)
+                    @foreach($result["students"] as $student)
                         <option value="{{ $student->id }}">{{ $student->id }}</option>
                     @endforeach
                 </select>
             </p>
             <p>
+               
             <label for="id">Nom du cours :</label>
                 <select id="course_id" name="course_id">
                     <option value="" disabled selected>Sélectionnez un cours</option>
-                    @foreach($courses as $course)
+                    @foreach($result["courses"] as $course)
                         <option value="{{ $course->id }}">{{ $course->name }}</option>
                     @endforeach
                 </select>

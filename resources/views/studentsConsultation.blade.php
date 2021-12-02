@@ -16,7 +16,7 @@
         <th>Prénom</th>
         <th>Présent(e) <br> <input type="checkbox" id="select-all" dusk="select-all"> Tout sélectionner</th>
     </tr>
-    @foreach ($students as $student)
+    @foreach ($result["students"] as $student)
     <tr>
         <td dusk='id_student'>{{$student->id}}</td>
         <td>{{$student->last_name}}</td>

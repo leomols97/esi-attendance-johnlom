@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Queries;
 use App\Models\Student;
+use App\Models\AddStudentToCourseModel;
 use Illuminate\Http\Request;
 use Throwable;
 use App\Models\PresenceFormatter;
@@ -20,8 +21,14 @@ class StudentsCtrl extends Controller
 
     function students($seance_id)
     {
-        $students = Queries::studentsForSeance($seance_id);
-        return view('studentsConsultation', compact('students'), ["seance_id" => $seance_id]);
+        //$students = Queries::studentsForSeance($seance_id);
+        //$courses = AddstudentToCourseModel::findAllCourses();
+        //return view('addStudentToCourse', compact('students'), ["seance_id" => $seance_id], compact('courses'));
+        $result["students"] = Queries::studentsForSeance($seance_id);
+        $result["courses"] = AddstudentToCourseModel::findAllCourses(); 
+      
+        return view('addStudentToCourse', compact('result'), ['seance_id' => $seance_id]);
+
     }
 
     function save_presences(Request $request, $seance_id)
