@@ -5,11 +5,12 @@ namespace Tests;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+// use Appstract\DuskDrivers\Safari\SupportsSafari;
 use Laravel\Dusk\TestCase as BaseTestCase;
 
 abstract class DuskTestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication;//, SupportsSafari;
 
     /**
      * Prepare for Dusk test execution.
@@ -22,6 +23,8 @@ abstract class DuskTestCase extends BaseTestCase
         if (! static::runningInSail()) {
             static::startChromeDriver();
         }
+
+        // static::startSafariDriver();
     }
 
     /**
@@ -46,6 +49,10 @@ abstract class DuskTestCase extends BaseTestCase
                 ChromeOptions::CAPABILITY, $options
             )
         );
+
+        // return RemoteWebDriver::create(
+        //     'http://localhost:9515', DesiredCapabilities::safari()
+        // );
     }
 
     /**
