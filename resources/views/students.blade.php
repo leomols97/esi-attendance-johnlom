@@ -4,7 +4,7 @@
 
 @section ('content')
     <div>
-        <form id="add" @submit="checkForm" action="/students" method="POST">
+        <form id="add" @submit="checkForm" action="/students" method="POST" onsubmit="return confirm('Are you sure?');">
             @csrf
             <h5>Supprimer un étudiant</h5>
             <p>
