@@ -28,4 +28,5 @@
 <input type="submit" value="Valider les présences">
 </form>
 
+@yield('addStudentToCourse')
 @endsection

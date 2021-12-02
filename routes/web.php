@@ -29,7 +29,7 @@ use App\Http\Controllers\StatsExportController;
 Route::get('/exportStats', [StatsExportController::class, 'interface']);
 Route::post('/exportStats', [StatsExportController::class, 'export']);
 
-//Consultation des étudiants
+//Consultation des étudiants dans une séance
 use App\Http\Controllers\StudentsCtrl;
 Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
 Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);

@@ -12,15 +12,7 @@ use Illuminate\Database\QueryException;
 
 class AddStudentToCourseTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        $this->assertTrue(true);
-    }
+    
 
     /**
      * Trying to add an unexisting student

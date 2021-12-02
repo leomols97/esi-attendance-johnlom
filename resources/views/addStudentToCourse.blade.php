@@ -1,8 +1,8 @@
-@extends('canevas')
+@extends('studentsConsultation')
 
 @section('title', 'StudentList')
 
-@section ('content')
+@section ('addStudentToCourse')
     <div>
         <form id="add" @submit="checkForm" action="{{route('add')}}" method="POST">
             @csrf
