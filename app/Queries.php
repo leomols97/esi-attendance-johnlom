@@ -182,4 +182,17 @@ class Queries {
             throw new Exception( "L'étudiant n'a pas encore été ajouté à ce cours !" );
         }
     }
+
+    /**
+     * Inserts into the database presences records.
+     */
+    static public function insertPresences($presences)
+    {
+       foreach($presences as $presence) {
+           DB::table('presences')->updateOrInsert(
+               ["seance_id" => $presence["seance_id"], "student_id" => $presence["student_id"]],
+               ["is_present" => $presence["is_present"]]
+           );
+       }
+    }
 }

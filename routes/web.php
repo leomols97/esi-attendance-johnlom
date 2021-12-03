@@ -44,6 +44,13 @@ Route::post('/addOrDeleteStudentFromCourse/add', [ExceptionController::class, 'a
 // The route to the page that DELETES a student from a course into the table "exception_student_list"
 Route::post('/addOrDeleteStudentFromCourse/delete', [ExceptionController::class, 'DeleteStudentFromCourse'])->name('delete');
 
+Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
+
+// Import des horaires
+Route::get('/import', [ImportController::class, 'importIndex']);
+Route::post('/import', [ImportController::class, 'import']);
+
 Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
 Route::post('/addStudent', [StudentsCtrl::class, 'add']);
 

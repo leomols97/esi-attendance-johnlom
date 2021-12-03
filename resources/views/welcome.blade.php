@@ -5,11 +5,10 @@
 @section ('content')
 
 <!DOCTYPE html>
-<html lang=fr">
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
     </head>
     <body>
         <header>ESI Attendance (équipe Johnlom)</header>
@@ -28,7 +27,7 @@
                     <td><a href="/exportStats">Téléchargement des statistiques de présences (CSV ou XLSX)</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/students/1">Consultation des étudiants</a></td>
+                        <td><a href="/students/1">Consultation des étudiants (pour une séance précise) & prise de présences</a></td>
                     </tr>
                     <tr>
                         <td><a href="/import">Importation horaires des profs</a></td>
@@ -38,6 +37,9 @@
                     </tr>
                     <tr>
                         <td><a href="/addOrDeleteStudentFromCourse">Ajout d'un étudiant à un cours</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/students">Supprimer un étudiant</a></td>
                     </tr>
                     <tr>
                         <td><a href="/students">Supprimer un étudiant</a></td>
