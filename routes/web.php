@@ -32,7 +32,7 @@ Route::post('/exportStats', [StatsExportController::class, 'export']);
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\StudentsCtrl;
 //Consultation des étudiants
-Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::get('/students', [StudentsCtrl::class, 'students']);
 Route::get('/import', [ImportController::class, 'importIndex' ]);
 Route::post('/import', [ImportController::class, 'import' ]);
 
@@ -43,3 +43,10 @@ Route::get('/addOrDeleteStudentFromCourse', [ExceptionController::class, 'showin
 Route::post('/addOrDeleteStudentFromCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
 // The route to the page that DELETES a student from a course into the table "exception_student_list"
 Route::post('/addOrDeleteStudentFromCourse/delete', [ExceptionController::class, 'DeleteStudentFromCourse'])->name('delete');
+
+Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
+Route::post('/addStudent', [StudentsCtrl::class, 'add']);
+
+// The route to delete a student
+Route::get('/students', [StudentsCtrl::class, 'getAll']);
+Route::post('/students', [StudentsCtrl::class, 'delete']);
