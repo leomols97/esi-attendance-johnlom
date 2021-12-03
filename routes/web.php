@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StudentsCtrl;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,6 @@ Route::get('/exportStats', [StatsExportController::class, 'interface']);
 Route::post('/exportStats', [StatsExportController::class, 'export']);
 
 //Consultation des étudiants
-use App\Http\Controllers\StudentsCtrl;
 Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
 Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
@@ -48,5 +47,5 @@ Route::get('/addStudentToCourse', [ExceptionController::class, 'showingStudentTo
 Route::post('/addStudentToCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
 
 Route::get('/studentsManagement', [StudentsCtrl::class, 'getAll']);
-Route::get('/studentsManagement/add', [StudentsCtrl::class, 'getIndex']);
-Route::post('/studentsManagement', [StudentsCtrl::class, 'add']);
+Route::post('/studentsManagement/add', [StudentsCtrl::class, 'add']);
+Route::post('/studentsManagement/delete', [StudentsCtrl::class, 'delete'])->name('deleteStudent');
