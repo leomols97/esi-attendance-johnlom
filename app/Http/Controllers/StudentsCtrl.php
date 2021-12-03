@@ -43,8 +43,11 @@ class StudentsCtrl extends Controller
 
     function add(Request $request) {
         try {
-            $student = new Student($request->id,$request->last_name,$request->first_name);
-            Student::add($student);
+            //$student = new Student($request->id,$request->last_name,$request->first_name);
+            $id = $request->id;
+            $last_name = $request->last_name;
+            $first_name = $request->first_name;
+            Student::add($id, $last_name, $first_name);
             return redirect()->back()->withSuccess('Ajouté(e) !');
         } catch (Throwable $e) {
             return redirect()->back()->withErrors("L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !");
@@ -58,13 +61,14 @@ class StudentsCtrl extends Controller
         return view('studentsManagement', compact('students'));
     }
 
-    function delete()
+    function delete(Student $student)
     {
+        //echo $student;
         try{
-            Student::deleteStudent($_POST["student_id"]); 
+            Student::deleteStudent($student->id); 
             return redirect()->back()->withSuccess('Etudiant supprimé!');
         }catch(Throwable $e){
-            return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
+            return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être supprimé!");
         }
     }
 }
