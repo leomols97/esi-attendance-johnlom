@@ -23,7 +23,6 @@ abstract class DuskTestCase extends BaseTestCase
         if (! static::runningInSail()) {
             static::startChromeDriver();
         }
-
         // static::startSafariDriver();
     }
 
@@ -49,7 +48,6 @@ abstract class DuskTestCase extends BaseTestCase
                 ChromeOptions::CAPABILITY, $options
             )
         );
-
         // return RemoteWebDriver::create(
         //     'http://localhost:9515', DesiredCapabilities::safari()
         // );
@@ -64,5 +62,6 @@ abstract class DuskTestCase extends BaseTestCase
     {
         return isset($_SERVER['DUSK_HEADLESS_DISABLED']) ||
             isset($_ENV['DUSK_HEADLESS_DISABLED']);
+               isset($_ENV['DUSK_HEADLESS_DISABLED']);
     }
 }

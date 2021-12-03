@@ -19,16 +19,16 @@ use App\Exceptions;
 // use Exception;
 
 class ExceptionController extends Controller {
+
     /**
     * Sends the students and the courses available to the view that has to show them
     *
     * @return void
     */
-
     public function showingStudentAndCourses() {
         $students = StudentModel::findAllStudents();
         $courses = StudentModel::findAllCourses();
-        return view( 'student', ['students' => $students, 'courses' => $courses] );
+        return view( 'addOrDeleteStudentFromCourse', ['students' => $students, 'courses' => $courses] );
     }
 
     /**

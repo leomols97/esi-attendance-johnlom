@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ExceptionController;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,15 +13,33 @@ use App\Http\Controllers\ExceptionController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+//Fichier CSV pour l'affectation des groupes pour chaque étudiant
+use App\Http\Controllers\GroupsCSVController;
+Route::get('/importGroupsForStudents', [GroupsCSVController::class, 'interface']);
+Route::post('/importGroupsForStudents', [GroupsCSVController::class, 'importCsv']);
+
+//Téléchargement des statistiques de présence
+use App\Http\Controllers\StatsExportController;
+Route::get('/exportStats', [StatsExportController::class, 'interface']);
+Route::post('/exportStats', [StatsExportController::class, 'export']);
+
+
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\StudentsCtrl;
+//Consultation des étudiants
+Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::get('/import', [ImportController::class, 'importIndex' ]);
+Route::post('/import', [ImportController::class, 'import' ]);
+
+use App\Http\Controllers\ExceptionController;
 // The route to show the possible students to add to the possible courses
 Route::get('/addOrDeleteStudentFromCourse', [ExceptionController::class, 'showingStudentAndCourses']);
 // The route to the page that ADDS a student to a course into the table "exception_student_list"
 Route::post('/addOrDeleteStudentFromCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
 // The route to the page that DELETES a student from a course into the table "exception_student_list"
 Route::post('/addOrDeleteStudentFromCourse/delete', [ExceptionController::class, 'DeleteStudentFromCourse'])->name('delete');
-
-
