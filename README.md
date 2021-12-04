@@ -10,6 +10,8 @@ Sont implémentées les fonctionnalités :
 - Consultation des étudiants présents à une séance
 - Importation des horaires des professeurs
 - Prise de présence (au travers de la consultation des étudiants)
+- Ajout d'un étudiant à un cours
+- Suppression d'un étudiant d'un cours
 - Ajouter un étudiant en tant qu'admin
 - Retirer un étudiant en tant qu'admin
 
