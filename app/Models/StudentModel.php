@@ -3,7 +3,6 @@
 /**
 * The queries model to add an exisiting student to an existing course
 *
-* @copyright  53212 ( MOLS Léopold ) && 53135 ( SCHUMACHER VINCKE Jan )
 * @link       https://git.esi-bru.be/prjg5-2021-22/esi-attendance-johnlom
 */
 
@@ -142,7 +141,6 @@ class StudentModel extends Model {
             [$course_id, $student_id]
         );
         } else {
-            // echo '<script>alert(\'L'étudiant n'a pas encore été ajouté à ce cours !\')</script>';
             throw new Exception( "L'étudiant n'a pas encore été ajouté à ce cours !" );
         }
     }

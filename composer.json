@@ -9,12 +9,9 @@
         "ext-pdo_sqlite": "*",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-<<<<<<< HEAD
         "illuminate/contracts": "^8.73",
         "illuminate/support": "^8.73",
-=======
         "johngrogg/ics-parser": "^3.0",
->>>>>>> master
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",

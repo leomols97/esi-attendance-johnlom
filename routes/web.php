@@ -32,7 +32,7 @@ Route::post('/exportStats', [StatsExportController::class, 'export']);
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\StudentsCtrl;
 //Consultation des étudiants
-Route::get('/students', [StudentsCtrl::class, 'students']);
+//importRoute::get('/students', [StudentsCtrl::class, 'students']);
 Route::get('/import', [ImportController::class, 'importIndex' ]);
 Route::post('/import', [ImportController::class, 'import' ]);
 
@@ -44,16 +44,16 @@ Route::post('/addOrDeleteStudentFromCourse/add', [ExceptionController::class, 'a
 // The route to the page that DELETES a student from a course into the table "exception_student_list"
 Route::post('/addOrDeleteStudentFromCourse/delete', [ExceptionController::class, 'DeleteStudentFromCourse'])->name('delete');
 
-Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
-Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
+// Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
+// Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
 // Import des horaires
-Route::get('/import', [ImportController::class, 'importIndex']);
-Route::post('/import', [ImportController::class, 'import']);
+// Route::get('/import', [ImportController::class, 'importIndex']);
+// Route::post('/import', [ImportController::class, 'import']);
 
 Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
 Route::post('/addStudent', [StudentsCtrl::class, 'add']);
 
 // The route to delete a student
 Route::get('/students', [StudentsCtrl::class, 'getAll']);
-Route::post('/students', [StudentsCtrl::class, 'delete']);
+// Route::post('/students', [StudentsCtrl::class, 'delete']);
