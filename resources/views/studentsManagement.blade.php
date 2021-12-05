@@ -134,11 +134,11 @@
         </tr>
         @foreach($students as $student)
             <tr>
-                <td>{{$student->id}} {{$student->last_name}} {{$student->first_name}}</td>
+                <td dusk="id_student">{{$student->id}} {{$student->last_name}} {{$student->first_name}}</td>
                 <td>
                     <form action="{{route('deleteStudent', $student->id)}}" method="POST" onsubmit="return confirm('Are you sure?');">
                         @csrf
-                        <button type="submit" class="btnDelete">Delete</button>
+                        <button type="submit" class="btnDelete" dusk="delete">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -148,11 +148,11 @@
         <form action="/studentsManagement/add" class="form-container" method="POST">
             @csrf
             <h3>Ajouter étudiant</h3>
-            <input type="number" name="id" placeholder="Matricule" min="1">
-            <input type="text" name="last_name" placeholder="Nom">
-            <input type="text" name="first_name" placeholder="Prénom">
+            <input type="number" name="id" placeholder="Matricule" min="1" dusk="student_id">
+            <input type="text" name="last_name" placeholder="Nom" dusk="student_last_name">
+            <input type="text" name="first_name" placeholder="Prénom" dusk="student_first_name">
 
-            <button type="submit" class="btn">Ajouter</button>
+            <button type="submit" class="btn" dusk="add">Ajouter</button>
             <button type="button" class="btn delete" onclick="closeFormAdd()">Close</button>
         </form>
     </div>
