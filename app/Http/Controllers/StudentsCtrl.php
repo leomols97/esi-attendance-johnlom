@@ -61,11 +61,10 @@ class StudentsCtrl extends Controller
         return view('studentsManagement', compact('students'));
     }
 
-    function delete(Student $student)
+    function delete($id)
     {
-        //echo $student;
         try{
-            Student::deleteStudent($student->id); 
+            Student::deleteStudent($id); 
             return redirect()->back()->withSuccess('Etudiant supprimé!');
         }catch(Throwable $e){
             return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être supprimé!");

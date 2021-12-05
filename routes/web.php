@@ -48,4 +48,4 @@ Route::post('/addStudentToCourse/add', [ExceptionController::class, 'addStudentT
 
 Route::get('/studentsManagement', [StudentsCtrl::class, 'getAll']);
 Route::post('/studentsManagement/add', [StudentsCtrl::class, 'add']);
-Route::post('/studentsManagement/delete', [StudentsCtrl::class, 'delete'])->name('deleteStudent');
+Route::post('/studentsManagement/delete/{id}', [StudentsCtrl::class, 'delete'])->name('deleteStudent');
