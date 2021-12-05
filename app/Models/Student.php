@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Student extends Model
 {
     public static function add($id,$last,$first) {
-        DB::insert('insert into students (id, last_name, first_name) values (?, ?,?)', [$id, $last, $first]);
+        DB::insert('insert into students (id, last_name, first_name) values (?, ?, ?)', [$id, $last, $first]);
     }
 
     /**
@@ -28,12 +28,27 @@ class Student extends Model
     }
 
     /**
+    * Selects a student's id belonging its id
+    *
+    * @param  integer $id  The id of the student to select
+    *
+    * @return void
+    */
+    public static function selectStudent( $id ) {
+        return DB::table( 'students' )
+        ->select( 'id' )
+        ->where( 'id', '=', $id )
+        ->get()
+        ->toArray();
+    }
+
+    /**
      * Delete a student from the database
+     *
      * @return void
      */
     public static function deleteStudent($id)
     {
         DB::table('students')->where('id', '=',$id)->delete();
     }
-
 }

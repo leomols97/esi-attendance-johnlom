@@ -22,7 +22,7 @@
                 width: 100%; /* Full-width */
                 border: 1px solid #ddd; /* Add a grey border */
                 font-size: 18px; /* Increase font-size */
-            }   
+            }
 
             #myTable th, #myTable td {
                 text-align: left; /* Left-align text */
@@ -126,7 +126,7 @@
 
     <div><button type="button" class="btnAdd" onclick="openFormAdd()">Ajouter un étudiant</button></div>
 
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Chercher étudiants..">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Chercher un étudiant">
 
     <table id="myTable">
         <tr>
@@ -162,7 +162,7 @@
         // Declare variables
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
+        filter = input.value.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
 
@@ -171,7 +171,7 @@
             td = tr[i].getElementsByTagName("td")[0];
             if (td) {
                 txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                if (txtValue.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(filter) > -1) {
                     tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";
@@ -183,7 +183,7 @@
     function openFormAdd() {
         document.getElementById("addForm").style.display = "block";
     }
-    
+
     function closeFormAdd() {
         document.getElementById("addForm").style.display = "none";
     }
