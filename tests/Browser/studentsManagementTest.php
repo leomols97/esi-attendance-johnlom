@@ -32,6 +32,7 @@ class studentsManagementTest extends DuskTestCase
                     ->type('@student_id', '52006')
                     ->type('@student_first_name', 'Olivier')
                     ->type('@student_last_name', 'Dyck')
+                    ->type('@group_name','E11')
                     ->press('@add')
                     ->assertSee("@id_student", "52006 Dyck Olivier")
                     ->assertSee('Ajouté(e) !');
@@ -41,6 +42,7 @@ class studentsManagementTest extends DuskTestCase
                     ->type('@student_id', '')
                     ->type('@student_first_name', '')
                     ->type('@student_last_name', '')
+                    ->type('@group_name', '')
                     ->press('@add')
                     ->assertSee("L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !");
         });
