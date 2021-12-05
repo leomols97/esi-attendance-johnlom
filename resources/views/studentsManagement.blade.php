@@ -68,7 +68,7 @@
             }
 
             /* Full-width input fields */
-            .form-container input[type=text], .form-container input[type=number]{
+            .form-container input[type=text], .form-container input[type=number], .form-container select{
                 width: 90%;
                 padding: 15px;
                 margin: 5px 0 22px 0;
@@ -151,6 +151,13 @@
             <input type="number" name="id" placeholder="Matricule" min="1" dusk="student_id">
             <input type="text" name="last_name" placeholder="Nom" dusk="student_last_name">
             <input type="text" name="first_name" placeholder="Prénom" dusk="student_first_name">
+            <select dusk="group_name" id="group" name="group">
+                <option value="" disabled selected>Sélectionnez un groupe</option>
+                @foreach($groups as $group)
+                    <option value="{{ $group->name }}">{{ $group->name }}</option>
+                @endforeach
+            </select>
+
 
             <button type="submit" class="btn" dusk="add">Ajouter</button>
             <button type="button" class="btn delete" onclick="closeFormAdd()">Close</button>
