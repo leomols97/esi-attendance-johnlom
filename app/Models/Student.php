@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class Student extends Model
 {
-    public static function add($id,$last,$first) {
+    /**
+     * Method to add a student and a student_group in the DB.
+     */
+    public static function add($id,$last,$first,$group) {
         DB::insert('insert into students (id, last_name, first_name) values (?, ?,?)', [$id, $last, $first]);
+        DB::insert('insert into student_groups (student_id, group_name) values (?,?)', [$id, $group]);
     }
 
     /**
