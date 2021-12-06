@@ -19,7 +19,7 @@ class ExceptionController extends Controller
     /**
      * Sends the students and the courses available to the view that has to show them
      *
-     * @return void
+     * @return addStudentToCourse   The view to load the original page and give to it all the students and courses
      */
     public function showingStudentToCourses()
     {
@@ -31,7 +31,7 @@ class ExceptionController extends Controller
     /**
      * Adds a student to a course and puts it into the table "exception_student_list"
      *
-     * @return void
+     * @return showingStudentToCourses  The method that will show all the students and courses
      */
     public function addStudentToCourse()
     {

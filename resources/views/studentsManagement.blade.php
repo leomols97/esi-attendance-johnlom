@@ -5,115 +5,8 @@
 @section ('content')
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            #myInput {
-                background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-                background-position: 10px 12px; /* Position the search icon */
-                background-repeat: no-repeat; /* Do not repeat the icon image */
-                width: 30%; /* Full-width */
-                font-size: 16px; /* Increase font-size */
-                padding: 12px 20px 12px 40px; /* Add some padding */
-                border: 1px solid #ddd; /* Add a grey border */
-                margin-bottom: 12px; /* Add some space below the input */
-            }
-
-            #myTable {
-                border-collapse: collapse; /* Collapse borders */
-                width: 100%; /* Full-width */
-                border: 1px solid #ddd; /* Add a grey border */
-                font-size: 18px; /* Increase font-size */
-            }
-
-            #myTable th, #myTable td {
-                text-align: left; /* Left-align text */
-                padding: 10px; /* Add padding */
-            }
-
-            #myTable tr {
-                /* Add a bottom border to all table rows */
-                border-bottom: 1px solid #ddd;
-            }
-
-            .btnDelete{
-                background-color: red;
-                color: white;
-                padding: 16px 20px;
-                border: none;
-                cursor: pointer;
-                margin-bottom:10px;
-                opacity: 0.8;
-            }
-
-            {box-sizing: border-box;}
-
-            /* The popup form - hidden by default */
-            .form-popup {
-                display: none;
-                position: fixed;
-                top: 15px;
-                right: 30px;
-                border: 3px solid #f1f1f1;
-                z-index: 9;
-            }
-
-            .form-popup h3{
-                text-align: center
-            }
-
-            /* Add styles to the form container */
-            .form-container {
-                max-width: 300px;
-                padding: 10px;
-                background-color: white;
-            }
-
-            /* Full-width input fields */
-            .form-container input[type=text], .form-container input[type=number]{
-                width: 90%;
-                padding: 15px;
-                margin: 5px 0 22px 0;
-                border: none;
-                background: #f1f1f1;
-            }
-
-            /* When the inputs get focus, do something */
-            .form-container input[type=text]:focus, .form-container input[type=number]:focus{
-                background-color: #ddd;
-                outline: none;
-            }
-
-            /* Set a style for the submit button */
-            .form-container .btn {
-                background-color: #04AA6D;
-                color: white;
-                padding: 16px 20px;
-                border: none;
-                cursor: pointer;
-                width: 100%;
-                margin-bottom:10px;
-                opacity: 0.8;
-            }
-
-            .btnAdd{
-                background-color: #04AA6D;
-                color: white;
-                padding: 16px 20px;
-                border: none;
-                cursor: pointer;
-                margin-bottom:10px;
-                opacity: 0.8;
-            }
-
-            /* Add a red background color to the cancel button */
-            .form-container .delete {
-                background-color: red;
-            }
-
-            /* Add some hover effects to buttons */
-            .form-container .btn:hover, .open-button:hover {
-                opacity: 1;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/studentManagement.css') }}">
+        <script type="text/javascript" src="{{ URL::asset('js/studentManagement.js') }}"></script>
     </head>
     <h2>Student management</h2>
     @if (session('success'))
@@ -126,7 +19,7 @@
 
     <div><button type="button" class="btnAdd" onclick="openFormAdd()">Ajouter un étudiant</button></div>
 
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Chercher un étudiant">
+    <input type="text" id="myInput" onkeyup="searchingInDB()" placeholder="Chercher un étudiant">
 
     <table id="myTable">
         <tr>
@@ -151,42 +44,16 @@
             <input type="number" name="id" placeholder="Matricule" min="1" dusk="student_id">
             <input type="text" name="last_name" placeholder="Nom" dusk="student_last_name">
             <input type="text" name="first_name" placeholder="Prénom" dusk="student_first_name">
+            <select dusk="group_name" id="group" name="group">
+                <option value="" disabled selected>Sélectionnez un groupe</option>
+                @foreach($groups as $group)
+                    <option value="{{ $group->name }}">{{ $group->name }}</option>
+                @endforeach
+            </select>
+
 
             <button type="submit" class="btn" dusk="add">Ajouter</button>
             <button type="button" class="btn delete" onclick="closeFormAdd()">Close</button>
         </form>
     </div>
-
-    <script>
-    function myFunction() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-
-    function openFormAdd() {
-        document.getElementById("addForm").style.display = "block";
-    }
-
-    function closeFormAdd() {
-        document.getElementById("addForm").style.display = "none";
-    }
-
-</script>
 @endsection

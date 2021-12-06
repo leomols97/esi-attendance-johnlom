@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class studentsManagementTest extends TestCase
@@ -15,7 +13,7 @@ class studentsManagementTest extends TestCase
      */
     public function test_get_manage()
     {
-        $response = $this->get('/studentManagement');
+        $response = $this->get('/studentsManagement');
 
         $response->assertStatus(200);
     }
