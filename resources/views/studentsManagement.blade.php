@@ -6,7 +6,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{{secure_asset('css/studentManagement.css') }}">
-        <script type="text/javascript" src="{{ URL::asset('js/studentManagement.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::secure_asset('js/studentManagement.js') }}"></script>
     </head>
     <h2>Student management</h2>
     @if (session('success'))
