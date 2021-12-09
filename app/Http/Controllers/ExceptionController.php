@@ -10,6 +10,7 @@
 namespace App\Http\Controllers;
 
 use App\ExceptionStudentList;
+use App\Models\Course;
 use App\Queries;
 use App\Models\AddStudentToCourseModel;
 use Illuminate\Database\QueryException;
@@ -21,11 +22,10 @@ class ExceptionController extends Controller
      *
      * @return void
      */
-    public function showingStudentToCourses()
+    public function showingStudentToCourses($seance_id)
     {
-        $students = AddStudentToCourseModel::findAllStudents();
-        $courses = AddStudentToCourseModel::findAllCourses();
-        return view('addStudentToCourse', ['students' => $students, 'courses' => $courses]);
+        $students = Course::studentsNotInCourse($seance_id);
+        return view('addStudentToCourse', ['students' => $students, 'seance_id' => $seance_id]);
     }
 
     /**
@@ -33,7 +33,7 @@ class ExceptionController extends Controller
      *
      * @return void
      */
-    public function addStudentToCourse()
+    public function addStudentToCourse($seance_id)
     {
         $courseId = $_REQUEST["course_id"];
         $studentId = $_REQUEST["student_id"];

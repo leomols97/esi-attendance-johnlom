@@ -43,9 +43,9 @@ use App\Http\Controllers\ExceptionController;
 // Adding a student to a specific course
 Route::get('/addStudent', [ExceptionController::class, 'add']);
 // The route to show the possible students to add to the possible courses
-Route::get('/addStudentToCourse', [ExceptionController::class, 'showingStudentToCourses']);
+Route::get('/addStudentToCourse/{seance_id}', [ExceptionController::class, 'showingStudentToCourses']);
 // The route to the page that adds a student to the course into the table "exception_student_list"
-Route::post('/addStudentToCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
+Route::post('/addStudentToCourse/{seance_id}', [ExceptionController::class, 'addStudentToCourse']);
 
 Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
 Route::post('/addStudent', [StudentsCtrl::class, 'add']);
