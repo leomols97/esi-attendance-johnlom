@@ -10,13 +10,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/importGroups.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  @yield('css')
 </head>
 <body>
+    <main>
     <?php
         echo Form::open(array('url' => '/importGroupsForStudents/', 'files' => 'true'));
-        echo 'Sélectionner le fichier CSV à importer.';
+        echo '<p>Sélectionner le fichier CSV à importer : </p>';
         echo Form::file('studentsGroupsCSV');
-        echo Form::submit('Importer le fichier');
+        echo Form::submit("Importer le fichier");
         echo Form::close();
     ?>
     @if($error)
@@ -26,6 +30,7 @@
     @if($success)
         <p class="success">Importation réalisée avec succès.</p>
     @endif
+</main>
 </body>
 </html>
 

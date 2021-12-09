@@ -4,6 +4,10 @@ body {
     grid-template-areas: "header" "main" "footer";
 }
 
+main {
+    margin: 2%;
+}
+
 header {
     grid-area: header;
     text-align: center;
@@ -46,6 +50,47 @@ img {
     background-color: #ddd;
     color: black;
 }
+
+button {
+    background-color: white;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border: 2px solid #245995;
+  }
+  
+  button:hover {
+    background-color: #245995;
+    color: white;
+  }
+  
+  input[type=submit]{
+    background-color: white;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border: 2px solid #245995;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #245995;
+    color: white;
+  }
+
+  a:active {
+      background-color: green;
+  }
+
 
 footer {
     grid-area: footer;

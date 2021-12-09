@@ -20,9 +20,9 @@
     <ul>
       <a href="/import_groups_for_students">Importer groupes</a>
       <a href="/export_stats_presences">Télécharger présences</a>
-      <a href="/students_consultation/1">Consulter les étudiants</a>
+      <a href="/take_presences/1">Prendre les présences</a>
       <a href="/import_schedule">Importer horaires</a>
-      <a href="/managing_students">Gestion des étudiants</a>
+      <a href="/students_management">Gestion des étudiants</a>
       <a href="/add_student_to_course">Ajouter un étudiant à un cours</a>
     </ul>
   </div>

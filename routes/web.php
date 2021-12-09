@@ -29,8 +29,8 @@ Route::post('/export_stats_presences', [StatsExportController::class, 'export'])
 
 //Consultation des étudiants
 use App\Http\Controllers\StudentsCtrl;
-Route::get('/students_consultation/{seance_id}', [StudentsCtrl::class, 'students']);
-Route::post('/students_consultation/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
+Route::get('/take_presences/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::post('/take_presences/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
 // Import des horaires
 use App\Http\Controllers\ImportController;
