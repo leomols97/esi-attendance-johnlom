@@ -12,8 +12,7 @@ Sont implémentées les fonctionnalités :
 - Prise de présence (au travers de la consultation des étudiants)
 - Ajout d'un étudiant à un cours
 - Suppression d'un étudiant d'un cours
-- Ajouter un étudiant en tant qu'admin
-- Retirer un étudiant en tant qu'admin
+- Gestion des étudiants
 
 # Déploiement
 
