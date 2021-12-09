@@ -40,4 +40,5 @@ class ExceptionController extends Controller
         AddStudentToCourseModel::addAndUpdateStudentToCourse($courseId, $studentId, true);
         return $this->showingStudentToCourses();
     }
+    
 }

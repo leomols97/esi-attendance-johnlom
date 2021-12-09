@@ -67,4 +67,5 @@ class StudentsCtrl extends Controller
             return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
         }
     }
+    
 }

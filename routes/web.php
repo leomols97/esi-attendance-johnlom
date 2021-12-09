@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,42 +13,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
 
 //Fichier CSV pour l'affectation des groupes pour chaque étudiant
 use App\Http\Controllers\GroupsCSVController;
-Route::get('/importGroupsForStudents', [GroupsCSVController::class, 'interface']);
-Route::post('/importGroupsForStudents', [GroupsCSVController::class, 'importCsv']);
+Route::get('/import_groups_for_students', [GroupsCSVController::class, 'interface']);
+Route::post('/import_groups_for_students', [GroupsCSVController::class, 'importCsv']);
 
 //Téléchargement des statistiques de présence
 use App\Http\Controllers\StatsExportController;
-Route::get('/exportStats', [StatsExportController::class, 'interface']);
-Route::post('/exportStats', [StatsExportController::class, 'export']);
+Route::get('/export_stats_presences', [StatsExportController::class, 'interface']);
+Route::post('/export_stats_presences', [StatsExportController::class, 'export']);
 
 //Consultation des étudiants
 use App\Http\Controllers\StudentsCtrl;
-Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
-Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
+Route::get('/students_consultation/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::post('/students_consultation/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
 // Import des horaires
 use App\Http\Controllers\ImportController;
-Route::get('/import', [ImportController::class, 'importIndex']);
-Route::post('/import', [ImportController::class, 'import']);
+Route::get('/import_schedule', [ImportController::class, 'importIndex']);
+Route::post('/import_schedule', [ImportController::class, 'import']);
 
 use App\Http\Controllers\ExceptionController;
-// Adding a student to a specific course
-Route::get('/addStudent', [ExceptionController::class, 'add']);
 // The route to show the possible students to add to the possible courses
-Route::get('/addStudentToCourse', [ExceptionController::class, 'showingStudentToCourses']);
+Route::get('/add_student_to_course', [ExceptionController::class, 'showingStudentToCourses']);
 // The route to the page that adds a student to the course into the table "exception_student_list"
-Route::post('/addStudentToCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
+Route::post('/add_student_to_course/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
 
-Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
-Route::post('/addStudent', [StudentsCtrl::class, 'add']);
+// Manage students
+Route::get('/managing_students', [StudentsCtrl::class, 'getIndex']);
+Route::post('/managing_students', [StudentsCtrl::class, 'add']);
 
-// The route to delete a student
-Route::get('/students', [StudentsCtrl::class, 'getAll']);
-Route::post('/students', [StudentsCtrl::class, 'delete']);
+// Route::get('/managing_students', [StudentsCtrl::class, 'getAll']);
+// Route::post('/managing_students', [StudentsCtrl::class, 'delete']);

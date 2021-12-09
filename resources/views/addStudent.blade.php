@@ -1,15 +1,13 @@
 @extends('canvas')
-@section('title', 'Ajouter un étudiant (admin)')
-@section('title_header', 'PRJG5')
+@section('title', 'Gestion des étudiants')
 @section('content')
 @section('css')
-@section('content')
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/addStudent.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/addStudent.css') }}">
 </head>
 
-<h1>Ajouter un étudiant</h1>
+<h1>Gestion des étudiants</h1>
 
 <div>
 <form method="POST" action="/addStudent">
@@ -33,4 +31,30 @@
 @endif
 
 </div>
+
+<div>
+        <form id="add" @submit="checkForm" action="/students" method="POST">
+            @csrf
+            <h5>Supprimer un étudiant</h5>
+            <p>
+                <label for="id">Id de l'étudiant :</label>
+                <select dusk="id_student_to_delete" id="student_id" name="student_id">
+                    <option value="" disabled selected>Sélectionnez l'ID d'un étudiant</option>
+                    @foreach($students ?? '' as $student)
+                        <option value="{{ $student->id }}">{{ $student->id }}</option>
+                    @endforeach
+                </select>
+            </p>
+            <p><input type="submit" value="Supprimer"></p>
+            <div id="error"></div>
+        </form>
+        @if (session('success'))
+            <h3 class='success'>{{session('success')}}</h3>
+        @endif
+
+        @if (session('errors'))
+            <h3 class='error'>{{session('errors')->first()}}</h3>
+        @endif
+    </div>
+
 @endsection
