@@ -31,7 +31,7 @@
                 <td>
                     <form action="{{route('deleteStudent', $student->id)}}" method="POST" onsubmit="return confirm('Are you sure?');">
                         @csrf
-                        <button type="submit" class="btnDelete" dusk="delete">Delete</button>
+                        <button type="submit" class="btnDelete" dusk="delete{{$student->id}}">Delete</button>
                     </form>
                 </td>
             </tr>

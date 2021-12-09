@@ -23,9 +23,8 @@ class studentsManagementTest extends DuskTestCase
             //à modifier, pas correct
             $browser2->visit('/studentsManagement')
                      ->assertSee('@id_student',"1 Letest Mathieu")
-                     ->type('@id_student_to_delete', 1)
-                     ->press('@delete_button')
-                     ->assertDontSee('id_student', 1);
+                     ->press('@delete1')
+                     ->assertDontSee('@id_student', "1 Letest Mathieu");
 
             $browser3->visit('/studentsManagement')
                     ->assertSee('Ajouter un étudiant')
