@@ -1,6 +1,6 @@
-@extends('canevas')
+@extends('canvas')
 
-@section('title', 'StudentList')
+@section('title', 'Gestion étudiants')
 
 @section ('content')
     <div>
