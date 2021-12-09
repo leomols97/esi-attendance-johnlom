@@ -12,7 +12,7 @@
     </head>
     <body>
         <header>ESI Attendance (équipe Johnlom)</header>
-        <main>
+        <main >
             <table border="1">
                 <thead>
                     <tr>

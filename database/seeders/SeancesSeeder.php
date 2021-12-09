@@ -18,12 +18,14 @@ class SeancesSeeder extends Seeder
     {
         $coursesGroups = DB::table('courses_groups')->pluck('id');
         $faker = Faker::create();
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 2; $i++) {
             DB::table('seances')->insert([
                 'id' => $i,
                 'course_group' => $faker->randomElement($coursesGroups),
-                'start_time' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null),
-                'end_time' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null),
+                'start_time' => ('2021-12-03 08:15:00'),
+                'end_time' => ('2021-12-03 10:15:00'),
+                'start_time' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+                'end_time' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
                 'local' => random_int(0,100),
             ]);
         }
