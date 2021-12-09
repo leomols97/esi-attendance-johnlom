@@ -73,30 +73,10 @@ class AddStudentToCourseModel extends Model
      */
     static public function addAndUpdateStudentToCourse($course_id, $student_id, $add)
     {
-        // Sélectionne le tuple dont l'étudiant et le cours sont donnés en paramètres
-        // pour voir s'il existe ou non
-        $student = DB::select(
-            'SELECT course_id, student_id
-            FROM exception_student_list
-            WHERE course_id = ? AND student_id = ?
-            ',
-            [$course_id, $student_id]
-        );
-        try {
-
-            // Insère l'étudiant ton les paramètres sont reçus en paramètres
-            if (empty($student))
-            {
-                DB::table('exception_student_list')->updateOrInsert([
-                    'course_id' => $course_id,
-                    'student_id' => $student_id,
-                ], ['add' => $add]);
-            } else {
-                echo "<script>alert(\"L'étudiant a déjà été ajouté à ce cours\")</script>";
-            }
-        } catch (QueryException $exception) {
-            throw $exception;
-        }
+        DB::table('exception_student_list')->updateOrInsert([
+            'course_id' => $course_id,
+            'student_id' => $student_id,
+        ], ['add' => $add]);
     }
 
     /**

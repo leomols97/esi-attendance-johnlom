@@ -7,7 +7,7 @@
 
 <h1>Les étudiants</h1>
 
-<form method="POST" action="/students/{{$seance_id}}/validation">
+<form method="POST" action="/seance-details/{{$seance_id}}/validation">
 {{ csrf_field() }}
 <table border="1">
     <tr>

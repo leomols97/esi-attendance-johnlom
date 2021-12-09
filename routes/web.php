@@ -29,27 +29,21 @@ use App\Http\Controllers\StatsExportController;
 Route::get('/exportStats', [StatsExportController::class, 'interface']);
 Route::post('/exportStats', [StatsExportController::class, 'export']);
 
-//Consultation des étudiants dans une séance
+//Consultation des étudiants pour une séance
 use App\Http\Controllers\StudentsCtrl;
-Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
-Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
+Route::get('/seance-details/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::post('/seance-details/{seance_id}', [StudentsCtrl::class, 'addException']);
+Route::post('/seance-details/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
-// Import des horaires
+//Ajouter un étudiant
+Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
+Route::post('/addStudent', [StudentsCtrl::class, 'add']);
+
+//Import des horaires
 use App\Http\Controllers\ImportController;
 Route::get('/import', [ImportController::class, 'importIndex']);
 Route::post('/import', [ImportController::class, 'import']);
 
-use App\Http\Controllers\ExceptionController;
-// Adding a student to a specific course
-Route::get('/addStudent', [ExceptionController::class, 'add']);
-// The route to show the possible students to add to the possible courses
-Route::get('/addStudentToCourse/{seance_id}', [ExceptionController::class, 'showingStudentToCourses']);
-// The route to the page that adds a student to the course into the table "exception_student_list"
-Route::post('/addStudentToCourse/{seance_id}', [ExceptionController::class, 'addStudentToCourse']);
-
-Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
-Route::post('/addStudent', [StudentsCtrl::class, 'add']);
-
-// The route to delete a student
+//Supprimer un étudiant
 Route::get('/students', [StudentsCtrl::class, 'getAll']);
 Route::post('/students', [StudentsCtrl::class, 'delete']);

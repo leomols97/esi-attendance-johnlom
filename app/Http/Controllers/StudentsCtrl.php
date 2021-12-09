@@ -2,35 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use App\Queries;
-use App\Models\Student;
-use App\Models\AddStudentToCourseModel;
 use Illuminate\Http\Request;
 use Throwable;
-use App\Models\PresenceFormatter;
 use Exception;
+
+use App\Queries;
+use App\Models\Student;
+use App\Models\PresenceFormatter;
+use App\Models\Course;
+use App\Models\Seance;
+use App\Models\AddStudentToCourseModel;
 
 class StudentsCtrl extends Controller
 {
 
+    /**
+     * Gets all students for a given seance.
+     * (Used for the calendar.)
+     */
     function getStudents($seance_id)
     {
         $result = Queries::studentsForSeance($seance_id);
         return response()->json($result);
     }
 
+    /**
+     * Handles both taking presence AND adding student to course exceptions.
+     */
     function students($seance_id)
     {
-        //$students = Queries::studentsForSeance($seance_id);
-        //$courses = AddstudentToCourseModel::findAllCourses();
-        //return view('addStudentToCourse', compact('students'), ["seance_id" => $seance_id], compact('courses'));
-        $result["students"] = Queries::studentsForSeance($seance_id);
-        $result["courses"] = AddstudentToCourseModel::findAllCourses(); 
-      
-        return view('addStudentToCourse', compact('result'), ['seance_id' => $seance_id]);
-
+        // Students for seance = students for the course related to the seance
+        $studentsInCourse = Queries::studentsForSeance($seance_id);
+        $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
+        return view('presenceException', ['seance_id' => $seance_id, 
+                                            'students' => $studentsInCourse, 
+                                            'studentsOut' => $studentsNotInCourse]);
     }
 
+    /**
+     * Add a student to the exception list of a given course.
+     */
+    public function addException(Request $request, $seance_id) {
+        $courseId = intval(Course::fromSeance($request->seance_id)[0]->id);
+        $studentId = $request->student_id;
+        AddStudentToCourseModel::addAndUpdateStudentToCourse($courseId, $studentId, true);
+        return self::students($seance_id);
+    }
+
+    /**
+     * Saves presences.
+     */
     function save_presences(Request $request, $seance_id)
     {
         $checkboxes = $request->checklist;
@@ -44,10 +65,16 @@ class StudentsCtrl extends Controller
         return view('presence_validation', ["success" => true]);
     }
 
+    /**
+     * Displays interface in order to add a student to database.
+     */
     function getIndex() {
         return view('addStudent');
     }
 
+    /**
+     * Adds a student to the database.
+     */
     function add(Request $request) {
         try {
             $student = new Student($request->id,$request->last_name,$request->first_name);
@@ -58,13 +85,18 @@ class StudentsCtrl extends Controller
         }
     }
 
+    /**
+     * Displays interface in order to delete a student from the database.
+     */
     function getAll()
     {
         $students = Student::findAllStudents();
-
         return view('students', compact('students'));
     }
 
+    /**
+     * Deletes a student from the database.
+     */
     function delete()
     {
         try{

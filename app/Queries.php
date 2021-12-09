@@ -16,14 +16,25 @@ class Queries {
         $this->seance_id = $seance_id;
     }
 
+    /**
+     * Gets all students who attend at a given seance.
+     */
     static public function studentsForSeance($seance_id)
     {
         $students = DB::select("SELECT DISTINCT s.*
-                                FROM students s
-                                JOIN student_groups sg ON s.id = sg.student_id
-                                JOIN courses_groups cg ON sg.group_name = cg.group_id
-                                JOIN seances se ON cg.id = se.course_group
-                                WHERE se.id = ?", [$seance_id]);
+                                    FROM students s
+                                        JOIN student_groups sg ON s.id = sg.student_id
+                                        JOIN courses_groups cg ON sg.group_name = cg.group_id
+                                        JOIN seances se ON cg.id = se.course_group
+                                    WHERE se.id = ?
+                                UNION
+                                -- plus exceptions
+                                SELECT DISTINCT s.*
+                                    FROM seances se
+                                        JOIN courses_groups cg ON se.course_group = cg.id
+                                        JOIN exception_student_list esl ON cg.course_id = esl.course_id
+                                        JOIN students s ON esl.student_id = s.id
+                                    WHERE se.id = ?", [$seance_id, $seance_id]);
         return $students;
     }
     
