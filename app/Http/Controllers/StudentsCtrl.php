@@ -51,10 +51,6 @@ class StudentsCtrl extends Controller {
         return view( 'presence_validation', ['success' => true] );
     }
 
-    // function getIndex() {
-    //     return view( 'addStudent' );
-    // }
-
     /**
     * Adds a student to a course and puts it into the table 'exception_student_list'
     *
