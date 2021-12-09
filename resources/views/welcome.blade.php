@@ -33,9 +33,6 @@
                         <td><a href="/import">Importation horaires des profs</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/addStudent">Ajouter un étudiant en tant qu'admin</a></td>
-                    </tr>
-                    <tr>
                         <td><a href="/addOrDeleteStudentFromCourse">Ajout ou suppression d'un étudiant à un cours</a></td>
                     </tr>
                     <tr>
