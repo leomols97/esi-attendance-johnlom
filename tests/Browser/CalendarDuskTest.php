@@ -8,18 +8,6 @@ use Tests\DuskTestCase;
 
 class CalendarDuskTest extends DuskTestCase
 {
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
-        });
-    }
 
     /**
      * Checks if the Calendar page is visitable
@@ -45,14 +33,28 @@ class CalendarDuskTest extends DuskTestCase
     // }
 
     /**
-     * A Dusk test example.
+     * Checks if a special event exists in the month of December
+     * This thest won't work if the showed month is another than the 12 of 2021
      *
      * @return void
      */
-    public function IsDateHasEvent()
+    public function test_if_has_event()
     {
         $this->browse(function (Browser $browser) { // Le 5ème elt (table) et 7è (tr) et 14e et 15e et 16e n'ont pas de classe
-            $browser->assertSeeIn('.main .fc-toolbar .fc-view-container .fc-view-container .fc-body .fc-widget-content .fc-scroller .fc-day-grid .fc-row .fc-bg .fc-content-skeleton .fc-event-container .fc-day-grid-event .fc-content .fc-title', 'Gestion de projet');
+            $browser->assertSeeIn('#calendar > div.fc-view-container > div > table > tbody > tr > td > div > div > div:nth-child(1) > div.fc-content-skeleton > table > tbody > tr:nth-child(1) > td.fc-event-container > a > div > span.fc-title', 'Gestion de projet');
+        });
+    }
+
+    /**
+     * Checks if the header is shown or not
+     *
+     * @return void
+     */
+    public function test_header_is_shown()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/calendar')
+                    ->assertSee("Vue calendrier de l'horaire");
         });
     }
 }

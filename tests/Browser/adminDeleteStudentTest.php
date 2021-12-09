@@ -8,7 +8,7 @@ use Tests\DuskTestCase;
 
 class adminDeleteStudentTest extends DuskTestCase
 {
-    
+
     /**
      * A Dusk test example.
      *
