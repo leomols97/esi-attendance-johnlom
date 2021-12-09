@@ -5,7 +5,7 @@
 @section ('content')
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{{asset('css/studentManagement.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{secure_asset('css/studentManagement.css') }}">
         <script type="text/javascript" src="{{ URL::asset('js/studentManagement.js') }}"></script>
     </head>
     <h2>Student management</h2>
