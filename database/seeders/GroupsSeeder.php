@@ -15,10 +15,11 @@ class GroupsSeeder extends Seeder
      */
     public function run()
     { 
-        for ($i=0; $i < 2; $i++) { 
-            DB::table('groups')->insert([
-                'name' => Str::random(10),
-            ]);
-        }
+        DB::table('groups')->insert([
+            'name' => "E11",
+        ]);
+        DB::table('groups')->insert([
+            'name' => "E12",
+        ]);        
     }
 }

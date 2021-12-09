@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StudentsCtrl;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,25 +30,29 @@ Route::get('/exportStats', [StatsExportController::class, 'interface']);
 Route::post('/exportStats', [StatsExportController::class, 'export']);
 
 //Consultation des étudiants
-use App\Http\Controllers\StudentsCtrl;
+Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'savePresences']);
+
+use App\Http\Controllers\ImportController;
+//Consultation des étudiants
+//importRoute::get('/students', [StudentsCtrl::class, 'students']);
+Route::get('/import', [ImportController::class, 'importIndex' ]);
+Route::post('/import', [ImportController::class, 'import' ]);
+
+use App\Http\Controllers\ExceptionController;
+// The route to show the possible students to add to the possible courses
+Route::get('/addOrDeleteStudentFromCourse', [ExceptionController::class, 'showingStudentAndCourses']);
+// The route to the page that ADDS a student to a course into the table "exception_student_list"
+Route::post('/addOrDeleteStudentFromCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
+// The route to the page that DELETES a student from a course into the table "exception_student_list"
+Route::post('/addOrDeleteStudentFromCourse/delete', [ExceptionController::class, 'DeleteStudentFromCourse'])->name('delete');
+
 Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
 Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
 // Import des horaires
-use App\Http\Controllers\ImportController;
-Route::get('/import', [ImportController::class, 'importIndex']);
-Route::post('/import', [ImportController::class, 'import']);
-
-use App\Http\Controllers\ExceptionController;
-// Adding a student to a specific course
-Route::get('/addStudent', [ExceptionController::class, 'add']);
-// The route to show the possible students to add to the possible courses
-Route::get('/addStudentToCourse', [ExceptionController::class, 'showingStudentToCourses']);
-// The route to the page that adds a student to the course into the table "exception_student_list"
-Route::post('/addStudentToCourse/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
-
-Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
-Route::post('/addStudent', [StudentsCtrl::class, 'add']);
+// Route::get('/import', [ImportController::class, 'importIndex']);
+// Route::post('/import', [ImportController::class, 'import']);
 
 // The route to delete a student
 Route::get('/students', [StudentsCtrl::class, 'getAll']);
@@ -57,3 +61,9 @@ Route::post('/students', [StudentsCtrl::class, 'delete']);
 // Display calendar
 use App\Http\Controllers\CalendarCtrl;
 Route::get('/calendar', [CalendarCtrl::class, 'calendarData']);
+
+// Route for the students management
+Route::get('/studentsManagement', [StudentsCtrl::class, 'getAll']);
+Route::post('/studentsManagement/add', [StudentsCtrl::class, 'add']);
+Route::post('/studentsManagement/delete/{id}', [StudentsCtrl::class, 'delete'])->name('deleteStudent');
+

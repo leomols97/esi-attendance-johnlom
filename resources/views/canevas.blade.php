@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <img id="logo" src="/he2b-esi.jpg" alt="HE2B-ESI"/>
+        <img id="logo" src="/he2b-esi.jpg" alt="HE2B-ESI" style="max-width: 100px"/>
         <h1>PRJG5 - Attendance</h1>
     </header>
     <main>

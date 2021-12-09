@@ -5,8 +5,8 @@
 @section ('content')
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/studentManagement.css') }}">
-        <script type="text/javascript" src="{{ URL::asset('js/studentManagement.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{secure_asset('css/studentManagement.css') }}">
+        <script type="text/javascript" src="{{secure_asset('js/studentManagement.js') }}"></script>
     </head>
     <h2>Student management</h2>
     @if (session('success'))
@@ -31,7 +31,7 @@
                 <td>
                     <form action="{{route('deleteStudent', $student->id)}}" method="POST" onsubmit="return confirm('Are you sure?');">
                         @csrf
-                        <button type="submit" class="btnDelete" dusk="delete">Delete</button>
+                        <button type="submit" class="btnDelete" dusk="delete{{$student->id}}">Delete</button>
                     </form>
                 </td>
             </tr>

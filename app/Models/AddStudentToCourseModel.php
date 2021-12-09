@@ -55,9 +55,9 @@ class AddStudentToCourseModel extends Model
      *
      * @return void
      */
-    static public function selectStudentInCourse($course_id, $student_id) : boolean
+    static public function selectStudentInCourse($course_id, $student_id) : bool
     {
-        return DB::table('students')->select('id')->where('id', '=', $id)->get() != null;
+        return DB::table('students')->select('id')->where('id', '=', $student_id)->get() != null;
     }
 
     /**
@@ -147,5 +147,38 @@ class AddStudentToCourseModel extends Model
     public static function selectAllExceptions()
     {
         return DB::table('exception_student_list')->get();
+    }
+
+    /**
+    * Deletes a student from the table 'exception_student_list'
+    *
+    * @param  integer $course_id   The id of the course to add to the table
+    * @param  integer $student     The id of the student to add to the table
+    *
+    * @return void
+    */
+    public static function DeleteStudentFromCourse( $course_id, $student_id ) {
+        // Looks in the table 'exception_student_list' if the student
+        // given in the parameters is already added with the course given in the parameters
+        $student = DB::select('
+            SELECT course_id, student_id
+            FROM exception_student_list
+            WHERE course_id = ? AND student_id = ?
+            ',
+            [$course_id, $student_id]
+        );
+        if ( !empty( $student ) ) {
+            // Deletes a student from the table 'exception_student_list'
+            // with the parameters of the function
+            DB::delete('
+                DELETE
+                FROM exception_student_list
+                WHERE course_id = ? AND student_id = ?
+            ',
+            [$course_id, $student_id]
+        );
+        } else {
+            throw new \Exception( "L'étudiant n'a pas encore été ajouté à ce cours !" );
+        }
     }
 }

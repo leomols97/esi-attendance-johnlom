@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class adminDeleteStudentTest extends TestCase
+class studentsManagementTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -15,7 +13,7 @@ class adminDeleteStudentTest extends TestCase
      */
     public function test_get_manage()
     {
-        $response = $this->get('/students');
+        $response = $this->get('/studentsManagement');
 
         $response->assertStatus(200);
     }
