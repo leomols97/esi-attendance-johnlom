@@ -17,8 +17,9 @@
   <main>
     @yield('content')
   </main>
-  <footer>JOHNLOM</footer>
   @yield('js')
 </body>
+
+<footer>JOHNLOM</footer>
 
 </html>

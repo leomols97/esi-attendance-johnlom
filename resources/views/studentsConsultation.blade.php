@@ -9,12 +9,12 @@
 
 <form method="POST" action="/students/{{$seance_id}}/validation">
 {{ csrf_field() }}
-<table border="1">
+<table id="table_presences" border="1">
     <tr>
-        <th>Matricule</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Présent(e) <br> <input type="checkbox" id="select-all" dusk="select-all"> Tout sélectionner</th>
+        <th>Matricule<br><br></th>
+        <th>Nom<br><br></th>
+        <th>Prénom<br><br></th>
+        <th>Présent(e)<br><input type="checkbox" id="select-all" dusk="select-all">Tout sélectionner</th>
     </tr>
     @foreach ($students as $student)
     <tr>
