@@ -1,4 +1,4 @@
-@extends('canevas')
+@extends('canvas')
 @section('title', 'StudentList')
 @section ('content')
 

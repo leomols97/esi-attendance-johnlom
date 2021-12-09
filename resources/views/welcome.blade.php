@@ -1,7 +1,8 @@
 @extends('canvas')
-
-@section('title', 'ESI Attendance - JOHNLOM')
+@section('title', 'Bienvenue')
 @section('content')
-@section('title_header', 'ESI Attendance - JOHNLOM')
+
+<h1>Bienvenue !</h1>
+
 
 @endsection
