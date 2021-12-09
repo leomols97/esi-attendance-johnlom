@@ -110,10 +110,10 @@ class StudentsCtrl extends Controller
     *
     * @return message   The message to show when the deletion processed
     */
-    function delete()
+    function delete($id)
     {
         try{
-            Student::deleteStudent($_POST["student_id"]);
+            Student::deleteStudent($id);
             return redirect()->back()->withSuccess('Etudiant supprimé!');
         }catch(Throwable $e){
             return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
