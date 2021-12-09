@@ -93,15 +93,17 @@ class StudentsCtrl extends Controller
         }
     }
 
-    /**
-    * Method to get all students of the database.
+     /**
+    * Method to get all students and groups of the database.
+    *
+    * @return studentsManagement    The view to show with the param 'students' and 'groups'
     */
     function getAll()
     {
         $students = Student::findAllStudents();
-        return view('students', compact('students'));
+        $groups = Group::findAllGroups();
+        return view( 'studentsManagement', compact( 'students' ), compact( 'groups' ) );
     }
-
     
     /**
     * Method to delete a student with his id.
