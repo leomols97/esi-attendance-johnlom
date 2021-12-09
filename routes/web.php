@@ -34,7 +34,6 @@ Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
 Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'savePresences']);
 
 use App\Http\Controllers\ImportController;
-use App\Http\Controllers\StudentsCtrl;
 //Consultation des étudiants
 //importRoute::get('/students', [StudentsCtrl::class, 'students']);
 Route::get('/import', [ImportController::class, 'importIndex' ]);
@@ -59,4 +58,3 @@ Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_pres
 Route::get('/studentsManagement', [StudentsCtrl::class, 'getAll']);
 Route::post('/studentsManagement/add', [StudentsCtrl::class, 'add']);
 Route::post('/studentsManagement/delete/{id}', [StudentsCtrl::class, 'delete'])->name('deleteStudent');
-
