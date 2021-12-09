@@ -21,16 +21,19 @@ Route::get('/', function () {
 
 //Fichier CSV pour l'affectation des groupes pour chaque étudiant
 use App\Http\Controllers\GroupsCSVController;
+
 Route::get('/importGroupsForStudents', [GroupsCSVController::class, 'interface']);
 Route::post('/importGroupsForStudents', [GroupsCSVController::class, 'importCsv']);
 
 //Téléchargement des statistiques de présence
 use App\Http\Controllers\StatsExportController;
+
 Route::get('/exportStats', [StatsExportController::class, 'interface']);
 Route::post('/exportStats', [StatsExportController::class, 'export']);
 
 //Consultation des étudiants pour une séance
 use App\Http\Controllers\StudentsCtrl;
+
 Route::get('/seance-details/{seance_id}', [StudentsCtrl::class, 'students']);
 Route::post('/seance-details/{seance_id}', [StudentsCtrl::class, 'addException']);
 Route::post('/seance-details/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
@@ -41,9 +44,10 @@ Route::post('/addStudent', [StudentsCtrl::class, 'add']);
 
 //Import des horaires
 use App\Http\Controllers\ImportController;
+
 Route::get('/import', [ImportController::class, 'importIndex']);
 Route::post('/import', [ImportController::class, 'import']);
 
 //Supprimer un étudiant
-Route::get('/students', [StudentsCtrl::class, 'getAll']);
-Route::post('/students', [StudentsCtrl::class, 'delete']);
+Route::get('/seance-delete-students', [StudentsCtrl::class, 'getAll']);
+Route::post('/seance-delete-students/{student_id}', [StudentsCtrl::class, 'delete'])->name("seanceDeleteStudent");

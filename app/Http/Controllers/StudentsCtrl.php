@@ -34,8 +34,8 @@ class StudentsCtrl extends Controller
         // Students for seance = students for the course related to the seance
         $studentsInCourse = Queries::studentsForSeance($seance_id);
         $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
-        return view('presenceException', ['seance_id' => $seance_id, 
-                                            'students' => $studentsInCourse, 
+        return view('presenceException', ['seance_id' => $seance_id,
+                                            'students' => $studentsInCourse,
                                             'studentsOut' => $studentsNotInCourse]);
     }
 
@@ -97,10 +97,10 @@ class StudentsCtrl extends Controller
     /**
      * Deletes a student from the database.
      */
-    function delete()
+    function delete($student_id)
     {
         try{
-            Student::deleteStudent($_POST["student_id"]); 
+            Student::deleteStudent($student_id);
             return redirect()->back()->withSuccess('Etudiant supprimé!');
         }catch(Throwable $e){
             return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
