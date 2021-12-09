@@ -36,7 +36,7 @@
                         <td><a href="/addStudent">Ajouter un étudiant en tant qu'admin</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/addStudentToCourse">Ajout d'un étudiant à un cours</a></td>
+                        <td><a href="/addOrDeleteStudentFromCourse">Ajout ou suppression d'un étudiant à un cours</a></td>
                     </tr>
                     <tr>
                         <td><a href="/studentsManagement">Gestion des étudiants</a></td>

@@ -10,11 +10,13 @@ use Illuminate\Http\Request;
 use Throwable;
 use Exception;
 
-class StudentsCtrl extends Controller {
 
-    function getStudents( $seance_id ) {
-        $result = Queries::studentsForSeance( $seance_id );
-        return response()->json( $result );
+class StudentsCtrl extends Controller
+{
+    function getStudents($seance_id)
+    {
+        $result = Queries::studentsForSeance($seance_id);
+        return response()->json($result);
     }
 
     /**
@@ -92,31 +94,27 @@ class StudentsCtrl extends Controller {
     }
 
     /**
-    * Method to get all students and groups of the database.
-    *
-    * @return studentsManagement    The view to show with the param 'students' and 'groups'
+    * Method to get all students of the database.
     */
-
-    function getAll() {
+    function getAll()
+    {
         $students = Student::findAllStudents();
-        $groups = Group::findAllGroups();
-        return view( 'studentsManagement', compact( 'students' ), compact( 'groups' ) );
+        return view('students', compact('students'));
     }
 
+    
     /**
     * Method to delete a student with his id.
     *
-    * @param $id        The id of the student to delete
-    *
     * @return message   The message to show when the deletion processed
     */
-
-    function delete( $id ) {
-        try {
-            Student::deleteStudent( $id );
-            return redirect()->back()->withSuccess( "Etudiant supprimé!" );
-        } catch( Throwable $e ) {
-            return redirect()->back()->withErrors( "Erreur, l'étudiant(e) n'a malheureusement pas pu être supprimé!" );
+    function delete()
+    {
+        try{
+            Student::deleteStudent($_POST["student_id"]);
+            return redirect()->back()->withSuccess('Etudiant supprimé!');
+        }catch(Throwable $e){
+            return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
         }
     }
 }
