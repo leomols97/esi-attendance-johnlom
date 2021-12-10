@@ -66,4 +66,3 @@ Route::get('/calendar', [CalendarCtrl::class, 'calendarData']);
 Route::get('/studentsManagement', [StudentsCtrl::class, 'getAll']);
 Route::post('/studentsManagement/add', [StudentsCtrl::class, 'add']);
 Route::post('/studentsManagement/delete/{id}', [StudentsCtrl::class, 'delete'])->name('deleteStudent');
-

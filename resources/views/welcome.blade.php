@@ -38,6 +38,9 @@
                     <tr>
                         <td><a href="/studentsManagement">Gestion des étudiants</a></td>
                     </tr>
+                    <tr>
+                        <td><a href="/calendar">Calendrier des séances</a></td>
+                    </tr>
                 </tbody>
             </table>
         </main>
