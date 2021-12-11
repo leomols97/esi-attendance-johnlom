@@ -13,7 +13,7 @@
                     <option value="" disabled selected>Sélectionnez un étudiant</option>
                     @foreach($studentsOut as $student)
                         <option value="{{ $student->id }}"> {{ $student->id }}
-                            - {{$student->first_name}} {{$student->last_name}}</option>
+                            - {{$student->last_name}} {{$student->first_name}} </option>
                     @endforeach
                 </select>
             </p>

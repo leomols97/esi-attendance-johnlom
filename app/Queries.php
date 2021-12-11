@@ -7,7 +7,8 @@ use \Illuminate\Support\Facades\DB;
 /**
  * Handles interactions with the database.
  */
-class Queries {
+class Queries
+{
 
     public $seance_id;
 
@@ -36,13 +37,17 @@ class Queries {
                                         JOIN students s ON esl.student_id = s.id
                                     WHERE se.id = ?", [$seance_id, $seance_id]);
         return $students;
+
+        /*TODO: Modifier cette requete car elle ne prend pas en compte les utilisateurs retiré d'un cours.
+            Ex: les utilisateurs dans les exceptions avec flase sont affiché. */
     }
-    
+
     /**
      * Inserts into the database the group assignment for each student.
      * Beforehand, clears the stored assignments to avoid conflict and keeping outdated information.
      */
-    static public function insertGroupsForStudents($data) {
+    static public function insertGroupsForStudents($data)
+    {
         DB::table('student_groups')->delete();
         DB::table('student_groups')->insert($data);
     }
@@ -66,12 +71,12 @@ class Queries {
      */
     static public function insertPresences($presences)
     {
-       foreach($presences as $presence) {
-           DB::table('presences')->updateOrInsert(
-               ["seance_id" => $presence["seance_id"], "student_id" => $presence["student_id"]],
-               ["is_present" => $presence["is_present"]]
-           );
-       }
+        foreach ($presences as $presence) {
+            DB::table('presences')->updateOrInsert(
+                ["seance_id" => $presence["seance_id"], "student_id" => $presence["student_id"]],
+                ["is_present" => $presence["is_present"]]
+            );
+        }
     }
 
 }

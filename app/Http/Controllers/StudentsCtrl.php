@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StudentModel;
 use Illuminate\Http\Request;
 use Throwable;
 use Exception;
@@ -35,17 +36,30 @@ class StudentsCtrl extends Controller
         $studentsInCourse = Queries::studentsForSeance($seance_id);
         $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
         return view('presenceException', ['seance_id' => $seance_id,
-                                            'students' => $studentsInCourse,
-                                            'studentsOut' => $studentsNotInCourse]);
+            'students' => $studentsInCourse,
+            'studentsOut' => $studentsNotInCourse]);
     }
 
     /**
      * Add a student to the exception list of a given course.
      */
-    public function addException(Request $request, $seance_id) {
+    public function addException(Request $request, $seance_id)
+    {
         $courseId = intval(Course::fromSeance($request->seance_id)[0]->id);
         $studentId = $request->student_id;
         AddStudentToCourseModel::addAndUpdateStudentToCourse($courseId, $studentId, true);
+        return self::students($seance_id);
+    }
+
+    public function deleteException($seance_id, $student_id)
+    {
+        $courseId = intval(Course::fromSeance($seance_id)[0]->id);
+        $studentId = $student_id;
+        try {
+            StudentModel::deleteStudentFromCourse($courseId, $studentId);
+        } catch (\Exception $exception) {
+            echo $exception->getmessage();
+        }
         return self::students($seance_id);
     }
 
@@ -59,7 +73,7 @@ class StudentsCtrl extends Controller
         try {
             $presences = PresenceFormatter::savePresences($present_student_ids, $seance_id);
             Queries::insertPresences($presences);
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             return view('presence_validation', ["success" => false]);
         }
         return view('presence_validation', ["success" => true]);
@@ -68,16 +82,18 @@ class StudentsCtrl extends Controller
     /**
      * Displays interface in order to add a student to database.
      */
-    function getIndex() {
+    function getIndex()
+    {
         return view('addStudent');
     }
 
     /**
      * Adds a student to the database.
      */
-    function add(Request $request) {
+    function add(Request $request)
+    {
         try {
-            $student = new Student($request->id,$request->last_name,$request->first_name);
+            $student = new Student($request->id, $request->last_name, $request->first_name);
             Student::add($student);
             return redirect()->back()->withSuccess('Ajouté(e) !');
         } catch (Throwable $e) {
@@ -99,10 +115,10 @@ class StudentsCtrl extends Controller
      */
     function delete($student_id)
     {
-        try{
+        try {
             Student::deleteStudent($student_id);
             return redirect()->back()->withSuccess('Etudiant supprimé!');
-        }catch(Throwable $e){
+        } catch (Throwable $e) {
             return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
         }
     }
