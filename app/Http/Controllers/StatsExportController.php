@@ -49,7 +49,7 @@ class StatsExportController extends Controller
 
         $callback = function() use ($presences, $columns)
         {
-            $file = fopen("php://output", 'w'); 
+            $file = fopen("php://output", 'w');
             fputcsv($file, $columns);
             foreach($presences as $student){
                 $student_details = array();
