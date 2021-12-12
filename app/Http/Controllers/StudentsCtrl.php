@@ -7,6 +7,7 @@ use App\Queries;
 use App\Models\Student;
 use App\Models\PresenceFormatter;
 use App\Models\Group;
+use App\Models\Seance;
 use Illuminate\Http\Request;
 use Throwable;
 use Exception;
@@ -105,7 +106,8 @@ class StudentsCtrl extends Controller
     function getAll()
     {
         $students = Student::findAllStudents();
-        return view('students', compact('students'));
+        $groups = Group::findAllGroups();
+        return view('students_management', ['students' => $students, 'groups' => $groups]);
     }
 
     /**
