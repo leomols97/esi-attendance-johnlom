@@ -1,4 +1,4 @@
-@extends('StudentsConsultation')
+@extends('studentsConsultation')
 
 @section('title', 'StudentList')
 

@@ -24,7 +24,7 @@ $(document).ready(function() {
         },
         eventClick: function(event) {
             $("#presences").modal('toggle');
-            $(".modal-content").load("/students/" + event.id + " form", function() {
+            $(".modal-content").load("/seance-details/" + event.id + " form", function() {
                 addClickEvent();
             });
         }

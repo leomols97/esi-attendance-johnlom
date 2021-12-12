@@ -40,18 +40,6 @@ use App\Http\Controllers\ImportController;
 Route::get('/import_schedule', [ImportController::class, 'importIndex' ]);
 Route::post('/import_schedule', [ImportController::class, 'import' ]);
 
-use App\Http\Controllers\ExceptionController;
-// The route to show the possible students to add to the possible courses
-Route::get('/add_delete_student_course', [ExceptionController::class, 'showingStudentAndCourses']);
-// The route to the page that ADDS a student to a course into the table "exception_student_list"
-Route::post('/add_delete_student_course/add', [ExceptionController::class, 'addStudentToCourse'])->name('add');
-// The route to the page that DELETES a student from a course into the table "exception_student_list"
-Route::post('/add_delete_student_course/delete', [ExceptionController::class, 'DeleteStudentFromCourse'])->name('delete');
-
-//Supprimer un étudiant
-Route::get('/students', [StudentsCtrl::class, 'getAll']);
-Route::post('/students', [StudentsCtrl::class, 'delete']);
-
 // Display calendar
 use App\Http\Controllers\CalendarCtrl;
 Route::get('/calendar', [CalendarCtrl::class, 'calendarData']);

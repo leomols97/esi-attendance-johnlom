@@ -16,12 +16,11 @@
     <nav class="topnav">
             <a href="/import_groups_for_students">Importer groupes</a>
             <a href="/export_stats_presences">Télécharger présences</a>
-            <a href="/seance-details/1">Prendre les présences</a>
+            <a href="/seance-details/1">Prendre les présences (et ajouter/supprimer un étudiant)</a>
             <a href="/import_schedule">Importer horaires</a>
             <a href="/students_management">Gestion des étudiants</a>
-            <a href="/add_delete_student_course">Ajouter/supprimer un étudiant à un cours</a>
             <a href="/calendar">Vue calendrier</a>
-</nav>
+    </nav>
 </header>
 
 <body>

@@ -92,8 +92,7 @@ class StudentsCtrl extends Controller
     function add(Request $request)
     {
         try {
-            $student = new Student($request->id, $request->last_name, $request->first_name);
-            Student::add($student);
+            Student::add($request->id, $request->last_name, $request->first_name, $request->group);
             return redirect()->back()->withSuccess('Ajouté(e) !');
         } catch (Throwable $e) {
             return redirect()->back()->withErrors("L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !");
