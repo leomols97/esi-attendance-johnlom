@@ -65,18 +65,18 @@ class AddStudentToCourseModel extends Model
      *
      * @param  integer $course_id     The id of the course to add the student to
      * @param  integer $student_id    The id of the student to add to a course
-     * @param  boolean $add           The status of the adding
+     * @param  bool    $state         The status of the adding
      *
      * @throws QueryException if the query could not be executed
      *
      * @return void
      */
-    static public function addAndUpdateStudentToCourse($course_id, $student_id, $add)
+    static public function addAndUpdateStudentToCourse($course_id, $student_id, $state)
     {
         DB::table('exception_student_list')->updateOrInsert([
             'course_id' => $course_id,
             'student_id' => $student_id,
-        ], ['add' => $add]);
+        ], ['state' => $state]);
     }
 
     /**

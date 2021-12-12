@@ -20,7 +20,7 @@ class Queries
     /**
      * Gets all students who attend at a given seance.
      */
-    static public function studentsForSeance($seance_id)
+    static public function studentsForSeance($seanceId)
     {
         $students = DB::select("SELECT s.*
                                     FROM students s
@@ -31,7 +31,7 @@ class Queries
                                                                         FROM seances se
                                                                             JOIN courses_groups cg ON se.course_group = cg.id
                                                                             JOIN exception_student_list esl ON cg.course_id = esl.course_id
-                                                                        WHERE se.id = ? AND esl.add = 0)
+                                                                        WHERE se.id = ? AND esl.state = 0)
                                 UNION
                                 -- plus exceptions
                                 SELECT s.*
@@ -39,11 +39,8 @@ class Queries
                                         JOIN courses_groups cg ON se.course_group = cg.id
                                         JOIN exception_student_list esl ON cg.course_id = esl.course_id
                                         JOIN students s ON esl.student_id = s.id
-                                    WHERE se.id = ? AND esl.add = 1", [$seance_id, $seance_id]);
+                                    WHERE se.id = ? AND esl.state = 1", [$seanceId, $seanceId, $seanceId]);
         return $students;
-
-        /*TODO: Modifier cette requete car elle ne prend pas en compte les utilisateurs retiré d'un cours.
-            Ex: les utilisateurs dans les exceptions avec flase sont affiché. */
     }
 
     /**
