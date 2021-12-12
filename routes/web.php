@@ -27,14 +27,18 @@ use App\Http\Controllers\StatsExportController;
 Route::get('/export_stats_presences', [StatsExportController::class, 'interface']);
 Route::post('/export_stats_presences', [StatsExportController::class, 'export']);
 
-//Consultation des étudiants
+//Consultation des étudiants pour une séance
 use App\Http\Controllers\StudentsCtrl;
-Route::get('/take_presences/{seance_id}', [StudentsCtrl::class, 'students']);
-Route::post('/take_presences/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
+Route::get('/seance-details/{seance_id}', [StudentsCtrl::class, 'students']);
+Route::post('/seance-details/{seance_id}', [StudentsCtrl::class, 'addException']);
+Route::get('/seance-details/{seance_id}/delete/{student_id}', [StudentsCtrl::class, 'deleteException'])->name('seanceDeleteStudent');
+Route::post('/seance-details/{seance_id}/delete/{student_id}', [StudentsCtrl::class, 'deleteException'])->name('seanceDeleteStudent');
+Route::post('/seance-details/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
+Route::get('/addStudent', [StudentsCtrl::class, 'getIndex']);
+Route::post('/addStudent', [StudentsCtrl::class, 'add']);
 
 use App\Http\Controllers\ImportController;
 //Consultation des étudiants
-//importRoute::get('/students', [StudentsCtrl::class, 'students']);
 Route::get('/import_schedule', [ImportController::class, 'importIndex' ]);
 Route::post('/import_schedule', [ImportController::class, 'import' ]);
 
@@ -46,10 +50,7 @@ Route::post('/add_delete_student_course/add', [ExceptionController::class, 'addS
 // The route to the page that DELETES a student from a course into the table "exception_student_list"
 Route::post('/add_delete_student_course/delete', [ExceptionController::class, 'DeleteStudentFromCourse'])->name('delete');
 
-Route::get('/students/{seance_id}', [StudentsCtrl::class, 'students']);
-Route::post('/students/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
-
-// The route to delete a student
+//Supprimer un étudiant
 Route::get('/students', [StudentsCtrl::class, 'getAll']);
 Route::post('/students', [StudentsCtrl::class, 'delete']);
 

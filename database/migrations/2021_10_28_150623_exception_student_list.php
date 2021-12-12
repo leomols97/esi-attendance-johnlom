@@ -17,7 +17,7 @@ class ExceptionStudentList extends Migration
             $table->id();
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('student_id');
-            $table->boolean('add');
+            $table->boolean('state');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
