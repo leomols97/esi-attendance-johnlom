@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StudentModel;
 use App\Queries;
+use App\Models\Course;
+use App\Models\StudentModel;
 use App\Models\Student;
 use App\Models\PresenceFormatter;
 use App\Models\Group;
 use App\Models\Seance;
 use Illuminate\Http\Request;
+
 use Throwable;
 use Exception;
 
