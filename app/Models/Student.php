@@ -65,6 +65,6 @@ class Student extends Model
      */
     public static function deleteStudent($id)
     {
-        DB::table('students')->where('id', '=',$id)->delete();
+        DB::table('students')->where('id','=',$id)->delete();
     }
 }

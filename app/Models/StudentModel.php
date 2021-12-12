@@ -49,13 +49,13 @@ class StudentModel extends Model {
     *
     * @param  integer $course_id     The id of the course to add the student to
     * @param  integer $student_id    The id of the student to add to a course
-    * @param  boolean $add           The status of the adding
+    * @param  boolean $state         The status of the adding
     *
     * @throws QueryException if the query could not be executed
     *
     * @return void
     */
-    static public function addAndUpdateStudentToCourse( $course_id, $student_id, $add ) {
+    static public function addAndUpdateStudentToCourse( $course_id, $student_id, $state ) {
         // Looks in the table 'exception_student_list' if the student
         // given in the parameters is already added with the course given in the parameters
         $student = DB::select('
@@ -115,7 +115,7 @@ class StudentModel extends Model {
     }
 
     /**
-     * Deletes a student from a course. If the student already exist in the 'exception_student_list', it
+     * Deletes a student from a course. If the student already exists in the 'exception_student_list', it
      * deletes it from the table. If not it adds it, but with the value false.
      *
      * @param integer $course_id The id of the course

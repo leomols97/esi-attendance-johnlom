@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Queries;
+use App\Models\AddStudentToCourseModel;
 use App\Models\Course;
 use App\Models\StudentModel;
 use App\Models\Student;
