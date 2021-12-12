@@ -17,7 +17,7 @@
     <main>
         <?php
         echo Form::open(array('url' => '/importGroupsForStudents/', 'files' => 'true'));
-        echo '<p>Sélectionner le fichier CSV à importer : </p>';
+        echo '<p>Sélectionner le fichier CSV à importer contenant les groupes des étudiants : </p>';
         echo Form::file('studentsGroupsCSV');
         echo Form::submit("Importer le fichier");
         echo Form::close();

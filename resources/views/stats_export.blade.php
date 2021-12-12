@@ -14,7 +14,7 @@
     <main>
         <h1>Exporter</h1>
         <p>Exporter la table "Présences" en Excel</p>
-        <form method="POST" action="/exportStats">
+        <form method="POST" action="/export_stats_presences">
             {{ csrf_field() }}
             <input type="text" name="name" placeholder="Nom de fichier">
             <select name="extension">

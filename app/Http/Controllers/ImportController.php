@@ -18,6 +18,7 @@ class ImportController extends Controller
     	$fichier = $request->fichier->move(public_path(), $request->fichier->hashName());
         $courses = Session::importICS($fichier);
         File::delete($fichier);
+        return view('import');
 
     }
 

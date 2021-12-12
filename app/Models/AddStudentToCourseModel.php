@@ -41,7 +41,7 @@ class AddStudentToCourseModel extends Model
     static public function findAllCourses()
     {
         $students = DB::select('
-            SELECT id, name, teacher_id
+            SELECT id, ue, name, teacher_id
             FROM courses
             ORDER BY id ASC
         ');

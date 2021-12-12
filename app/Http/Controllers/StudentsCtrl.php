@@ -21,7 +21,7 @@ class StudentsCtrl extends Controller
     function students($seance_id)
     {
         $students = Queries::studentsForSeance($seance_id);
-        return view('takePresences', compact('students'), ["seance_id" => $seance_id]);
+        return view('take_presences', compact('students'), ["seance_id" => $seance_id]);
     }
 
     function save_presences(Request $request, $seance_id)
@@ -38,7 +38,7 @@ class StudentsCtrl extends Controller
     }
 
     function getIndex() {
-        return view('addStudent');
+        return view('add_student');
     }
 
     function add(Request $request) {

@@ -15,7 +15,7 @@
 <body>
     <main>
         <h1>Les étudiants</h1>
-        <form method="POST" action="/students/{{$seance_id}}/validation">
+        <form method="POST" action="/take_presences/{{$seance_id}}/validation">
             {{ csrf_field() }}
             <table>
                 <tr>

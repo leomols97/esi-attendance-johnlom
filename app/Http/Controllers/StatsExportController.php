@@ -19,7 +19,7 @@ class StatsExportController extends Controller
         $file_name = "test.csv";
         $presences = Queries::findPresences();
 
-        return view("statsexport");
+        return view("stats_export");
     }
 
     function export(Request $request)

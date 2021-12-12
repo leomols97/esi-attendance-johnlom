@@ -22,7 +22,7 @@
                     <select id="course_id" name="course_id">
                         <option value="" disabled selected>Sélectionnez un cours</option>
                         @foreach($courses as $course)
-                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                        <option value="{{ $course->id }}">{{ $course->ue }} - {{ $course->name }}</option>
                         @endforeach
                     </select>
                 </p>
