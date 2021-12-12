@@ -23,22 +23,22 @@
                 </thead>
                 <tbody>
                     <tr>
-                    <td><a href="/importGroupsForStudents">Importation des affectations de groupe pour les étudiants (CSV)</a></td>
+                    <td><a href="/import_groups_for_students">Importation des affectations de groupe pour les étudiants (CSV)</a></td>
                     </tr>
                     <tr>
-                    <td><a href="/exportStats">Téléchargement des statistiques de présences (CSV ou XLSX)</a></td>
+                    <td><a href="/export_stats_presences">Téléchargement des statistiques de présences (CSV ou XLSX)</a></td>
                     </tr>
                     <tr>
                         <td><a href="/students/1">Consultation des étudiants (pour une séance précise) & prise de présences</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/import">Importation horaires des profs</a></td>
+                        <td><a href="/import_schedule">Importation horaires des profs</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/addOrDeleteStudentFromCourse">Ajout ou suppression d'un étudiant à un cours</a></td>
+                        <td><a href="/add_delete_student_course">Ajout ou suppression d'un étudiant à un cours</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/studentsManagement">Gestion des étudiants</a></td>
+                        <td><a href="/students_management">Gestion des étudiants</a></td>
                     </tr>
                     <tr>
                         <td><a href="/calendar">Calendrier des séances</a></td>
