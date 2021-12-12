@@ -21,20 +21,24 @@ class Queries {
      */
     static public function studentsForSeance($seance_id)
     {
-        $students = DB::select("SELECT DISTINCT s.*
+        $students = DB::select("SELECT s.*
                                     FROM students s
                                         JOIN student_groups sg ON s.id = sg.student_id
                                         JOIN courses_groups cg ON sg.group_name = cg.group_id
                                         JOIN seances se ON cg.id = se.course_group
-                                    WHERE se.id = ?
+                                    WHERE se.id = ? AND s.id NOT IN (SELECT esl.student_id
+                                                                        FROM seances se
+                                                                            JOIN courses_groups cg ON se.course_group = cg.id
+                                                                            JOIN exception_student_list esl ON cg.course_id = esl.course_id
+                                                                        WHERE se.id = ? AND esl.add = 0)
                                 UNION
                                 -- plus exceptions
-                                SELECT DISTINCT s.*
+                                SELECT s.*
                                     FROM seances se
                                         JOIN courses_groups cg ON se.course_group = cg.id
                                         JOIN exception_student_list esl ON cg.course_id = esl.course_id
                                         JOIN students s ON esl.student_id = s.id
-                                    WHERE se.id = ?", [$seance_id, $seance_id]);
+                                    WHERE se.id = ? AND esl.add = 1", [$seance_id, $seance_id]);
         return $students;
     }
     
