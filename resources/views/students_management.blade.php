@@ -38,7 +38,7 @@
         @endforeach
     </table>
     <div class="form-popup" id="addForm">
-        <form action="/studentsManagement/add" class="form-container" method="POST">
+        <form action="/students_management/add" class="form-container" method="POST">
             @csrf
             <h3>Ajouter étudiant</h3>
             <input type="number" name="id" placeholder="Matricule" min="1" dusk="student_id">

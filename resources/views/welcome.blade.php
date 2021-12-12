@@ -13,8 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <header>ESI Attendance (équipe Johnlom)</header>
         <main >
+            <H1>Bienvenue</H1>
             <table border="1">
                 <thead>
                     <tr>

@@ -11,13 +11,9 @@
 </head>
 
 <header>
-    <img id="logo" src="/he2b-esi.jpg" alt="HE2B-ESI" />
+    <a href="/"><img id="logo" src="/he2b-esi.jpg" alt="HE2B-ESI" /></a>
     <h1 id="title_header">ESI Attendance - JOHNLOM</h1>
-</header>
-
-<body>
-    <div class="topnav">
-        <ul>
+    <nav class="topnav">
             <a href="/import_groups_for_students">Importer groupes</a>
             <a href="/export_stats_presences">Télécharger présences</a>
             <a href="/take_presences/1">Prendre les présences</a>
@@ -25,8 +21,10 @@
             <a href="/students_management">Gestion des étudiants</a>
             <a href="/add_delete_student_course">Ajouter/supprimer un étudiant à un cours</a>
             <a href="/calendar">Vue calendrier</a>
-        </ul>
-    </div>
+</nav>
+</header>
+
+<body>
     @yield('content')
 
   @yield('js')
