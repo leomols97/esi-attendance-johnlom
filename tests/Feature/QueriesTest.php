@@ -13,7 +13,7 @@ class QueriesTest extends TestCase
      *
      * @return void
      */
-    public function test_studentsForSeance()
+    public function test_students_for_seance()
     {
         $response = $this->post('/');
 

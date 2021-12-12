@@ -19,7 +19,7 @@ class StatsExportController extends Controller
         $file_name = "test.csv";
         $presences = Queries::findPresences();
 
-        return view("statsexport");
+        return view("stats_export");
     }
 
     function export(Request $request)
@@ -49,7 +49,7 @@ class StatsExportController extends Controller
 
         $callback = function() use ($presences, $columns)
         {
-            $file = fopen("php://output", 'w'); 
+            $file = fopen("php://output", 'w');
             fputcsv($file, $columns);
             foreach($presences as $student){
                 $student_details = array();

@@ -15,12 +15,15 @@ class StudentsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 2; $i++) { 
-            DB::table('students')->insert([
-                'id' => $i,
-                'first_name' => Str::random(10),
-                'last_name' => Str::random(10),
-            ]);
-        }
+        DB::table('students')->insert([
+            'id' => 1,
+            'first_name' => "Mathieu",
+            'last_name' => "Letest",
+        ]);
+        DB::table('students')->insert([
+            'id' => 2,
+            'first_name' => "Guillaume",
+            'last_name' => "Retest",
+        ]);
     }
 }

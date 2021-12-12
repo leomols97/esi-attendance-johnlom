@@ -3,24 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\StudentModel;
+use App\Queries;
+use App\Models\Student;
+use App\Models\PresenceFormatter;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Throwable;
 use Exception;
 
-use App\Queries;
-use App\Models\Student;
-use App\Models\PresenceFormatter;
-use App\Models\Course;
-use App\Models\Seance;
-use App\Models\AddStudentToCourseModel;
 
 class StudentsCtrl extends Controller
 {
-
-    /**
-     * Gets all students for a given seance.
-     * (Used for the calendar.)
-     */
     function getStudents($seance_id)
     {
         $result = Queries::studentsForSeance($seance_id);
@@ -74,14 +67,14 @@ class StudentsCtrl extends Controller
     function save_presences(Request $request, $seance_id)
     {
         $checkboxes = $request->checklist;
-        $present_student_ids = $checkboxes != NULL ? array_keys($checkboxes) : array();
+        $present_student_ids = $checkboxes != NULL ? array_keys( $checkboxes ) : array();
         try {
             $presences = PresenceFormatter::savePresences($present_student_ids, $seance_id);
             Queries::insertPresences($presences);
         } catch (Exception $ex) {
             return view('presence_validation', ["success" => false]);
         }
-        return view('presence_validation', ["success" => true]);
+        return view( 'presence_validation', ['success' => true] );
     }
 
     /**
@@ -127,4 +120,5 @@ class StudentsCtrl extends Controller
             return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
         }
     }
+    
 }

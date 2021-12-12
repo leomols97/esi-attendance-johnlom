@@ -21,8 +21,7 @@ class StudentGroupsSeeder extends Seeder
         $faker = Faker::create();
         for ($i=0; $i < 2; $i++) { 
             DB::table('student_groups')->insert([
-                'id' => $i,
-                'student_id' => $faker->randomElement($students),
+                'student_id' => $students[$i],
                 'group_name' => $faker->randomElement($groups),
             ]);
         }

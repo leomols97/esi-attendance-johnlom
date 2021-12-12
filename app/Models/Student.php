@@ -8,22 +8,24 @@ use Illuminate\Support\Facades\DB;
 
 class Student extends Model
 {
-    public $id;
-    public $last_name;
-    public $first_name;
-
-    public function __construct($id, $last_name, $first_name)
+    /**
+     * Method to count all the students in the table 'students'
+     */
+    public static function countAllStudents()
     {
-        $this->id = $id;
-        $this->last_name = $last_name;
-        $this->first_name = $first_name;
+        return DB::table( 'students' )
+        ->get()
+        ->count();
     }
 
-    public static function add(Student $student) {
-        $id = $student->id;
-        $last = $student->last_name;
-        $first = $student->first_name;
-        DB::insert('insert into students (id, last_name, first_name) values (?, ?,?)', [$id, $last, $first]);
+    /**
+     * Method to add a student and a student_group in the DB.
+     */
+    public static function add($id, $last, $first, $group) {
+        if($id>0){
+            DB::insert('insert into students (id, last_name, first_name) values (?, ?, ?)', [$id, $last, $first]);
+            DB::insert('insert into student_groups (student_id, group_name) values (?, ?)', [$id, $group]);
+        }
     }
 
     /**
@@ -42,12 +44,27 @@ class Student extends Model
     }
 
     /**
+    * Selects a student's id belonging its id
+    *
+    * @param  integer $id  The id of the student to select
+    *
+    * @return void
+    */
+    public static function selectStudent( $id ) {
+        return DB::table( 'students' )
+        ->select( 'id' )
+        ->where( 'id', '=', $id )
+        ->get()
+        ->toArray();
+    }
+
+    /**
      * Delete a student from the database
+     *
      * @return void
      */
     public static function deleteStudent($id)
     {
         DB::table('students')->where('id', '=',$id)->delete();
     }
-
 }

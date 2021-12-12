@@ -11,7 +11,7 @@ class GroupsCSVController extends Controller
 {
 
     public function interface(){
-        return view('studentsgroups', ["error" => false, "success" => false]);
+        return view('students_groups', ["error" => false, "success" => false]);
     }
 
     public function importCsv(Request $request){
@@ -19,14 +19,14 @@ class GroupsCSVController extends Controller
             $csv_file = $request->file('studentsGroupsCSV');
             $csv_data = GroupsCSV::csvToArray($csv_file);
         } catch (Exception $exception) {
-            return view('studentsgroups', ["error" => true, "success" => false]);
+            return view('students_groups', ["error" => true, "success" => false]);
         }
         try {
             Queries::insertGroupsForStudents($csv_data);
         } catch (Exception $exception) {
-            return view('studentsgroups', ["error" => true, "success" => false]);
+            return view('students_groups', ["error" => true, "success" => false]);
         }
-        return view('studentsgroups', ["error" => false, "success" => true]);
+        return view('students_groups', ["error" => false, "success" => true]);
     }
 
 }
