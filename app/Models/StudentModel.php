@@ -54,13 +54,13 @@ class StudentModel extends Model
      *
      * @param integer $course_id The id of the course to add the student to
      * @param integer $student_id The id of the student to add to a course
-     * @param boolean $add The status of the adding
+     * @param boolean $state The status of the adding
      *
      * @return void
      * @throws QueryException if the query could not be executed
      *
      */
-    static public function addAndUpdateStudentToCourse($course_id, $student_id, $add)
+    static public function addAndUpdateStudentToCourse($course_id, $student_id, $state)
     {
         // Looks in the table 'exception_student_list' if the student
         // given in the parameters is already added with the course given in the parameters
@@ -77,7 +77,7 @@ class StudentModel extends Model
             DB::table('exception_student_list')->updateOrInsert([
                 'course_id' => $course_id,
                 'student_id' => $student_id,
-            ], ['add' => $add]);
+            ], ['state' => $state]);
         } else {
             throw new Exception("L'étudiant a déjà été ajouté à ce cours !");
         }
