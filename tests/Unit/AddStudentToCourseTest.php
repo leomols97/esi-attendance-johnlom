@@ -14,7 +14,7 @@ class AddStudentToCourseTest extends TestCase {
     *
     * @return void
     */
-
+    /*
     public function test_example() {
         $this->assertTrue( true );
     }
@@ -26,7 +26,7 @@ class AddStudentToCourseTest extends TestCase {
     *
     * @return void
     */
-
+    /*
     public function test_add_student_to_course_unexisting_student() {
         $this->expectException( QueryException::class );
         AddStudentToCourseModel::addStudentToCourse( 1, 1000000, true );
@@ -39,7 +39,7 @@ class AddStudentToCourseTest extends TestCase {
     *
     * @return void
     */
-
+    /*
     public function test_add_student_to_course_unexisting_course() {
         $this->expectException( QueryException::class );
         AddStudentToCourseModel::addStudentToCourse( 1000000, 1, true );
@@ -50,7 +50,7 @@ class AddStudentToCourseTest extends TestCase {
     *
     * @return void
     */
-
+    /*
     public function test_add_student_to_course_existing_student_and_course() {
         AddStudentToCourseModel::addAndUpdateStudentToCourse( 1, 1, true );
         $this->assertDatabaseHas( 'exception_student_list', [
@@ -65,7 +65,7 @@ class AddStudentToCourseTest extends TestCase {
     *
     * @return void
     */
-
+    /*
     public function test_delete_student_from_course_unexisting_student() {
         $this->expectException( \Exception::class );
         AddStudentToCourseModel::DeleteStudentFromCourse( 1, 1000000 );
@@ -78,7 +78,7 @@ class AddStudentToCourseTest extends TestCase {
     *
     * @return void
     */
-
+    /*
     public function test_delete_student_from_course_unexisting_course() {
         $this->expectException( \Exception::class );
         AddStudentToCourseModel::DeleteStudentFromCourse( 1000000, 1 );
@@ -89,7 +89,7 @@ class AddStudentToCourseTest extends TestCase {
     *
     * @return void
     */
-
+    /*
     public function test_delete_student_from_course_existing_student_and_course() {
         $student = DB::select( '
             SELECT *
@@ -105,5 +105,5 @@ class AddStudentToCourseTest extends TestCase {
             'student_id' => 1,
             'course_id' => 1
         ] );
-    }
+    }*/
 }
