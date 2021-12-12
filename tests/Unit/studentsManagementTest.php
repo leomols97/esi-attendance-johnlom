@@ -16,13 +16,7 @@ class studentsManagementTest extends TestCase {
     */
 
     public function test_add_student_when_successful() {
-        $nbInTableSTUDENT = Student::countAllStudents();
-        $nbInTableSTUDENT_GROUPS = Group::countAllGroups();
-        if ( empty( Group::findGroup( 'E11' ) ) )
-        {
-            DB::insert( 'insert into groups (name) values (?)', ['E11'] );
-        }
-        Student::add( 53212, 'Leopold', 'Mols', 'E11' );
+        Student::add( 53212, 'Mols', 'Leopold', 'E11' );
         $this->assertDatabaseHas( 'students', [
             'id' => 53212,
             'first_name' => 'Leopold',
@@ -33,8 +27,6 @@ class studentsManagementTest extends TestCase {
             'student_id' => 53212,
             'group_name' => 'E11',
         ] );
-        $this->assertDatabaseCount( 'students', $nbInTableSTUDENT+1 );
-        $this->assertDatabaseCount( 'student_groups', $nbInTableSTUDENT_GROUPS+1 );
     }
 
     /**
@@ -55,8 +47,10 @@ class studentsManagementTest extends TestCase {
     */
 
     public function test_add_Student_when_negative_id() {
-        $this->expectException( QueryException::class );
         Student::add( -1, 'Leopold', 'Mols', 'E11' );
+        $this->assertDatabaseMissing( 'students', [
+            'id' => -1,
+        ] );
     }
 
     /**
@@ -92,17 +86,17 @@ class studentsManagementTest extends TestCase {
             DB::insert( 'insert into student_groups (student_id, group_name) values (?, ?)', [1, 'E12'] );
         }
         $this->assertDatabaseHas( 'students', [
-            'id' => '1',
+            'id' => 1,
         ] );
 
         Student::deleteStudent( 1 );
 
         $this->assertDatabaseMissing( 'students', [
-            'id' => '1',
+            'id' => 1,
         ] );
 
         $this->assertDatabaseMissing( 'student_groups', [
-            'id' => '1',
+            'id' => 1,
         ] );
     }
 }

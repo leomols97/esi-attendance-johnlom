@@ -20,7 +20,7 @@ class PresenceSaverTest extends TestCase
         $testPresences = [
             [
                 "seance_id" => 0,
-                "student_id" => 0,
+                "student_id" => 1,
                 "is_present" => true
             ]
         ];
@@ -43,7 +43,7 @@ class PresenceSaverTest extends TestCase
     {
         $success = false;
 
-        $studentsIds = [0];
+        $studentsIds = [];
         $seanceId = 1;
 
         $presences = PresenceFormatter::savePresences($studentsIds, $seanceId);
