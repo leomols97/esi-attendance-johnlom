@@ -23,23 +23,16 @@
                     <td>{{$student->first_name}}</td>
                     <td><input type="checkbox" name="checklist[]" id="{{$student->id}}" dusk="{{$student->id}}"></td>
                     <td>
-                        {{--<form action={{route('seanceDeleteStudent', $student->id)}} method="POST">
-                            @csrf
-                            <button type="submit">Supprimer</button>
-                        </form>--}}
-                        <button onclick="window.location='/';"
+                        <button type="button"
+                                onclick="window.location='{{ route('seanceDeleteStudent', [$seance_id, $student->id]) }}'">
+                            Supprimer
+                        </button>
                     </td>
                 </tr>
             @endforeach
         </table>
         <input type="submit" value="Valider les présences">
     </form>
-
-    <script>
-        function deleteStudent(){
-            window.location=''
-        }
-    </script>
 
     @yield('addStudentToCourse')
 @endsection

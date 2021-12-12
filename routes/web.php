@@ -36,6 +36,8 @@ use App\Http\Controllers\StudentsCtrl;
 
 Route::get('/seance-details/{seance_id}', [StudentsCtrl::class, 'students']);
 Route::post('/seance-details/{seance_id}', [StudentsCtrl::class, 'addException']);
+Route::get('/seance-details/{seance_id}/delete/{student_id}', [StudentsCtrl::class, 'deleteException'])->name('seanceDeleteStudent');
+Route::post('/seance-details/{seance_id}/delete/{student_id}', [StudentsCtrl::class, 'deleteException'])->name('seanceDeleteStudent');
 Route::post('/seance-details/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
 //Ajouter un étudiant
@@ -49,5 +51,5 @@ Route::get('/import', [ImportController::class, 'importIndex']);
 Route::post('/import', [ImportController::class, 'import']);
 
 //Supprimer un étudiant
-Route::get('/seance-delete-students', [StudentsCtrl::class, 'getAll']);
-Route::post('/seance-delete-students/{student_id}', [StudentsCtrl::class, 'delete'])->name("seanceDeleteStudent");
+Route::get('/students', [StudentsCtrl::class, 'getAll']);
+Route::post('/students', [StudentsCtrl::class, 'delete']);
