@@ -48,4 +48,6 @@ class AddStudentCourseTest extends DuskTestCase
                 ->assertUrlIs('http://127.0.0.1:8000/addOrDeleteStudentFromCourse/delete');
         });
     }
+
+    //TODO: Modifier les tests
 }

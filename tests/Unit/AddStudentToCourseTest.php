@@ -8,16 +8,8 @@ use App\Models\AddStudentToCourseModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 
-class AddStudentToCourseTest extends TestCase {
-    /**
-    * A basic unit test example.
-    *
-    * @return void
-    */
-    /*
-    public function test_example() {
-        $this->assertTrue( true );
-    }
+class AddStudentToCourseTest extends TestCase
+{
 
     /**
     * Trying to add an unexisting student

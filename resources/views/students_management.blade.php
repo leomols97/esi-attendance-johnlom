@@ -27,11 +27,15 @@
         </tr>
         @foreach($students as $student)
             <tr>
-                <td dusk="id_student">{{$student->id}} {{$student->last_name}} {{$student->first_name}}</td>
+                <td id="id_student{{$student->id}}"
+                    dusk="id_student{{$student->id}}">
+                    {{$student->id}} {{$student->last_name}} {{$student->first_name}}
+                </td>
                 <td>
-                    <form action="{{route('deleteStudent', $student->id)}}" method="POST" onsubmit="return confirm('Are you sure?');">
+                    <form action="{{route('deleteStudent', $student->id)}}" method="POST"
+                          onsubmit="return confirm('Vous êtes sûre ?');">
                         @csrf
-                        <button type="submit" class="btnDelete" dusk="delete{{$student->id}}">Delete</button>
+                        <button type="submit" class="btnDelete" dusk="delete{{$student->id}}">Supprimer</button>
                     </form>
                 </td>
             </tr>
