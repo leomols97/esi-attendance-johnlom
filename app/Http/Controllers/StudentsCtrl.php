@@ -34,10 +34,15 @@ class StudentsCtrl extends Controller
     {
         // Students for seance = students for the course related to the seance
         $studentsInCourse = Queries::studentsForSeance($seance_id);
+        $presences = [];
+        foreach(Seance::getPresences($seance_id) as $presence) {
+            $presences[$presence->student_id] = $presence->is_present;
+        }
         $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
         return view('presenceException', ['seance_id' => $seance_id,
             'students' => $studentsInCourse,
-            'studentsOut' => $studentsNotInCourse]);
+            'studentsOut' => $studentsNotInCourse,
+            'presences' => $presences]);
     }
 
     /**

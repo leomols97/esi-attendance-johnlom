@@ -34,5 +34,14 @@ class Seance {
                                             WHERE s.id = ? AND esl.state = 1)", [$seanceId, $seanceId, $seanceId]);
         return $students;
     }
+
+    /**
+     * Gets presences for a given seance.
+     */
+    static public function getPresences($seanceId)
+    {
+        $presences = DB::select("SELECT * FROM presences WHERE seance_id = ?", [$seanceId]);
+        return $presences;
+    }
     
 }
