@@ -10,7 +10,6 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 class studentsManagementTest extends TestCase {
-    use RefreshDatabase;
 
     /**
     * Test to add a student.
