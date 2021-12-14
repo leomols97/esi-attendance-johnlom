@@ -14,12 +14,12 @@ class GroupsSeeder extends Seeder
      * @return void
      */
     public function run()
-    { 
+    {
         DB::table('groups')->insert([
             'name' => "E11",
         ]);
         DB::table('groups')->insert([
             'name' => "E12",
-        ]);        
+        ]); 
     }
 }

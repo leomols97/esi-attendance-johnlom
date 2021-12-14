@@ -19,7 +19,7 @@ class CourseGroupsSeeder extends Seeder
         $courses = DB::table('courses')->pluck('id');
         $groups = DB::table('groups')->pluck('name');
         $faker = Faker::create();
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 2; $i++) {
             DB::table('courses_groups')->insert([
                 'id' => $i,
                 'course_id' => $faker->randomElement($courses),

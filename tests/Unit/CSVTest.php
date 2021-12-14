@@ -13,7 +13,7 @@ class CSVTest extends TestCase
 {
     /**
      * Insert a valid CSV file in order to refresh the group assignments for each student.
-     * 
+     *
      * @todo Edit the seeders in order to fill the database with static data in order to avoid primary key constraint error.
      */
     public function test_insert_valid_file()
@@ -23,7 +23,7 @@ class CSVTest extends TestCase
         $csv_data = GroupsCSV::csvToArray("public/testAffectations.csv");
         Queries::insertGroupsForStudents($csv_data);
         $count = DB::table('student_groups')->count();
-        
+
         $this->assertEquals($expectedCount, $count);
     }
 
