@@ -3,6 +3,8 @@
 namespace Tests\Unit;
 
 //use PHPUnit\Framework\TestCase;
+
+use App\Models\Student;
 use Tests\TestCase;
 use App\Models\StudentModel;
 use Illuminate\Support\Facades\DB;
@@ -61,7 +63,10 @@ class StudentCourseTest extends TestCase
             ORDER BY id ASC
         ' );
         if ( empty( $student ) )
+        {
+            Student::add(1, "poiuytreza", "azertyuiop", "E12");
             StudentModel::addAndUpdateStudentToCourse(1, 1, true);
+        }
         $this->assertDatabaseHas('exception_student_list', [
             'student_id' => 1,
             'course_id' => 1
@@ -105,7 +110,10 @@ class StudentCourseTest extends TestCase
             ORDER BY id ASC
         ' );
         if ( empty( $student ) )
+        {
+            Student::add(1, "poiuytreza", "azertyuiop", "E12");
             StudentModel::addAndUpdateStudentToCourse(1, 1, true);
+        }
         StudentModel::DeleteStudentFromCourse(1, 1);
         $this->assertDatabaseMissing('exception_student_list', [
             'student_id' => 1,

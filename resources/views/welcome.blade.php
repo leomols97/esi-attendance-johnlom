@@ -1,4 +1,6 @@
-@extends('canevas')
+@extends('canvas')
+@section('title', 'Bienvenue')
+@section('content')
 
 @section('title', 'StudentList')
 
@@ -11,8 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <header>ESI Attendance (équipe Johnlom)</header>
         <main >
+            <H1>Bienvenue</H1>
             <table border="1">
                 <thead>
                     <tr>
@@ -27,7 +29,7 @@
                     <td><a href="/exportStats">Téléchargement des statistiques de présences (CSV ou XLSX)</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/students/1">Consultation des étudiants (pour une séance précise) & prise de présences</a></td>
+                        <td><a href="/seance-details/1">Consultation des étudiants (pour une séance précise) & prise de présences</a></td>
                     </tr>
                     <tr>
                         <td><a href="/import">Importation horaires des profs</a></td>
@@ -36,7 +38,7 @@
                         <td><a href="/addOrDeleteStudentFromCourse">Ajout ou suppression d'un étudiant à un cours</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/studentsManagement">Gestion des étudiants</a></td>
+                        <td><a href="/students_management">Gestion des étudiants</a></td>
                     </tr>
                     <tr>
                         <td><a href="/calendar">Calendrier des séances</a></td>

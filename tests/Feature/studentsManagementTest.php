@@ -13,7 +13,7 @@ class studentsManagementTest extends TestCase
      */
     public function test_get_manage()
     {
-        $response = $this->get('/studentsManagement');
+        $response = $this->get('/students_management');
 
         $response->assertStatus(200);
     }

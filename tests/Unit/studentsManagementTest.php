@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Student;
 use App\Models\Group;
@@ -10,20 +9,16 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 class studentsManagementTest extends TestCase {
-    use RefreshDatabase;
 
     /**
     * Test to add a student.
     */
 
     public function test_add_student_when_successful() {
-        $nbInTableSTUDENT = Student::countAllStudents();
-        $nbInTableSTUDENT_GROUPS = Group::countAllGroups();
-        if ( empty( Group::findGroup( 'E11' ) ) )
-        {
-            DB::insert( 'insert into groups (name) values (?)', ['E11'] );
+        if ( !empty( Student::selectStudent( 53212 ) ) ) {
+            Student::deleteStudent( 53212 );
         }
-        Student::add( 53212, 'Leopold', 'Mols', 'E11' );
+        Student::add( 53212, 'Mols', 'Leopold', 'E11' );
         $this->assertDatabaseHas( 'students', [
             'id' => 53212,
             'first_name' => 'Leopold',
@@ -34,8 +29,6 @@ class studentsManagementTest extends TestCase {
             'student_id' => 53212,
             'group_name' => 'E11',
         ] );
-        $this->assertDatabaseCount( 'students', $nbInTableSTUDENT+1 );
-        $this->assertDatabaseCount( 'student_groups', $nbInTableSTUDENT_GROUPS+1 );
     }
 
     /**
@@ -46,7 +39,7 @@ class studentsManagementTest extends TestCase {
 
     public function test_add_Student_when_already_exists() {
         $this->expectException( QueryException::class );
-        Student::add( 1, 'Leopold', 'Mols', 'E11' );
+        Student::add( 53212, 'Leopold', 'Mols', 'E11' );
     }
 
     /**
@@ -56,8 +49,10 @@ class studentsManagementTest extends TestCase {
     */
 
     public function test_add_Student_when_negative_id() {
-        $this->expectException( QueryException::class );
         Student::add( -1, 'Leopold', 'Mols', 'E11' );
+        $this->assertDatabaseMissing( 'students', [
+            'id' => -1,
+        ] );
     }
 
     /**
@@ -88,22 +83,23 @@ class studentsManagementTest extends TestCase {
 
     public function test_delete_student() {
         if ( empty( Student::selectStudent( 1 ) ) ) {
-            DB::insert( 'insert into groups (name) values (?)', ['E12'] );
-            DB::insert( 'insert into students (id, last_name, first_name) values (?, ?, ?)', [1, 'aerg', 'qefb'] );
-            DB::insert( 'insert into student_groups (student_id, group_name) values (?, ?)', [1, 'E12'] );
+            if ( empty( Group::findGroup( 'E12' ) ) )
+                DB::insert( 'insert into groups (name) values (?)', [ 'E12' ] );
+            DB::insert( 'insert into students (id, last_name, first_name) values (?, ?, ?)', [ 1, 'aerg', 'qefb' ] );
+            DB::insert( 'insert into student_groups (student_id, group_name) values (?, ?)', [ 2, 'E12' ] );
         }
         $this->assertDatabaseHas( 'students', [
-            'id' => '1',
+            'id' => 1,
         ] );
 
         Student::deleteStudent( 1 );
 
         $this->assertDatabaseMissing( 'students', [
-            'id' => '1',
+            'id' => 1,
         ] );
 
         $this->assertDatabaseMissing( 'student_groups', [
-            'id' => '1',
+            'id' => 1,
         ] );
     }
 }

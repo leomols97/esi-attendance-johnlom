@@ -22,6 +22,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/fr.js"></script>
-<script src="{{ asset('js/calendar.js') }}"></script>
-<script src="{{ asset('js/presence_taking.js') }}"></script>
+<script src="{{ secure_asset('js/calendar.js') }}"></script>
+<script src="{{ secure_asset('js/presence_taking.js') }}"></script>
 @endsection

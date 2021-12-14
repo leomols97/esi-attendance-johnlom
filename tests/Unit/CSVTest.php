@@ -18,7 +18,7 @@ class CSVTest extends TestCase
      */
     public function test_insert_valid_file()
     {
-        $expectedCount = 932; //number of lines in the test file
+        $expectedCount = 30; //number of lines in the test file
 
         $csv_data = GroupsCSV::csvToArray("public/testAffectations.csv");
         Queries::insertGroupsForStudents($csv_data);

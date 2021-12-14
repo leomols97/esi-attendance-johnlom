@@ -1,4 +1,4 @@
-@extends('canevas')
+@extends('canvas')
 
 @section('title', 'StudentManagement')
 
@@ -27,18 +27,22 @@
         </tr>
         @foreach($students as $student)
             <tr>
-                <td dusk="id_student">{{$student->id}} {{$student->last_name}} {{$student->first_name}}</td>
+                <td id="id_student{{$student->id}}"
+                    dusk="id_student{{$student->id}}">
+                    {{$student->id}} {{$student->last_name}} {{$student->first_name}}
+                </td>
                 <td>
-                    <form action="{{route('deleteStudent', $student->id)}}" method="POST" onsubmit="return confirm('Are you sure?');">
+                    <form action="{{route('deleteStudent', $student->id)}}" method="POST"
+                          onsubmit="return confirm('Vous êtes sûre ?');">
                         @csrf
-                        <button type="submit" class="btnDelete" dusk="delete{{$student->id}}">Delete</button>
+                        <button type="submit" class="btnDelete" dusk="delete{{$student->id}}">Supprimer</button>
                     </form>
                 </td>
             </tr>
         @endforeach
     </table>
     <div class="form-popup" id="addForm">
-        <form action="/studentsManagement/add" class="form-container" method="POST">
+        <form action="/students_management/add" class="form-container" method="POST">
             @csrf
             <h3>Ajouter étudiant</h3>
             <input type="number" name="id" placeholder="Matricule" min="1" dusk="student_id">

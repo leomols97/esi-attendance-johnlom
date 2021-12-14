@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Queries;
+use App\Models\AddStudentToCourseModel;
+use App\Models\Course;
+use App\Models\StudentModel;
 use App\Models\Student;
 use App\Models\PresenceFormatter;
 use App\Models\Group;
+use App\Models\Seance;
 use Illuminate\Http\Request;
+
 use Throwable;
 use Exception;
 
@@ -20,103 +25,127 @@ class StudentsCtrl extends Controller
     }
 
     /**
-    * Method to get student for a specific session.
-    *
-    * @param $seance_id                The id of the seance
-    *
-    * @return studentsConsultation     The view to show with the id of the seance
-    */
-
-    function students( $seance_id ) {
-        $students = Queries::studentsForSeance( $seance_id );
-        return view( 'studentsConsultation', compact( 'students' ), ['seance_id' => $seance_id] );
+     * Handles both taking presence AND adding student to course exceptions.
+     */
+    function students($seance_id)
+    {
+        // Students for seance = students for the course related to the seance
+        $studentsInCourse = Queries::studentsForSeance($seance_id);
+        $presences = [];
+        foreach(Seance::getPresences($seance_id) as $presence) {
+            $presences[$presence->student_id] = $presence->is_present;
+        }
+        $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
+        return view('presenceException', ['seance_id' => $seance_id,
+            'students' => $studentsInCourse,
+            'studentsOut' => $studentsNotInCourse,
+            'presences' => $presences]);
     }
 
     /**
-    * Method to save presences for a specific session
-    *
-    * @param Request $request      The request received from the view
-    * @param $seance_id            The id of the seance to save the presences of
-    *
-    * @return presence_validation  The view to show and to give the result of the saving to
-    */
+     * Add a student to the exception list of a given course.
+     */
+    public function addException(Request $request, $seance_id)
+    {
+        $courseId = intval(Course::fromSeance($request->seance_id)[0]->id);
+        $studentId = $request->student_id;
+        AddStudentToCourseModel::addAndUpdateStudentToCourse($courseId, $studentId, true);
+        return self::students($seance_id);
+    }
 
-    function save_presences( Request $request, $seance_id ) {
+    public function deleteException($seance_id, $student_id)
+    {
+        $courseId = intval(Course::fromSeance($seance_id)[0]->id);
+        $studentId = $student_id;
+        try {
+            StudentModel::deleteStudentFromCourse($courseId, $studentId);
+        } catch (\Exception $exception) {
+            echo $exception->getmessage();
+        }
+        return self::students($seance_id);
+    }
+
+    /**
+     * Saves presences.
+     */
+    function save_presences(Request $request, $seance_id)
+    {
         $checkboxes = $request->checklist;
         $present_student_ids = $checkboxes != NULL ? array_keys( $checkboxes ) : array();
         try {
-            $presences = PresenceFormatter::savePresences( $present_student_ids, $seance_id );
-            Queries::insertPresences( $presences );
-        } catch( Exception $ex ) {
-            return view( 'presence_validation', ['success' => false] );
+            $presences = PresenceFormatter::savePresences($present_student_ids, $seance_id);
+            Queries::insertPresences($presences);
+        } catch (Exception $ex) {
+            return view('presence_validation', ["success" => false]);
         }
         return view( 'presence_validation', ['success' => true] );
     }
 
     /**
-    * Adds a student to a course and puts it into the table 'exception_student_list'
-    *
-    * @param Request $request   The request received from the view
-    *
-    * @return message           A message to show if the creation went well or not
-    */
+     * Displays interface in order to add a student to database.
+     */
+    function getIndex()
+    {
+        return view('addStudent');
+    }
 
+    /**
+     * Adds a student to the database.
+     */
     function add( Request $request ) {
         try {
-            // Checks if every field is set to something
             if ( isset( $request->id )
             && isset( $request->last_name )
-            && isset( $request->first_name )
-            && isset( $_POST['group'] ) ) {
-                // Checks if the id of the student to add is between 10.000 and 100.000
+            && isset( $request->first_name ) ) {
                 if ( $request->id > 10000
                 && $request->id < 100000 ) {
-                    // Checks if there's any existing student with this id in the DB yet
                     if ( empty( Student::selectStudent( $request->id ) ) ) {
                         $id = $request->id;
                         $last_name = $request->last_name;
                         $first_name = $request->first_name;
-                        $group = $_POST['group'];
+                        $group = $request->group;
                         Student::add( $id, $last_name, $first_name, $group );
                         return redirect()->back()->withSuccess( 'Ajouté(e) !' );
                     } else {
+                        throw new Exception( "Impossible d'ajouter un étudiant dont le matricule a déjà été attribué à un autre étudiant !" );
                         return redirect()->back()->withErrors( "Impossible d'ajouter un étudiant dont le matricule a déjà été attribué à un autre étudiant !" );
                     }
                 } else {
+                    throw new Exception( "Pour l'ajout, le matricule de l'étudiant doit être compris entre 10000 et 100000 !" );
                     return redirect()->back()->withErrors( "Pour l'ajout, le matricule de l'étudiant doit être compris entre 10000 et 100000 !" );
                 }
             } else {
+                throw new Exception( "Pour l'ajout, veuillez remplir chaque champ pour l'ajout !" );
                 return redirect()->back()->withErrors( "Pour l'ajout, veuillez remplir chaque champ pour l'ajout !" );
             }
         } catch ( Throwable $e ) {
+            throw new Exception( "L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !" );
             return redirect()->back()->withErrors( "L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !" );
         }
     }
 
-     /**
-    * Method to get all students and groups of the database.
-    *
-    * @return studentsManagement    The view to show with the param 'students' and 'groups'
-    */
+
+    /**
+     * Displays interface in order to delete a student from the database.
+     */
     function getAll()
     {
         $students = Student::findAllStudents();
         $groups = Group::findAllGroups();
-        return view( 'studentsManagement', compact( 'students' ), compact( 'groups' ) );
+        return view('students_management', ['students' => $students, 'groups' => $groups]);
     }
-    
+
     /**
-    * Method to delete a student with his id.
-    *
-    * @return message   The message to show when the deletion processed
-    */
-    function delete($id)
+     * Deletes a student from the database.
+     */
+    function delete($student_id)
     {
-        try{
-            Student::deleteStudent($id);
+        try {
+            Student::deleteStudent($student_id);
             return redirect()->back()->withSuccess('Etudiant supprimé!');
-        }catch(Throwable $e){
+        } catch (Throwable $e) {
             return redirect()->back()->withErrors("Erreur, l'étudiant(e) n'a malheureusement pas pu être ajouté(e)!");
         }
     }
+
 }

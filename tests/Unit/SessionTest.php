@@ -2,13 +2,11 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\TestCase;
 use App\Models\Session;
 
 class SessionTest extends TestCase
 {
-    //use RefreshDatabase;
     /**
      *
      * A basic unit test example.
