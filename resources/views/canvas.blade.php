@@ -14,12 +14,12 @@
     <a href="/"><img id="logo" src="/he2b-esi.jpg" alt="HE2B-ESI" /></a>
     <h1 id="title_header">ESI Attendance - JOHNLOM</h1>
     <nav class="topnav">
-            <a href="/import_groups_for_students">Importer groupes</a>
-            <a href="/export_stats_presences">Télécharger présences</a>
-            <a href="/seance-details/1">Prendre les présences (et ajouter/supprimer un étudiant)</a>
-            <a href="/import_schedule">Importer horaires</a>
+            <a href="/import_groups_for_students">Importer des groupes</a>
+            <a href="/export_stats_presences">Télécharger un fichier reprenant les présences</a>
+            <a href="/seance-details/1">Prendre les présences (et ajouter/supprimer un étudiant d'un cours)</a>
+            <a href="/import_schedule">Importer un horaire</a>
             <a href="/students_management">Gestion des étudiants</a>
-            <a href="/calendar">Vue calendrier</a>
+            <a href="/calendar">Vue du calendrier</a>
     </nav>
 </header>
 

@@ -8,12 +8,14 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
+
     <body>
-        <main >
+        <main>
             <H1>Bienvenue</H1>
             <table border="1">
                 <thead>
@@ -23,19 +25,19 @@
                 </thead>
                 <tbody>
                     <tr>
-                    <td><a href="/importGroupsForStudents">Importation des affectations de groupe pour les étudiants (CSV)</a></td>
+                        <td><a href="/import_groups_for_students">Importation des affectations de groupe pour les
+                                étudiants (CSV)</a></td>
                     </tr>
                     <tr>
-                    <td><a href="/exportStats">Téléchargement des statistiques de présences (CSV ou XLSX)</a></td>
+                        <td><a href="/export_stats_presences">Téléchargement des statistiques de présences (CSV ou
+                                XLSX)</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/seance-details/1">Consultation des étudiants (pour une séance précise) & prise de présences</a></td>
+                        <td><a href="/seance-details/1">Consultation des étudiants (pour une séance précise) & prise de
+                                présences</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/import">Importation horaires des profs</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/addOrDeleteStudentFromCourse">Ajout ou suppression d'un étudiant à un cours</a></td>
+                        <td><a href="/import_schedule">Importation horaires des profs</a></td>
                     </tr>
                     <tr>
                         <td><a href="/students_management">Gestion des étudiants</a></td>
@@ -47,6 +49,7 @@
             </table>
         </main>
     </body>
+
 </html>
 
 @endsection
