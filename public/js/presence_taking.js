@@ -2,17 +2,17 @@
  * Handles "toggle all" checkbox. Depends on JQuery.
  * Source : https://stackoverflow.com/a/2191026
  */
- $('#select-all').click(function(event) {   
-    if(this.checked) {
+$('#select-all').click(function(event) {
+    if (this.checked) {
         $(':checkbox').each(function() {
-            this.checked = true;                        
+            this.checked = true;
         });
     } else {
         $(':checkbox').each(function() {
-            this.checked = false;                       
+            this.checked = false;
         });
     }
-}); 
+});
 
 function searchingInDB() {
     // Declare variables
@@ -21,20 +21,21 @@ function searchingInDB() {
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
-  
+
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
         }
-      }
     }
 }
+
 function addClickEvent() {
     $('#select-all').click(function(event) {
         if (this.checked) {

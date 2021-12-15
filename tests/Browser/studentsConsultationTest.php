@@ -18,8 +18,8 @@ class studentsConsultationTest extends DuskTestCase
     public function testCorrectConsultation()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students/0')
-                    ->assertSee('P6FU1t77lp');
+            $browser->visit('/seance-details/0')
+                    ->assertSee('SRIKHI');
         });
     }
 
@@ -31,8 +31,8 @@ class studentsConsultationTest extends DuskTestCase
     public function testCorrectConsultation2()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students/0')
-                    ->assertSee('8Ar0FsLanB');
+            $browser->visit('/seance-details/0')
+                    ->assertSee('Elvin');
         });
     }
 
@@ -44,7 +44,7 @@ class studentsConsultationTest extends DuskTestCase
     public function testCorrectConsultation3()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students/0')
+            $browser->visit('/seance-details/0')
                     ->assertSee('Les étudiants');
         });
     }
@@ -57,7 +57,7 @@ class studentsConsultationTest extends DuskTestCase
     public function testCorrectConsultation4()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students/0')
+            $browser->visit('/seance-details/0')
                     ->assertSee('51');
         });
     }
@@ -70,7 +70,7 @@ class studentsConsultationTest extends DuskTestCase
     public function testIncorrectConsultation()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students/10')
+            $browser->visit('/seance-details/10')
                     ->assertDontSee('P6FU1t77lp');
         });
     }
@@ -115,5 +115,5 @@ class studentsConsultationTest extends DuskTestCase
         $browser = new Browser($driver);
         $browser->assertPathIs('/students/0');
     }
-     
+
 }

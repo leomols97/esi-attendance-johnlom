@@ -22,7 +22,11 @@ class GroupsCSVController extends Controller
             return view('students_groups', ["error" => true, "success" => false]);
         }
         try {
-            Queries::insertGroupsForStudents($csv_data);
+            try {
+                Queries::insertGroupsForStudents($csv_data);
+            } catch (\TypeError $e) {
+                return redirect()->back()->withErrors( "Le fichier n'est pas valide !" );
+            }
         } catch (Exception $exception) {
             return view('students_groups', ["error" => true, "success" => false]);
         }

@@ -15,7 +15,7 @@ class CSVGroupsTest extends DuskTestCase
     public function test_csv_success()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/importGroupsForStudents')
+            $browser->visit('/import_groups_for_students')
                     ->attach('studentsGroupsCSV', 'public/testAffectations.csv')
                     ->press('Importer le fichier')
                     ->assertVisible('.success');
@@ -28,10 +28,10 @@ class CSVGroupsTest extends DuskTestCase
     public function test_csv_error()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/importGroupsForStudents')
+            $browser->visit('/import_groups_for_students')
                     ->attach('studentsGroupsCSV', 'public/testAffectationsInvalides.docx')
                     ->press('Importer le fichier')
                     ->assertVisible('.error');
-        });        
+        });
     }
 }

@@ -11,41 +11,42 @@ class AddStudentCourseTest extends DuskTestCase
 
     public function testAddStudent1(){
         $this->browse(function (Browser $browser){
-            $browser->visit('/addOrDeleteStudentFromCourse')
+            $browser->visit('/seance-details')
                 ->select('student_id', '0')
-                ->select('course_id', 'Gestion de projet')
+                ->select('course_id', '1')
                 ->press('Add')
-                ->assertUrlIs('http://127.0.0.1:8000/addOrDeleteStudentFromCourse/add');
+                ->assertSee('0');
+                //->assertUrlIs('http://127.0.0.1:8000/seance-details/1');
         });
     }
 
     public function testAddStudent2(){
         $this->browse(function (Browser $browser){
-            $browser->visit('/addOrDeleteStudentFromCourse')
+            $browser->visit('/seance-details')
                 ->select('student_id', '1')
                 ->select('course_id', 'Développement web V')
                 ->press('Add')
-                ->assertUrlIs('http://127.0.0.1:8000/addOrDeleteStudentFromCourse/add');
+                ->assertUrlIs('http://127.0.0.1:8000/seance-details/1');
         });
     }
 
     public function testDeleteStudent1(){
         $this->browse(function (Browser $browser){
-            $browser->visit('/addOrDeleteStudentFromCourse')
-                ->select('student_id', '0')
-                ->select('course_id', 'Gestion de projet')
+            $browser->visit('/seance-details')
+                ->select('student_id', '2')
+                ->select('course_id', '1')
                 ->press('Add')
-                ->assertUrlIs('http://127.0.0.1:8000/addOrDeleteStudentFromCourse/delete');
+                ->assertUrlIs('http://127.0.0.1:8000/seance-details/delete/1/2');
         });
     }
 
     public function testDeleteStudent2(){
         $this->browse(function (Browser $browser){
-            $browser->visit('/addOrDeleteStudentFromCourse')
+            $browser->visit('/seance-details')
                 ->select('student_id', '1')
                 ->select('course_id', 'Développement web V')
                 ->press('Add')
-                ->assertUrlIs('http://127.0.0.1:8000/addOrDeleteStudentFromCourse/delete');
+                ->assertUrlIs('http://127.0.0.1:8000/seance-details/delete');
         });
     }
 
