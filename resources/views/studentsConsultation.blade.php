@@ -21,14 +21,14 @@
             </tr>
             @foreach ($students as $student)
                 <tr>
-                    <td dusk='id_student'>{{$student->id}} {{$student->last_name}} {{$student->first_name}}</td>
+                    <td dusk='id_student{{$student->id}}'>{{$student->id}} {{$student->last_name}} {{$student->first_name}}</td>
                     @if(isset($presences[$student->id]) && $presences[$student->id])
                     <td><input type="checkbox" name="checklist[]" id="{{$student->id}}" dusk="{{$student->id}}" checked></td>
                     @else
                     <td><input type="checkbox" name="checklist[]" id="{{$student->id}}" dusk="{{$student->id}}"></td>
                     @endif
                     <td>
-                        <button type="button"
+                        <button type="button" dusk="button_delete{{$student->id}}"
                                 onclick="window.location='{{ route('seanceDeleteStudent', [$seance_id, $student->id]) }}'">
                             Supprimer
                         </button>
