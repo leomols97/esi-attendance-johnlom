@@ -107,19 +107,19 @@ class StudentsCtrl extends Controller
                         Student::add( $id, $last_name, $first_name, $group );
                         return redirect()->back()->withSuccess( 'Ajouté(e) !' );
                     } else {
-                        throw new Exception( "Impossible d'ajouter un étudiant dont le matricule a déjà été attribué à un autre étudiant !" );
+                        
                         return redirect()->back()->withErrors( "Impossible d'ajouter un étudiant dont le matricule a déjà été attribué à un autre étudiant !" );
                     }
                 } else {
-                    throw new Exception( "Pour l'ajout, le matricule de l'étudiant doit être compris entre 10000 et 100000 !" );
+                    
                     return redirect()->back()->withErrors( "Pour l'ajout, le matricule de l'étudiant doit être compris entre 10000 et 100000 !" );
                 }
             } else {
-                throw new Exception( "Pour l'ajout, veuillez remplir chaque champ pour l'ajout !" );
+                
                 return redirect()->back()->withErrors( "Pour l'ajout, veuillez remplir chaque champ pour l'ajout !" );
             }
         } catch ( Throwable $e ) {
-            throw new Exception( "L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !" );
+            
             return redirect()->back()->withErrors( "L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !" );
         }
     }
