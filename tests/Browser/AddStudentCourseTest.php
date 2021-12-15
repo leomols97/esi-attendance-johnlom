@@ -11,20 +11,20 @@ class AddStudentCourseTest extends DuskTestCase
 
     public function testAddStudent1(){
         $this->browse(function (Browser $browser){
-            $browser->visit('/seance-details')
+            $browser->visit('/seance-details/1')
                 ->select('student_id', '0')
                 ->select('course_id', '1')
                 ->press('Add')
-                ->assertSee('0');
+                ->assertSee("0");
                 //->assertUrlIs('http://127.0.0.1:8000/seance-details/1');
         });
     }
 
     public function testAddStudent2(){
         $this->browse(function (Browser $browser){
-            $browser->visit('/seance-details')
+            $browser->visit('/seance-details/1')
                 ->select('student_id', '1')
-                ->select('course_id', 'Développement web V')
+                ->select('course_id', '1')
                 ->press('Add')
                 ->assertUrlIs('http://127.0.0.1:8000/seance-details/1');
         });
@@ -32,7 +32,7 @@ class AddStudentCourseTest extends DuskTestCase
 
     public function testDeleteStudent1(){
         $this->browse(function (Browser $browser){
-            $browser->visit('/seance-details')
+            $browser->visit('/seance-details/1')
                 ->select('student_id', '2')
                 ->select('course_id', '1')
                 ->press('Add')
@@ -42,9 +42,9 @@ class AddStudentCourseTest extends DuskTestCase
 
     public function testDeleteStudent2(){
         $this->browse(function (Browser $browser){
-            $browser->visit('/seance-details')
+            $browser->visit('/seance-detailsv')
                 ->select('student_id', '1')
-                ->select('course_id', 'Développement web V')
+                ->select('course_id', '1')
                 ->press('Add')
                 ->assertUrlIs('http://127.0.0.1:8000/seance-details/delete');
         });

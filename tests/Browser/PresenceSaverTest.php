@@ -14,7 +14,7 @@ class PresenceSaverTest extends DuskTestCase
     public function test_check_all()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students/1')
+            $browser->visit('/students_management')
                     ->check("@select-all")
                     ->assertChecked("@select-all")
                     ->assertChecked("@0")
@@ -28,12 +28,12 @@ class PresenceSaverTest extends DuskTestCase
     public function test_validate()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students/1')
+            $browser->visit('/students_management')
                     ->check("@select-all")
                     ->press("Valider les présences")
                     ->assertUrlIs("http://127.0.0.1:8000/students/1/validation")
                     ->assertPresent("@success");
-        });   
+        });
     }
 
 }

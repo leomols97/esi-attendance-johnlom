@@ -18,7 +18,7 @@ class adminDeleteStudentTest extends DuskTestCase
     {
 
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students')
+            $browser->visit('/students_management')
                     ->assertValue('@id_student', 1)
                     ->type('@id_student_to_delete', 1)
                     ->press('@delete_button')

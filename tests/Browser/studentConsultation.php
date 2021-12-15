@@ -18,7 +18,7 @@ class studentConsultation extends DuskTestCase
     public function consultStudentAttendency()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/students/1')
+            $browser->visit('/students_management/1')
                     ->assertValue('@id_student', 0)
                     ->assertValue('@id_student', 1);
         });
