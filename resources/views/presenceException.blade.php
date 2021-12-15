@@ -9,7 +9,7 @@
             <h5>Ajouter un étudiant à un cours</h5>
             <p>
                 <label for="id">Liste des étudiants :</label>
-                <select id="student_id" name="student_id">
+                <select id="student_id" name="student_id" dusk="select_student_id">
                     <option value="" disabled selected>Sélectionnez un étudiant</option>
                     @foreach($studentsOut as $student)
                         <option value="{{ $student->id }}"> {{ $student->id }}
