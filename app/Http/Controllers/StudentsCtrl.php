@@ -35,12 +35,31 @@ class StudentsCtrl extends Controller
         foreach(Seance::getPresences($seance_id) as $presence) {
             $presences[$presence->student_id] = $presence->is_present;
         }
-        //return var_dump($presences);
+        if ( !empty(StudentModel::selectCourseNameBySeance($seance_id))) {
+            $course = StudentModel::selectCourseNameBySeance($seance_id);
+
+            if ( !empty(Queries::findTeacherBySeance($seance_id))) {
+                $teacher = Queries::findTeacherBySeance($seance_id);
+
+                if ( !empty(Queries::findSeance($seance_id))) {
+                    $seance = Queries::findSeance($seance_id);
+
+                } else { return redirect()->back()->withErrors( "( Il n'y a pas de séance avec ce numéro comme id )" ); }
+
+            } else { return redirect()->back()->withErrors( "( Il n'y a pas de professeur associé à cette séance )" ); }
+
+        } else { return redirect()->back()->withErrors( "( Il n'y a pas de cours associé à cette séance )" ); }
+
         $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
+
         return view('presenceException', ['seance_id' => $seance_id,
             'students' => $studentsInCourse,
             'studentsOut' => $studentsNotInCourse,
-            'presences' => $presences]);
+            'presences' => $presences,
+            'course' => $course,
+            'teacher' => $teacher,
+            'seance' => $seance,
+        ]);
     }
 
     /**

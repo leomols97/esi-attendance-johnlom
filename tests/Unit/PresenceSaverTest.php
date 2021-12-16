@@ -55,4 +55,8 @@ class PresenceSaverTest extends TestCase {
 
         $this->assertTrue( $success );
     }
+
+    public function test_correct_teacher_name() {
+        //TODO
+    }
 }

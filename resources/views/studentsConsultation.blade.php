@@ -10,7 +10,11 @@
     </head>
 
     <h1>Les étudiants</h1>
+    <h2>Nom du cours : {{ $course[0]->name }}</h2>
+    <h3>Nom du professeur : {{ $teacher[0]->last_name }}</h3>
+    <h4>Début de la séance : {{ $seance[0]->start_time }}</h4>
 
+    <br>
     <input type="text" id="myInput" onkeyup="searchingInDB()" placeholder="Chercher un étudiant...">
     <form method="POST" action="/seance-details/{{$seance_id}}/validation">
         {{ csrf_field() }}

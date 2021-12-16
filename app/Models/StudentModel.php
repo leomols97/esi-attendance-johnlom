@@ -105,6 +105,25 @@ class StudentModel extends Model {
     }
 
     /**
+     * Selects a course name by a seance id
+     *
+     * @param integer $seance_id The id of the seace to select
+     *
+     * @return string the name of the selected course
+     */
+    static public function selectCourseNameBySeance($seance_id)
+    {
+        return DB::select(
+            'SELECT name
+            FROM courses c
+            JOIN courses_groups cg ON cg.id = c.id
+            JOIN seances s ON s.id = cg.id
+            WHERE s.id = ?
+            ', [$seance_id]
+        );
+    }
+
+    /**
      * Selects all the elements from the table 'exception_student_list'
      *
      * @return all the elements of the table

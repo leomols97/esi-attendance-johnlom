@@ -100,6 +100,36 @@ class Queries
     }
 
     /**
+    * Finds a teacher belonging its acronym
+    *
+    * @return The teacher belonging its acronym
+    */
+    static public function findTeacherBySeance($seance_id) {
+        return DB::select('
+            SELECT last_name
+            FROM teachers t
+            JOIN courses c ON t.acronym = c.teacher_id
+            JOIN courses_groups cg ON cg.id = c.id
+            JOIN seances s ON s.id = cg.id
+            WHERE s.id = ?
+            ', [$seance_id]
+        );
+    }
+
+    /**
+    * Finds a seance by its id
+    *
+    * @return The seance found
+    */
+    static public function findSeance($seance_id) {
+        return DB::select( '
+            SELECT *
+            FROM seances
+            WHERE id = ?
+        ', [$seance_id] );
+    }
+
+    /**
     * Adds or updates a student to a course belonging the course_id and the student_id
     *
     * @param  integer $course_id     The id of the course to add the student to

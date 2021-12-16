@@ -35,4 +35,20 @@ class PresenceSaverTest extends DuskTestCase
         });
     }
 
+    public function test_seance_infos()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/seance-details/1')
+                    ->assertSee("Nom du cours :");
+        });
+    }
+
+    public function test_seance_1_infos()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/seance-details/1')
+                    ->assertSee("LECHIEN");
+        });
+    }
+
 }
