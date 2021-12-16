@@ -31,10 +31,8 @@ Route::post('/export_stats_presences', [StatsExportController::class, 'export'])
 use App\Http\Controllers\StudentsCtrl;
 Route::get('/seance-details/{seance_id}', [StudentsCtrl::class, 'students']);
 Route::post('/seance-details/{seance_id}', [StudentsCtrl::class, 'addException']);
-Route::group(['scheme' => 'https'], function () {
-    Route::get('/seance-details/{seance_id}/delete/{student_id}', [StudentsCtrl::class, 'deleteException'])->name('seanceDeleteStudent');
-    Route::post('/seance-details/{seance_id}/delete/{student_id}', [StudentsCtrl::class, 'deleteException'])->name('seanceDeleteStudent');
-});
+Route::get('/seance-details/{seance_id}/delete/{student_id}', [StudentsCtrl::class, 'deleteException'])->name('seanceDeleteStudent');
+Route::post('/seance-details/{seance_id}/delete/{student_id}', [StudentsCtrl::class, 'deleteException'])->name('seanceDeleteStudent');
 Route::post('/seance-details/{seance_id}/validation', [StudentsCtrl::class, 'save_presences']);
 
 use App\Http\Controllers\ImportController;

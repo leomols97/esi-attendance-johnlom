@@ -20,7 +20,7 @@ class AddStudentCourseTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/seance-details/1')
                 ->press('@button_delete20000')
-                ->assertUrlIs('https://esi-attendance-johnlom.herokuapp.com/seance-details/1/delete/20000');
+                ->assertUrlIs('http://esi-attendance-johnlom.herokuapp.com/seance-details/1/delete/20000');
         });
     }
 }
