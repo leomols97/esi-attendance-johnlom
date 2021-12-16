@@ -38,11 +38,7 @@ class StatsExportTest extends DuskTestCase
                     ->type('name', 'goku')
                     ->select('extension', 'csv')
                     ->press('Exporter')
-<<<<<<< HEAD
                     ->assertUrlIs('https://esi-attendance-johnlom.herokuapp.com/export_stats_presences'); // POST is handled by the same page
-=======
-                    ->assertUrlIs('http://esi-attendance-johnlom.herokuapp.com/export_stats_presences'); // POST is handled by the same page
->>>>>>> master
         });
     }
 
