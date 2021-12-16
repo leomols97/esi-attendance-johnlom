@@ -15,7 +15,7 @@ class SessionTest extends TestCase
      */
     public function test_importICS()
     {
-        Session::importICS("horaire.ics");
+        Session::importICS("public/horaire.ics");
 
         $this->assertDatabaseCount('courses', 7);
         $this->assertDatabaseCount('teachers', 1);
