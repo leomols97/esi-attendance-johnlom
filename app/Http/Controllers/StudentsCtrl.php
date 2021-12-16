@@ -10,6 +10,7 @@ use App\Models\Student;
 use App\Models\PresenceFormatter;
 use App\Models\Group;
 use App\Models\Seance;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 use Throwable;
@@ -37,10 +38,16 @@ class StudentsCtrl extends Controller
         }
         //return var_dump($presences);
         $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
+        $seance = Seance::getSeance($seance_id)[0];
+        $course = Course::fromSeance($seance_id)[0];
+        $teacher = Teacher::getTeacher($course->teacher_id)[0];
         return view('presenceException', ['seance_id' => $seance_id,
             'students' => $studentsInCourse,
             'studentsOut' => $studentsNotInCourse,
-            'presences' => $presences]);
+            'presences' => $presences,
+            'seance' => $seance,
+            'course' => $course,
+            'teacher' => $teacher]);
     }
 
     /**

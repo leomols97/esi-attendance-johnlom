@@ -10,9 +10,9 @@
     </head>
 
     <h1>Informations concernant la séance</h1>
-    <p>Nom du cours :</p>
-    <p>Nom du professeur :</p>
-    <p>Date et heure de la séance :</p>
+    <p>Nom du cours : {{$course->name}}</p>
+    <p>Nom du professeur : {{$teacher->first_name}} {{$teacher->last_name}}</p>
+    <p>Date et heure de la séance : de {{$seance->start_time}} à {{$seance->end_time}}</p>
 
     <h1>Les étudiants</h1>
 

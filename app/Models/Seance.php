@@ -53,4 +53,11 @@ class Seance {
         JOIN courses c ON cg.course_id = c.id");
     }
 
+    /**
+     * Gets a precise seance depending on a given ID.
+     */
+    public static function getSeance($seanceId) {
+        return DB::table('seances')->where('id','=',$seanceId)->get();
+    }
+
 }
