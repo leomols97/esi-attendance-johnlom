@@ -32,8 +32,8 @@
                     {{$student->id}} {{$student->last_name}} {{$student->first_name}}
                 </td>
                 <td>
-                    <form action="{{route('deleteStudent', $student->id)}}" method="POST"
-                          onsubmit="return confirm('Vous êtes sûre ?');">
+                    <form action="{{URL::to('/students_management/delete', array($student->id), true)}}" method="POST"
+                          onsubmit="return confirm('Vous êtes sûr ?');">
                         @csrf
                         <button type="submit" class="btnDelete" dusk="delete{{$student->id}}">Supprimer</button>
                     </form>

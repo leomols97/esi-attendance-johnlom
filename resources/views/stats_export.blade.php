@@ -14,7 +14,7 @@
     <main>
         <h1>Exporter</h1>
         <p>Exporter la table "Présences" en Excel</p>
-        <form method="POST" action="{{URL::to('/export_stats_presence', array(), true)}}">
+        <form method="POST" action="{{URL::to('/export_stats_presences', array(), true)}}">
             {{ csrf_field() }}
             <input type="text" name="name" placeholder="Nom de fichier">
             <select name="extension">
