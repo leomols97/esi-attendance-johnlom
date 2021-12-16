@@ -11,9 +11,6 @@ use App\Models\Student;
 
 class studentsManagementTest extends DuskTestCase
 {
-//    use DatabaseTransactions;
-//    use DatabaseMigrations;
-
     /**
      * A Dusk test example.
      * @group studentManagement
@@ -48,7 +45,7 @@ class studentsManagementTest extends DuskTestCase
                ->acceptDialog();
        });
    }
-    
+
     /**
      * A Dusk test example.
      * @group studentManagement
@@ -65,11 +62,7 @@ class studentsManagementTest extends DuskTestCase
                ->type('@student_first_name', 'Guillaume')
                ->type('@student_last_name', 'Retest')
                ->select('@group_name', 'E12')
-               ->press('@add');              
+               ->press('@add');
        });
    }
-
-   
-
-   
 }

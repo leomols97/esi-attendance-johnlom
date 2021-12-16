@@ -16,15 +16,13 @@ class CourseGroupsSeeder extends Seeder
      */
     public function run()
     {
-        $courses = DB::table('courses')->pluck('id');
-        $groups = DB::table('groups')->pluck('name');
-        $faker = Faker::create();
-        for ($i=0; $i < 2; $i++) {
-            DB::table('courses_groups')->insert([
-                'id' => $i,
-                'course_id' => $faker->randomElement($courses),
-                'group_id' => $faker->randomElement($groups),
-            ]);
-        }
+        DB::table('courses_groups')->insert([
+            "course_id" => 1,
+            "group_id"  => "E11"
+        ]);
+        DB::table('courses_groups')->insert([
+            "course_id" => 3,
+            "group_id"  => "E12"
+        ]);
     }
 }

@@ -596,7 +596,7 @@
 									"top": 37,
 									"width": 178.78271484375,
 									"height": 13,
-									"text": "precenses"
+									"text": "presences"
 								},
 								{
 									"_type": "ERDColumnCompartmentView",
@@ -2520,7 +2520,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF8xurT6AdnkO4="
 							},
-							"name": "acronyme",
+							"name": "acronym",
 							"length": 0,
 							"primaryKey": true
 						},
@@ -2550,7 +2550,7 @@
 					"_parent": {
 						"$ref": "AAAAAAF8xunVzgcrPJY="
 					},
-					"name": "precenses",
+					"name": "presences",
 					"columns": [
 						{
 							"_type": "ERDColumn",
