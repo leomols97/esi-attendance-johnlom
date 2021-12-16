@@ -11,7 +11,7 @@ class Seance {
     /**
      * Gets all students who don't attend at a given course.
      */
-    static public function getStudentsNotInSeance($seanceId) 
+    static public function getStudentsNotInSeance($seanceId)
     {
         $students = DB::select("SELECT *
                                     FROM students
@@ -45,12 +45,22 @@ class Seance {
         $presences = DB::select("SELECT * FROM presences WHERE seance_id = ?", [$seanceId]);
         return $presences;
     }
-    
+
     public static function getSeances() {
         return DB::select("SELECT s.id, c.name as title, s.start_time as start, s.end_time as end
         FROM seances s
         JOIN courses_groups cg ON s.course_group = cg.id
         JOIN courses c ON cg.course_id = c.id");
+    }
+
+    public static function getSeance($seance_id){
+//        $seance = DB::select("SELECT * FROM seances WHERE id = ?", [$seance_id]);
+//        return $seance;
+        return DB::select("SELECT s.id, c.name as title, s.start_time as start, s.end_time as end, c.teacher_id as teacher
+        FROM seances s
+        JOIN courses_groups cg ON s.course_group = cg.id
+        JOIN courses c ON cg.course_id = c.id
+        WHERE s.id = ?", [$seance_id]);
     }
 
 }
