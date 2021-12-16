@@ -12,7 +12,7 @@ class AddStudentCourseTest extends DuskTestCase
             $browser->visit('/seance-details/1')
                 ->select('@select_student_id', '20000')
                 ->press('Ajouter')
-                ->assertUrlIs('https://esi-attendance-johnlom.herokuapp.com/seance-details/1');
+                ->assertUrlIs('http://esi-attendance-johnlom.herokuapp.com/seance-details/1');
         });
     }
 

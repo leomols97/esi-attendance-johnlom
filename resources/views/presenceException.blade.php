@@ -4,7 +4,7 @@
 
 @section ('addStudentToCourse')
     <div>
-        <form id="add" @submit="checkForm" action="{{URL::to('/seance-details', array($seance_id), true)}}" method="POST">
+        <form id="add" @submit="checkForm" action="{{URL::to('/seance-details', array($seance_id), false)}}" method="POST">
             @csrf
             <h5>Ajouter un étudiant à un cours</h5>
             <p>
