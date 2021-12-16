@@ -10,6 +10,9 @@
     </head>
 
     <h1>Les étudiants</h1>
+    <h2>{{$courseInfo[0]->ue}}-{{$courseInfo[0]->name}}</h2>
+    <h2>{{$courseInfo[0]->last_name}}</h2>
+    <h3>{{$courseInfo[0]->start_time}}</h3>
 
     <input type="text" id="myInput" onkeyup="searchingInDB()" placeholder="Chercher un étudiant...">
     <form method="POST" action="/seance-details/{{$seance_id}}/validation">
