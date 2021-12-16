@@ -9,6 +9,7 @@
         <script type="text/javascript" src="{{secure_asset('js/presence_taking.js')}}"></script>
     </head>
 
+    <h2 dusk='seanceDetail'> Information sur la séance : {{$seanceDetails[0]->name}} {{$seanceDetails[0]->last_name}} {{$seanceDetails[0]->start_time}}</h2>
     <h1>Les étudiants</h1>
 
     <input type="text" id="myInput" onkeyup="searchingInDB()" placeholder="Chercher un étudiant...">

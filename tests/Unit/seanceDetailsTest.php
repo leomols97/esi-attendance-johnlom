@@ -14,8 +14,10 @@ class seanceDetailsTest extends TestCase
      */
     public function test_get_seance_details()
     {   
-        $details_recordSet = Seance::getSeanceDetails(1);
-        $details = array($details_recordSet["name"],$details_recordSet["last_name"],$details_recordSet["start_time"]);
-        $this->assertEquals($details, array("Gestion de projet","sDajKNXm3a","2021-12-16 14:45:00"));
+        $details_recordSet = Seance::getSeanceDetails(1); 
+        $details ="";  
+        $details = $details_recordSet[0]->name . "" . $details_recordSet[0]->last_name . "" .  $details_recordSet[0]->start_time;
+
+        $this->assertEquals($details,"Gestion de projet sDajKNXm3a 2021-12-16 14:45:00");
     }
 }

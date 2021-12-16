@@ -37,10 +37,12 @@ class StudentsCtrl extends Controller
         }
         //return var_dump($presences);
         $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
+        $seanceDetails = Seance::getSeanceDetails($seance_id);
         return view('presenceException', ['seance_id' => $seance_id,
             'students' => $studentsInCourse,
             'studentsOut' => $studentsNotInCourse,
-            'presences' => $presences]);
+            'presences' => $presences,
+            'seanceDetails' => $seanceDetails]);
     }
 
     /**
