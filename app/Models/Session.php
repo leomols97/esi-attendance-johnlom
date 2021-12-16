@@ -46,8 +46,9 @@ class Session
             $name = $array[0][1];
             $classroom = $array[3][1];
             $groups = explode("\,", $array[2][1]);
-            $start = date("d-m-Y H:i:s", strtotime($event['DTSTART']));
-            $end = date("d-m-Y H:i:s", strtotime($event['DTEND']));
+            
+            $start = date("Y-m-d H:i:s", strtotime($event['DTSTART']));
+            $end = date("Y-m-d H:i:s", strtotime($event['DTEND']));
 
             $course_exist = DB::table('courses')
                 ->where('ue', $name)->where('teacher_id', $acro)->get()->toArray();

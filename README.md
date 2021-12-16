@@ -40,4 +40,4 @@ Ils pourront vous renseigner sur des possibles erreurs internes. Pour ce faire :
 
 ## Notes supplémentaires
 
-Le CSS sur les différentes pages se charge uniquement sur l'application déployée. La raison est la suivante: pour des raisons de sécurité le CSS est uniquement chargé si celui-ci provient d'une connection sécurisée. Ceci est uniquement le cas quand sur l'application déployé et pas quand l'application tourne en local. 
+Le CSS sur les différentes pages se charge uniquement sur l'application déployée. La raison est la suivante: pour des raisons de sécurité le CSS est uniquement chargé si celui-ci provient d'une connexion sécurisée. Ceci est uniquement le cas quand sur l'application déployé et pas quand l'application tourne en local. 
