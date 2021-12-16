@@ -18,8 +18,8 @@ class PresenceSaverTest extends TestCase {
 
         $testPresences = [
             [
-                'seance_id' => 0,
-                'student_id' => 1,
+                'seance_id' => 1,
+                'student_id' => 10000,
                 'is_present' => true
             ]
         ];

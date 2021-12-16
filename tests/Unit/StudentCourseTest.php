@@ -49,16 +49,16 @@ class StudentCourseTest extends TestCase
             SELECT *
             FROM exception_student_list
             WHERE course_id = 1
-                AND student_id = 1
+                AND student_id = 90000
             ORDER BY id ASC
         ' );
         if ( empty( $student ) )
         {
-            Student::add(1, "poiuytreza", "azertyuiop", "E12");
-            StudentModel::addAndUpdateStudentToCourse(1, 1, true);
+            Student::add(90000, "poiuytreza", "azertyuiop", "E12");
+            StudentModel::addAndUpdateStudentToCourse(1, 90000, true);
         }
         $this->assertDatabaseHas('exception_student_list', [
-            'student_id' => 1,
+            'student_id' => 90000,
             'course_id' => 1
         ]);
     }
@@ -71,7 +71,7 @@ class StudentCourseTest extends TestCase
     public function test_delete_student_from_course_unexisting_student()
     {
         $this->expectException(\Exception::class);
-        StudentModel::DeleteStudentFromCourse(1, 1000000);
+        StudentModel::deleteStudentFromCourse(1, 1000000);
     }
 
     /**
@@ -82,7 +82,7 @@ class StudentCourseTest extends TestCase
     public function test_delete_student_from_course_unexisting_course()
     {
         $this->expectException(\Exception::class);
-        StudentModel::DeleteStudentFromCourse(1000000, 1);
+        StudentModel::deleteStudentFromCourse(1000000, 1);
     }
 
     /**
@@ -96,17 +96,17 @@ class StudentCourseTest extends TestCase
             SELECT *
             FROM exception_student_list
             WHERE course_id = 1
-                AND student_id = 1
+                AND student_id = 90000
             ORDER BY id ASC
         ' );
         if ( empty( $student ) )
         {
-            Student::add(1, "poiuytreza", "azertyuiop", "E12");
-            StudentModel::addAndUpdateStudentToCourse(1, 1, true);
+            Student::add(90000, "poiuytreza", "azertyuiop", "E12");
+            StudentModel::addAndUpdateStudentToCourse(1, 90000, true);
         }
-        StudentModel::DeleteStudentFromCourse(1, 1);
+        StudentModel::deleteStudentFromCourse(1, 90000);
         $this->assertDatabaseMissing('exception_student_list', [
-            'student_id' => 1,
+            'student_id' => 90000,
             'course_id' => 1
         ]);
     }
