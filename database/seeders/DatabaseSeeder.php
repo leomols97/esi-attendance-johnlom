@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             CourseGroupsSeeder::class,
             SeancesSeeder::class,
             StudentGroupsSeeder::class,
-            PresencesSeeder::class,
         ]);
     }
 }
