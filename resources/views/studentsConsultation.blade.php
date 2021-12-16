@@ -10,6 +10,12 @@
     </head>
 
     <h1>Les étudiants</h1>
+    
+    <p dusk="scours"> {{$info_seance[0]->ue}} - {{$info_seance[0]->name}}<p>
+    <p dusk="prof"> {{$info_seance[0]->acronym}} - {{$info_seance[0]->first_name}}  {{$info_seance[0]->last_name}}<p>
+    <p dusk="seance"> Début : {{$info_seance[0]->start_time}} - Fin : {{$info_seance[0]->end_time}} <p>
+
+
 
     <input type="text" id="myInput" onkeyup="searchingInDB()" placeholder="Chercher un étudiant...">
     <form method="POST" action="/seance-details/{{$seance_id}}/validation">
