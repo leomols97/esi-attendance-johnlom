@@ -82,24 +82,24 @@ class studentsManagementTest extends TestCase {
     */
 
     public function test_delete_student() {
-        if ( empty( Student::selectStudent( 1 ) ) ) {
+        if ( empty( Student::selectStudent( 30000 ) ) ) {
             if ( empty( Group::findGroup( 'E12' ) ) )
                 DB::insert( 'insert into groups (name) values (?)', [ 'E12' ] );
-            DB::insert( 'insert into students (id, last_name, first_name) values (?, ?, ?)', [ 1, 'aerg', 'qefb' ] );
-            DB::insert( 'insert into student_groups (student_id, group_name) values (?, ?)', [ 2, 'E12' ] );
+            DB::insert( 'insert into students (id, last_name, first_name) values (?, ?, ?)', [ 30000, 'aerg', 'qefb' ] );
+            DB::insert( 'insert into student_groups (student_id, group_name) values (?, ?)', [ 30000, 'E12' ] );
         }
         $this->assertDatabaseHas( 'students', [
-            'id' => 1,
+            'id' => 30000,
         ] );
 
-        Student::deleteStudent( 1 );
+        Student::deleteStudent( 30000 );
 
         $this->assertDatabaseMissing( 'students', [
-            'id' => 1,
+            'id' => 30000,
         ] );
 
         $this->assertDatabaseMissing( 'student_groups', [
-            'id' => 1,
+            'student_id' => 30000,
         ] );
     }
 }
