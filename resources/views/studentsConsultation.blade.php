@@ -9,6 +9,11 @@
         <script type="text/javascript" src="{{secure_asset('js/presence_taking.js')}}"></script>
     </head>
 
+    <h1>Informations concernant la séance</h1>
+    <p>Nom du cours :</p>
+    <p>Nom du professeur :</p>
+    <p>Date et heure de la séance :</p>
+
     <h1>Les étudiants</h1>
 
     <input type="text" id="myInput" onkeyup="searchingInDB()" placeholder="Chercher un étudiant...">
