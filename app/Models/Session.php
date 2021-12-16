@@ -30,7 +30,6 @@ class Session
         }
         $lastName = substr($lastName, 0, -1);
         $firstName = substr($firstName, 0, -1);
-
         if (sizeof(DB::table('teachers')
             ->where('acronym', $acro)->get()->toArray()) == 0) {
             DB::insert('insert into teachers (acronym,first_name,last_name) values (?,?,?)', [$acro, $firstName, $lastName]);
@@ -40,7 +39,6 @@ class Session
             $course = $event["DESCRIPTION_array"][1];
             $split = explode("\\n", $course);
             $array = array();
-
             foreach ($split as $p) {
                 array_push($array, explode(" : ", $p));
             }
@@ -66,9 +64,6 @@ class Session
             }
 
             
-
-
-
             foreach ($groups as $group) {
                 if (sizeof(DB::table('groups')
                     ->where('name', $group)->get()->toArray()) == 0) {
