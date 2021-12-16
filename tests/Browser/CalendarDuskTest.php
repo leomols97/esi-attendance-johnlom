@@ -16,7 +16,7 @@ class CalendarDuskTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/calendar')
-                    ->assertSeeIn("span .fc-title","Gestion de projet");
+                    ->assertSee("Gestion de projet");
         });
     }
 
@@ -34,7 +34,7 @@ class CalendarDuskTest extends DuskTestCase
 
     /**
      * Checks if a special event exists in the month of December
-     * This thest won't work if the showed month is another than the 12 of 2021
+     * This test won't work if the showed month is another than the 12 of 2021
      *
      * @return void
      */

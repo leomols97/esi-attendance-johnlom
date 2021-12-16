@@ -17,7 +17,7 @@ class PresenceSaverTest extends DuskTestCase
             $browser->visit('/seance-details/1')
                     ->check("@select-all")
                     ->assertChecked("@select-all")
-                    ->assertChecked("@id_student54259");
+                    ->assertChecked("@54259");
         });
     }
 

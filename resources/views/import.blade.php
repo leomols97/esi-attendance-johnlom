@@ -15,7 +15,7 @@
     <main>
         <h1>Importer horaire d'un professeur</h1>
         <p>Sélectionnez un fichier .ics d'un professeur à importer : </p>
-        <form method="POST" action="/import_schedule" enctype="multipart/form-data">
+        <form method="POST" action="{{URL::to('/import_schedule', array(), true)}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="file" name="fichier">
             <button type="submit">Importer</button>

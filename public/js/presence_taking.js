@@ -2,7 +2,7 @@
  * Handles "toggle all" checkbox. Depends on JQuery.
  * Source : https://stackoverflow.com/a/2191026
  */
-$(document).ready(function() {
+function addClickEvent() {
     $('#select-all').click(function(event) {
         if (this.checked) {
             $(':checkbox').each(function() {
@@ -14,8 +14,7 @@ $(document).ready(function() {
             });
         }
     });
-});
-
+}
 
 function searchingInDB() {
     // Declare variables
@@ -38,3 +37,7 @@ function searchingInDB() {
         }
     }
 }
+
+$(document).ready(function() {
+    addClickEvent();
+});

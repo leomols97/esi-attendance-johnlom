@@ -21,7 +21,7 @@ class SeancesSeeder extends Seeder
         for ($i=1; $i <= 2; $i++) {
             DB::table('seances')->insert([
                 'id' => $i,
-                'course_group' => 0,
+                'course_group' => 1,
                 'start_time' => ('2021-12-16 14:45:00'),
                 'end_time' => ('2021-12-16 18:00:00'),
                 'local' => random_int(0,100),

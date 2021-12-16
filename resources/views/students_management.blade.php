@@ -17,7 +17,7 @@
         <h3 class='error'>{{session('errors')->first()}}</h3>
     @endif
 
-    <div><button type="button" class="btnAdd" onclick="openFormAdd()">Ajouter un étudiant</button></div>
+    <div><button type="button" class="btnAdd" onclick="openFormAdd()" dusk="popupForm">Ajouter un étudiant</button></div>
 
     <input type="text" id="myInput" onkeyup="searchingInDB()" placeholder="Chercher un étudiant">
 
@@ -42,7 +42,7 @@
         @endforeach
     </table>
     <div class="form-popup" id="addForm">
-        <form action="/students_management/add" class="form-container" method="POST">
+        <form action="{{URL::to('/students_management/add', array(), true)}}" class="form-container" method="POST">
             @csrf
             <h3>Ajouter étudiant</h3>
             <input type="number" name="id" placeholder="Matricule" min="1" dusk="student_id">
