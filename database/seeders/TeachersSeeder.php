@@ -16,14 +16,14 @@ class TeachersSeeder extends Seeder
     public function run()
     {
         DB::table('teachers')->insert([
-            'acronym' => Str::random(10),
-            'first_name' => Str::random(10),
-            'last_name' => Str::random(10),
+            'acronym' => "SRV",
+            'first_name' => "Frédéric",
+            'last_name' => "Servais",
         ]);
         DB::table('teachers')->insert([
             'acronym' => Str::random(10),
             'first_name' => Str::random(10),
-            'last_name' => Str::random(10),    
+            'last_name' => "Nabet",    
         ]);
 
     }

@@ -22,7 +22,7 @@ class CourseSeeder extends Seeder
             'id' => 1,
             'ue' => 'PRJG5',
             'name' => 'Gestion de projet',
-            'teacher_id' => $faker->randomElement($teachers),
+            'teacher_id' => "SRV",
         ]);
         DB::table('courses')->insert([
             'id' => 3,
