@@ -17,8 +17,8 @@ class seanceDetailsTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/seance-details/1')
-                    ->assertSeeIn('@course_name', 'PRJG5')
-                    ->assertSeeIn('@teacher_name', 'KUmNxUEu18')
+                    ->assertSeeIn('@course_name', 'Gestion de projet')
+                    ->assertSeeIn('@teacher_name', 'sDajKNXm3a')
                     ->assertSeeIn('@date_seance', '2021-12-16 14:45:00');
         });
     }
