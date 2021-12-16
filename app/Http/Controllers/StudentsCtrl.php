@@ -35,12 +35,16 @@ class StudentsCtrl extends Controller
         foreach(Seance::getPresences($seance_id) as $presence) {
             $presences[$presence->student_id] = $presence->is_present;
         }
+        $info = Seance::getInfoSeance($seance_id);
         //return var_dump($presences);
         $studentsNotInCourse = Seance::getStudentsNotInSeance($seance_id);
         return view('presenceException', ['seance_id' => $seance_id,
             'students' => $studentsInCourse,
             'studentsOut' => $studentsNotInCourse,
-            'presences' => $presences]);
+            'presences' => $presences,
+            'info_seance' => $info ]
+        );
+    
     }
 
     /**

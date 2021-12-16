@@ -46,6 +46,14 @@ class Seance {
         return $presences;
     }
     
+    public static function getInfoSeance($id) {
+        return DB::select("SELECT c.ue, c.name, t.acronym, t.first_name, t.last_name,s.start_time, s.end_time
+        FROM seances s
+        JOIN courses_groups cg ON s.course_group = cg.id
+        JOIN courses c ON cg.course_id = c.id
+        JOIN teachers t ON c.teacher_id = t.acronym
+        WHERE s.id = ?", [$id]);
+    }
     public static function getSeances() {
         return DB::select("SELECT s.id, c.name as title, s.start_time as start, s.end_time as end
         FROM seances s
