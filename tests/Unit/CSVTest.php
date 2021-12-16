@@ -42,5 +42,4 @@ class CSVTest extends TestCase
 
         $this->assertTrue($errorsCatched);
     }
-
 }

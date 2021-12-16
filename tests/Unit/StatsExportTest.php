@@ -25,5 +25,4 @@ class StatsExportTest extends TestCase
 
         $this->assertFalse($errorsCatched);
     }
-
 }
