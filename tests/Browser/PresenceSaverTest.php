@@ -31,7 +31,7 @@ class PresenceSaverTest extends DuskTestCase
             $browser->visit('/students_management')
                     ->check("@select-all")
                     ->press("Valider les présences")
-                    ->assertUrlIs("http://127.0.0.1:8000/students/1/validation")
+                    ->assertUrlIs("https://esi-attendance-johnlom.herokuapp.com/students/1/validation")
                     ->assertPresent("@success");
         });
     }
