@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var SITEURL = "http://127.0.0.1:8000";
+    var SITEURL = "https://esi-attendance-johnlom.herokuapp.com";
 
     $.ajaxSetup({
         headers: {

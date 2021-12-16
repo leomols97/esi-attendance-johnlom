@@ -35,6 +35,7 @@ class studentsManagementTest extends DuskTestCase
        $this->browse(function (Browser $browser) {
            $browser->visit('/students_management')
                ->assertSee('Ajouter un étudiant')
+               ->assertVisible('@student_id')
                ->type('@student_id', '99999')
                ->type('@student_first_name', 'Hubert')
                ->type('@student_last_name', 'Bonnisseur')
@@ -58,6 +59,7 @@ class studentsManagementTest extends DuskTestCase
                ->press('@delete20000')
                ->acceptDialog()
                ->assertMissing('@id_student20000')
+               ->assertVisible('@student_id')
                ->type('@student_id', '20000')
                ->type('@student_first_name', 'Guillaume')
                ->type('@student_last_name', 'Retest')
