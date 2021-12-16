@@ -9,6 +9,8 @@
         <script type="text/javascript" src="{{secure_asset('js/presence_taking.js')}}"></script>
     </head>
 
+    <p dusk="details">Nom du cours : {{$details[0]->name}} / Début : {{$details[0]->start_time}} / Fin : {{$details[0]->end_time}} / Le professeur : {{$details[0]->first_name}} {{$details[0]->last_name}}</p>
+
     <h1>Les étudiants</h1>
 
     <input type="text" id="myInput" onkeyup="searchingInDB()" placeholder="Chercher un étudiant...">
@@ -28,10 +30,10 @@
                     <td><input type="checkbox" name="checklist[{{$student->id}}]" id="{{$student->id}}" dusk="{{$student->id}}"></td>
                     @endif
                     <td>
-                        <button type="button" dusk="button_delete{{$student->id}}"
+                        <!-- <button type="button" dusk="button_delete{{$student->id}}"
                                 onclick="window.location='{{ route('seanceDeleteStudent', [$seance_id, $student->id]) }}'">
                             Supprimer
-                        </button>
+                        </button> -->
                     </td>
                 </tr>
             @endforeach

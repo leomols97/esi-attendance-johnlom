@@ -53,4 +53,12 @@ class Seance {
         JOIN courses c ON cg.course_id = c.id");
     }
 
+    public static function getDetails($seanceId) {
+        $details = DB::select("SELECT s.id, c.name, s.start_time , s.end_time, t.first_name, t.last_name
+        FROM teachers t
+        JOIN courses c ON t.acronym = c.teacher_id
+        JOIN seances s ON s.course_group = c.id
+        WHERE s.id = ?", [$seanceId]);                              
+        return $details;
+    }
 }

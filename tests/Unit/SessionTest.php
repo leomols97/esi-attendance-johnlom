@@ -2,9 +2,12 @@
 
 namespace Tests\Unit;
 
+use App\Models\Seance;
 use Tests\TestCase;
 use App\Models\Session;
 use \Illuminate\Support\Facades\DB;
+
+use function PHPUnit\Framework\assertSame;
 
 class SessionTest extends TestCase
 {
@@ -24,4 +27,11 @@ class SessionTest extends TestCase
         $this->assertTrue(DB::table('courses_groups')->count() >= 187);
         $this->assertTrue(DB::table('seances')->count() >= 187);
     }
+
+    public function test_getDetails()  {
+        $seance_id = 1;
+        $test = Seance::getDetails($seance_id);
+        assertSame("", $test);
+    }
+
 }
