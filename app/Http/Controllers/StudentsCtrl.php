@@ -97,8 +97,7 @@ class StudentsCtrl extends Controller
             if ( isset( $request->id )
             && isset( $request->last_name )
             && isset( $request->first_name ) ) {
-                if ( $request->id > 10000
-                && $request->id < 100000 ) {
+                if ( $request->id > 10000 && $request->id < 100000 ) {
                     if ( empty( Student::selectStudent( $request->id ) ) ) {
                         $id = $request->id;
                         $last_name = $request->last_name;
@@ -107,19 +106,15 @@ class StudentsCtrl extends Controller
                         Student::add( $id, $last_name, $first_name, $group );
                         return redirect()->back()->withSuccess( 'Ajouté(e) !' );
                     } else {
-                        throw new Exception( "Impossible d'ajouter un étudiant dont le matricule a déjà été attribué à un autre étudiant !" );
                         return redirect()->back()->withErrors( "Impossible d'ajouter un étudiant dont le matricule a déjà été attribué à un autre étudiant !" );
                     }
                 } else {
-                    throw new Exception( "Pour l'ajout, le matricule de l'étudiant doit être compris entre 10000 et 100000 !" );
                     return redirect()->back()->withErrors( "Pour l'ajout, le matricule de l'étudiant doit être compris entre 10000 et 100000 !" );
                 }
             } else {
-                throw new Exception( "Pour l'ajout, veuillez remplir chaque champ pour l'ajout !" );
                 return redirect()->back()->withErrors( "Pour l'ajout, veuillez remplir chaque champ pour l'ajout !" );
             }
-        } catch ( Throwable $e ) {
-            throw new Exception( "L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !" );
+        } catch (Throwable $e) {
             return redirect()->back()->withErrors( "L'étudiant(e) n'a malheureusement pas pu être ajouté(e) !" );
         }
     }

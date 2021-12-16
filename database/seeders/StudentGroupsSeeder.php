@@ -17,12 +17,11 @@ class StudentGroupsSeeder extends Seeder
     public function run()
     {
         $students = DB::table('students')->pluck('id');
-        $groups = DB::table('groups')->pluck('name');
         $faker = Faker::create();
-        for ($i=0; $i < 2; $i++) { 
+        foreach($students as $student) { 
             DB::table('student_groups')->insert([
-                'student_id' => $students[$i],
-                'group_name' => $faker->randomElement($groups),
+                'student_id' => $student,
+                'group_name' => "E11",
             ]);
         }
     }

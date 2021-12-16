@@ -16,12 +16,12 @@ class StudentsSeeder extends Seeder
     public function run()
     {
         DB::table('students')->insert([
-            'id' => 1,
+            'id' => 10000,
             'first_name' => "Mathieu",
             'last_name' => "Letest",
         ]);
         DB::table('students')->insert([
-            'id' => 2,
+            'id' => 20000,
             'first_name' => "Guillaume",
             'last_name' => "Retest",
         ]);
