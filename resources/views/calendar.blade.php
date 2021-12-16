@@ -5,7 +5,7 @@
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/calendar.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/calendar.css') }}">
 @endsection('css')
 
 @section('content')
@@ -22,6 +22,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/fr.js"></script>
-<script src="{{ secure_asset('js/calendar.js') }}"></script>
-<script src="{{ secure_asset('js/presence_taking.js') }}"></script>
+<script src="{{ asset('js/calendar.js') }}"></script>
+<script src="{{ asset('js/presence_taking.js') }}"></script>
 @endsection

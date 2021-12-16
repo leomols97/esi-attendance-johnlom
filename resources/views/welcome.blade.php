@@ -49,7 +49,6 @@
             </table>
         </main>
     </body>
-
 </html>
 
 @endsection
