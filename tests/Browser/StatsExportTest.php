@@ -22,7 +22,7 @@ class StatsExportTest extends DuskTestCase
                     ->type('name', 'goku')
                     ->select('extension', 'xlsx')
                     ->press('Exporter')
-                    ->assertUrlIs('http://127.0.0.1:8000/exportStats'); // POST is handled by the same page
+                    ->assertUrlIs('http://esi-attendance-johnlom.herokuapp.com/exportStats'); // POST is handled by the same page
         });
     }
 

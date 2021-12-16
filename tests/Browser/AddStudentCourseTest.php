@@ -12,7 +12,7 @@ class AddStudentCourseTest extends DuskTestCase
             $browser->visit('/seance-details/1')
                 ->select('@select_student_id', '2')
                 ->press('Ajouter')
-                ->assertUrlIs('http://127.0.0.1:8000/seance-details/1');
+                ->assertUrlIs('http://esi-attendance-johnlom.herokuapp.com/seance-details/1');
         });
     }
 
@@ -20,7 +20,7 @@ class AddStudentCourseTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/seance-details/1')
                 ->press('@button_delete2')
-                ->assertUrlIs('http://127.0.0.1:8000/seance-details/1/delete/2');
+                ->assertUrlIs('http://esi-attendance-johnlom.herokuapp.com/seance-details/1/delete/2');
         });
     }
 }

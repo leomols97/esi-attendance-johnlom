@@ -54,7 +54,7 @@ class CalendarDuskTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/calendar')
-                    ->assertSee("Vue calendrier de l'horaire");
+                    ->assertSee("ESI Attendance - JOHNLOM");
         });
     }
 }
